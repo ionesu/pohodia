@@ -1,0 +1,77 @@
+<% provide(:body_class, 'tours-edit') %>
+<div class="container-fluid">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">
+      <a href="/guides/dashboard"><%= I18n.t "guides.breadcrumbs.dashboard" %></a>
+    </li>
+    <li class="breadcrumb-item">
+      <%= link_to get_value_of_smart_field(@tour.country, 'title', @current_locale), '#' %>
+    </li>
+    <% if @tour.region.present? %>
+      <li class="breadcrumb-item">
+        <%= link_to get_value_of_smart_field(@tour.region, 'title', @current_locale), '#' %>
+      </li>
+    <% end %>
+    <% if @tour.city.present? %>
+      <li class="breadcrumb-item">
+        <%= link_to get_value_of_smart_field(@tour.city, 'title', @current_locale), '#' %>
+      </li>
+    <% end %>
+
+    <li class="breadcrumb-item">
+      <% if @tour.guide_id %>
+        <a href="/guides/tours"><%= I18n.t "guides.breadcrumbs.tours" %></a>
+      <% elsif @tour.guide_company_id %>
+        <a href="#"><%= I18n.t "guides.breadcrumbs.tours_of_company" %>
+          "<%= get_value_of_smart_field(@tour.guide_company, 'title', @current_locale) %>"
+        </a>
+      <% end %>
+    </li>
+    <li class="breadcrumb-item active"><%= get_value_of_smart_field(@tour, 'title', @current_locale) %></li>
+  </ol>
+
+  <%= render 'shared/tours/edit/tour',
+             tour: @tour,
+             url: guides_tour_path %>
+
+  <%= render 'shared/gallery',
+             model: @tour,
+             url: add_images_guides_tour_path,
+             image_url: ->(model, image) { delete_image_guides_tour_path(model, image_id: image.id) } %>
+
+  <%= render 'shared/tours/edit/tour_routes',
+             tour: @tour,
+             create_route_url: add_tour_route_guides_tour_path,
+             update_route_url: update_tour_route_guides_tour_path,
+             delete_route_url: ->(tour, route) { delete_tour_route_guides_tour_path(tour, tour_route: route.id) },
+             delete_point_url: ->(point, route) { guides_tour_route_tour_route_point_path(point, route.id) } %>
+
+  <%= render 'shared/tours/edit/tour_options',
+             tour: @tour,
+             create_tour_option_url: add_tour_option_guides_tour_path,
+             update_tour_option_url: update_tour_option_guides_tour_path,
+             delete_tour_option_url: ->(tour, option) { delete_tour_option_guides_tour_path(tour, option: option) } %>
+
+  <%= render 'shared/tours/edit/tour_prices',
+             tour: @tour,
+             create_tour_price_url: add_price_item_guides_tour_path,
+             update_tour_price_url: update_price_item_guides_tour_path,
+             delete_tour_price_url: ->(tour, price_item) { delete_price_item_guides_tour_path(tour, tour_price_item: price_item) } %>
+
+  <%= render 'shared/tours/edit/tour_booking_without_date',
+             tour: @tour,
+             url: guides_tour_path %>
+
+  <%= render 'shared/tours/edit/reviews',
+             tour: @tour %>
+
+  <%= render 'shared/tours/edit/tour_discussions',
+             tour: @tour,
+             url: ->(tour, tour_discussion) { guides_tour_tour_discussion_path(tour_id: tour, id: tour_discussion, tour_discussion: { confirmed: true }) } %>
+
+  <div class="buttons_container">
+    <ul>
+      <li><%= link_to (I18n.t "all_pages.labels.back"), guides_tours_path, class: 'btn_1 gray small' %></li>
+    </ul>
+  </div>
+</div>

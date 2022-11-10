@@ -1,0 +1,72 @@
+<%= render 'site/shared/wrapper_avatar', large_avatar: @post_category.large_avatar.public_page_show.url,
+           category_title: (get_value_of_smart_field(@post_category, 'title', @current_locale)) %>
+
+<div class="container margin_60_35">
+  <div class="row">
+    <div class="col-lg-9">
+      <% @posts.each do |post| %>
+        <article class="blog wow fadeIn">
+          <div class="row no-gutters">
+            <div class="col-lg-7">
+              <figure>
+                <a href="<%= post_path(post) %>">
+                  <% if post.avatar.public_page_list.url %>
+                    <%= image_tag post.avatar.public_page_list.url, class: 'post_avatar' %>
+                  <% else %>
+                    <%= image_tag 'blog-single.jpg', class: 'post_avatar' %>
+                  <% end %>
+                  <div class="preview"><span><%= I18n.t 'all_pages.labels.read_more' %></span></div>
+                </a>
+              </figure>
+            </div>
+            <div class="col-lg-5">
+              <div class="post_info">
+                <small><%= pretty_datetime(post.created_at) %></small>
+                <h3><%= link_to get_value_of_smart_field(post, 'title', @current_locale), post_path(post) %></h3>
+                <% lead = get_value_of_smart_field(post, 'lead', @current_locale) %>
+                <p><%= lead.html_safe if lead %></p>
+              </div>
+            </div>
+          </div>
+        </article>
+      <% end %>
+      <%= will_paginate @posts, renderer: BootstrapPagination::Rails, class: 'w-50 p-3', inner_window: 1  %>
+    </div>
+
+    <aside class="col-lg-3">
+      <div class="widget">
+        <div class="widget-title">
+          <h4><%= I18n.t 'site.posts.recent_posts' %></h4>
+        </div>
+        <ul class="comments-list">
+          <% @recent_posts.each do |post| %>
+            <li>
+              <div class="alignleft">
+                <a href="<%= post_path(post) %>">
+                  <% if post.avatar.public_page_list.url %>
+                    <%= image_tag post.avatar.public_page_list_thumb.url %>
+                  <% else %>
+                    <%= image_tag 'blog-5.jpg', class: 'post_avatar' %>
+                  <% end %>
+                </a>
+              </div>
+              <small><%= pretty_datetime(post.created_at) %></small>
+              <h3><%= link_to get_value_of_smart_field(post, 'title', @current_locale), post_path(post) %></h3>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+      <!-- /widget -->
+      <div class="widget">
+        <div class="widget-title">
+          <h4><%= I18n.t 'site.posts.post_categories' %></h4>
+        </div>
+        <ul class="cats">
+          <% @post_categories.each do |category| %>
+            <li><%= link_to get_value_of_smart_field(category, 'title', @current_locale),  post_category_path(category) %></li>
+          <% end %>
+        </ul>
+      </div>
+    </aside>
+  </div>
+</div>

@@ -1,0 +1,103 @@
+<% provide(:body_class, 'tours-new') %>
+<div class="container-fluid">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">
+      <a href="/administrators/dashboard">Консоль</a>
+    </li>
+    <li class="breadcrumb-item">
+      <a href="/administrators/pages">Туры</a>
+    </li>
+    <li class="breadcrumb-item active">Добавить тур</li>
+  </ol>
+
+  <%= form_with model: @tour, url: administrators_tours_path, local: true do |f| %>
+    <div class="box_general padding_bottom">
+      <div class="header_box version_2">
+        <h2>Основная информация</h2>
+        <%= f.submit "Сохранить", class: "btn_1 small pull-right" %>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label>Название</label>
+            <%= f.text_area :title, class: "form-control", placeholder: "Название", rows: 6 %>
+          </div>
+        </div>
+        <div class="row col-md-8">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Тип</label>
+              <%= f.select :tour_type_id , @all_tour_types,{include_blank: 'Не выбран'}, {class: 'selectize-one-option'} %>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group" id="category_select_area">
+              <label>Категория</label>
+              <%= f.select :tour_category_id , [],{include_blank: 'Не выбрана'}, {class: 'selectize-one-option'} %>
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <div class="form-group">
+              <label>Сложность</label>
+              <%= f.select :complexity , [[1, 1], [2, 2], [3, 3], [4, 4], [5, 5]],{include_blank: 'Не выбрана'}, {class: 'selectize-one-option'} %>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <div class="row">
+                <div class="col-md-6">
+                  <label>Мин. высота м.</label>
+                  <%= f.text_field :min_height, class: "form-control", placeholder: "метров" %>
+                </div>
+                <div class="col-md-6">
+                  <label>Макс. высота м.</label>
+                  <%= f.text_field :max_height, class: "form-control", placeholder: "метров" %>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <label>Длина маршрута (м)</label>
+              <%= f.text_field :length_of_route, class: "form-control", placeholder: "метров" %>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="box_general padding_bottom">
+      <div class="header_box version_2">
+        <h2>Координаты</h2>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label>Страна</label>
+            <%= f.select :country_id , @countries,{include_blank: 'Не выбрано'}, {class: 'selectize-one-option'} %>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group" id="region_select_area">
+            <label>Регион</label>
+            <%= f.select :region_id , [],{include_blank: 'Не выбрано'}, {class: 'selectize-one-option'} %>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group" id="city_select_area">
+            <label>Город</label>
+            <%= f.select :city_id , [],{include_blank: 'Не выбрано'}, {class: 'selectize-one-option'} %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <% end %>
+  <div class="buttons_container">
+    <ul>
+      <li><%= link_to "Назад", administrators_tours_path, class: 'btn_1 gray small' %></li>
+    </ul>
+  </div>
+</div>

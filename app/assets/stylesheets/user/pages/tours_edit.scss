@@ -1,0 +1,22 @@
+.tours-edit {
+  .add-tour-route-area { // блок "добавить нитку маршрута"
+    .types-and-distances { // первая линия -- проживание, питание, путь ...
+      .form-group {
+        float: left;
+        margin-top: 60px;
+      }
+    }
+  }
+  .description-area {
+
+  }
+
+  .tour-routes-list { // блок "нитки маршрута"
+    .types-and-distances { // первая линия -- проживание, питание, путь ...
+      .form-group {
+        float: left;
+        margin-top: 60px;
+      }
+    }
+  }
+}

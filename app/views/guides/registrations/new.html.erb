@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title><%= I18n.t "guides.devise.sign_in.meta_title" %></title>
+
+    <%= stylesheet_link_tag 'guide_sign_in' %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body id="login_bg">
+    <main id="login">
+      <aside>
+        <%= render 'guides/shared/logo' %>
+        <%= render 'guides/shared/registration' %>
+        <%= render 'guides/shared/copyright' %>
+      </aside>
+    </main>
+
+    <%= javascript_include_tag 'guide_sign_in' %>
+  </body>
+</html>

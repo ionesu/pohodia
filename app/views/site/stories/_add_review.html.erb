@@ -1,0 +1,26 @@
+<div class="add-review">
+  <h5>Оставить отзыв</h5>
+
+  <%= form_with(model: StoryComment.new, url: story_story_comments_path(@story),
+                method: :post, html: { multipart: true }) do |form| %>
+    <div class="row">
+      <div class="form-group col-md-12">
+        <label>Ваш отзыв</label>
+        <%= form.text_area :text, class: 'form-control', style: 'height:130px;' %>
+      </div>
+
+      <%= form.fields_for :story_comment_photos do |t| %>
+        <div class="form-group col-md-12">
+          <%= t.label :photo, 'Фото' %>
+          <div>
+            <%= t.file_field :photo, multiple: true, class: 'btn_1 small' %>
+          </div>
+        </div>
+      <% end %>
+
+      <div class="form-group col-md-12">
+        <%= form.submit 'Отправить', class: 'btn' %>
+      </div>
+    </div>
+  <% end %>
+</div>

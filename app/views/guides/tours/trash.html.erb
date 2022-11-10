@@ -1,0 +1,90 @@
+<% provide(:body_class, 'tours-index') %>
+
+<div class="container-fluid">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">
+      <a href="/guides/dashboard"><%= I18n.t "guides.breadcrumbs.dashboard" %></a>
+    </li>
+    <li class="breadcrumb-item">
+      <a href="/guides/tours"><%= I18n.t "guides.breadcrumbs.tours" %></a>
+    </li>
+    <li class="breadcrumb-item active"><%= I18n.t "guides.breadcrumbs.trash" %></li>
+  </ol>
+  <div class="card mb-3">
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+          <thead>
+          <tr>
+            <th><%= I18n.t "guides.tours.index.table_head.name" %></th>
+            <th><%= I18n.t "guides.tours.index.table_head.geography" %></th>
+            <th><%= I18n.t "guides.tours.index.table_head.type_and_categrory" %></th>
+            <th><%= I18n.t "guides.tours.index.table_head.added_and_update" %></th>
+            <th><%= I18n.t "guides.tours.index.table_head.owner" %></th>
+            <th style="width: 20%"><%= I18n.t "guides.tours.index.table_head.links" %></th>
+          </tr>
+          </thead>
+          <tfoot>
+          <tr>
+            <th><%= I18n.t "guides.tours.index.table_head.name" %></th>
+            <th><%= I18n.t "guides.tours.index.table_head.geography" %></th>
+            <th><%= I18n.t "guides.tours.index.table_head.type_and_categrory" %></th>
+            <th><%= I18n.t "guides.tours.trash.table_head.added_and_delete" %></th>
+            <th><%= I18n.t "guides.tours.index.table_head.owner" %></th>
+            <th style="width: 20%"><%= I18n.t "guides.tours.index.table_head.links" %></th>
+          </tr>
+          </tfoot>
+          <tbody>
+          <% @tours.each do |tour| %>
+            <tr>
+              <td>
+                <% if @current_locale == :en %>
+                  en: <%= link_to tour.title_ru, '#' %><br/>
+                  ru: <%= link_to tour.title_en, '#' %>
+                <% else %>
+                  ru: <%= link_to tour.title_ru, '#' %><br/>
+                  en: <%= link_to tour.title_en, '#' %>
+                <% end %>
+              </td>
+              <td>
+                <% if tour.country.present? %>
+                  <%= link_to get_value_of_smart_field(tour.country, 'title', @current_locale), country_path(tour.country) %>
+                  <br/>
+                <% end %>
+                <% if tour.region.present? %>
+                  <%= link_to get_value_of_smart_field(tour.region, 'title', @current_locale), region_path(tour.region) %>
+                  <br/>
+                <% end %>
+                <% if tour.city.present? %>
+                  <%= link_to get_value_of_smart_field(tour.city, 'title', @current_locale), city_path(tour.city) %>
+                <% end %>
+              </td>
+              <td>
+                <%= link_to get_value_of_smart_field(tour.tour_type, 'title', @current_locale),
+                            '#' %><br/>
+                <%= link_to get_value_of_smart_field(tour.tour_category, 'title', @current_locale),
+                            '#' %>
+              </td>
+              <td>
+                <%= pretty_datetime tour.created_at %><br/>
+                <%= pretty_datetime tour.deleted_at %>
+              </td>
+              <td>
+                <%= I18n.t "guides.tours.index.owner_you" %>
+              </td>
+              <td>
+                <%= link_to 'Восстановить', restore_guides_tour_path(tour), method: :post %><br/>
+              </td>
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="buttons_container">
+    <ul>
+      <li><%= link_to (I18n.t "all_pages.labels.back"), '/guides/tours/', class: 'btn_1 gray small' %></li>
+    </ul>
+  </div>
+</div>

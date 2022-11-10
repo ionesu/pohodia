@@ -1,0 +1,25 @@
+ru:
+  guides:
+    guide_companies:
+      edit:
+        contact_info: "Контакты"
+        main_info: "Основная информация"
+        guide_company_permissions:
+          add_employee: "Добавить сотрудника"
+          max_emplyees_message: "Вы можете добавить максимум 15 сотрудников."
+          employee_management: "Управление сотрудниками"
+          table_head:
+            email: "Email"
+            name_and_surname: "Имя и фамилия"
+            access_to_tours: "Доступ к турам"
+            access_to_company_info: "Доступ к информации о компании"
+            links: "Ссылки"
+      index:
+        table_head:
+          titles: "Названия"
+          links: "Ссылки"
+          access_to_tours: "Доступ к турам"
+          acces_to_company_info: "Доступ к профилю компании"
+          full_access: "Полный доступ"
+        tours: "Туры"
+        max_companies_notice: "Вы можете добавить максимум 5 компаний."

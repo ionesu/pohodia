@@ -1,0 +1,29 @@
+en:
+  site:
+    tours:
+      show:
+        complexity: "Complexity"
+        route_duration: "Days"
+        route_current_day: "Day"
+        show_all_photos: "Show all photos"
+        description: "Description"
+        booking: "Booking"
+        reviews: 'Reviews'
+        gallery: 'Gallery'
+        tour_routes: 'Tour routes'
+        options_included_in_price: 'Included in price'
+        options_not_included_in_price: 'Not included in price'
+        options_equipment: 'Additional equipment'
+        dates_and_prices: 'Dates and prices'
+        date_start: 'Start'
+        date_finish: 'Finish'
+        price: 'Price'
+        status: 'Free places'
+        book: "Book"
+        tour_guide: "Guide"
+        tour_guide_company: "Company"
+      tour:
+        from: "from"
+        to: "to"
+        for_one_person: "for one person"
+        duration_days: "Duration(days)"

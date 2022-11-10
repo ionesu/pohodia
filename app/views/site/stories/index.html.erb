@@ -1,0 +1,60 @@
+<%= render 'site/shared/wrapper_avatar',
+           large_avatar: @page.large_avatar.public_page_show.url,
+           category_title: 'Истории' %>
+
+<div class="filters_listing sticky_horizontal wrapper-avatar-breadrumbs">
+  <div class="container">
+    <ul class="clearfix">
+      <li class="links-list">
+        <%= link_to 'Главная', '/' %> /
+        <%= link_to 'История', '#' %>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="container margin_60_35">
+  <div class="row">
+    <%= render 'site/stories/stories_filter' %>
+
+    <div class="col-lg-9" id="list_sidebar">
+      <div class="isotope-wrapper">
+        <% if @stories.size > 0 %>
+          <% @stories.each do |story| %>
+
+            <div class="box_list isotope-item popular">
+              <div class="row no-gutters">
+                <div class="col-lg-5">
+                  <figure>
+                    <a href="<%= story_path(story) %>">
+                      <% if story.image.to_s.size > 4 %>
+                        <%= image_tag story.image.in_list.to_s, class: 'img-fluid', width: '800', height: '533' %>
+                      <% else %>
+                        <%= image_tag 'tour_3.jpg', class: 'img-fluid', width: '800', height: '533' %>
+                      <% end %>
+                      <div class="read_more"><span>Подробнее</span></div>
+                    </a>
+                  </figure>
+                </div>
+
+                <div class="col-lg-7">
+                  <div class="wrapper">
+                    <h3>
+                      <%= link_to get_value_of_smart_field(story, 'title', @current_locale), story_path(story) %></h3>
+                    <!-- <p><%= get_short_description(get_value_of_smart_field(story, 'text', @current_locale)) %></p> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <%#= render 'site/shared/tour', tour: tour %>
+          <% end %>
+        <% else %>
+          <p class="bold center text-uppercase"><%= 'Нет записей' %></p>
+        <% end %>
+      </div>
+
+      <%= will_paginate @stories, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
+    </div>
+  </div>
+</div>

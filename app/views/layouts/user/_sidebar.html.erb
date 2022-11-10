@@ -1,0 +1,29 @@
+<ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
+  <li class="nav-item" data-toggle="tooltip" data-placement="right" title="<%= I18n.t('users.sidebar.dashboard') %>">
+    <%= link_to user_root_path, class: 'nav-link' do %>
+      <i class="fa fa-fw fa-tachometer"></i>
+      <span class="nav-link-text"><%= I18n.t('users.sidebar.dashboard') %></span>
+    <% end %>
+  </li>
+
+  <li class="nav-item" data-toggle="tooltip" data-placement="right" title="<%= I18n.t('users.sidebar.my_profile') %>">
+    <%= link_to edit_users_profile_path, class: 'nav-link' do %>
+      <i class="fa fa-fw fa-user-circle"></i>
+      <span class="nav-link-text"><%= I18n.t('users.sidebar.my_profile') %></span>
+    <% end %>
+  </li>
+
+  <li class="nav-item" data-toggle="tooltip" data-placement="right" title="<%= I18n.t('users.sidebar.my_profile') %>">
+    <%= link_to edit_users_reset_password_path, class: 'nav-link' do %>
+      <i class="fa fa-fw fa-user-circle"></i>
+      <span class="nav-link-text"><%= 'Смена пароля' %></span>
+    <% end %>
+  </li>
+
+  <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Блог">
+    <%= link_to users_stories_path, class: 'nav-link' do %>
+      <i class="fa fa-fw fa-user-circle"></i>
+      <span class="nav-link-text">Блоги</span>
+    <% end %>
+  </li>
+</ul>

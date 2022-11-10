@@ -1,0 +1,60 @@
+<% provide(:body_class, 'countries-tour_type') %>
+
+<%= render 'site/shared/wrapper_avatar', large_avatar: @tour_type.base_object.large_avatar.public_page_show.url,
+           category_title: get_value_of_smart_field(@tour_type.base_object, 'title', @current_locale) %>
+
+<div class="filters_listing sticky_horizontal wrapper-avatar-breadrumbs">
+  <div class="container">
+    <ul class="clearfix">
+      <li class="links-list">
+        <%= link_to (I18n.t 'site.all_pages.labels.main_page'), '/' %> /
+        <%= link_to (I18n.t 'site.all_pages.labels.all_countries'), '/countries' %> /
+        <%= link_to get_value_of_smart_field(@country, 'title', @current_locale), country_path(@country) %> /
+        <%= link_to get_value_of_smart_field(@tour_type.base_object, 'title', @current_locale), '#' %> /
+        <%= link_to (I18n.t 'all_pages.labels.tours'), '#' %>
+      </li>
+      <li>
+        <a class="btn_map popup-content" href="#text-popup"><%= I18n.t 'all_pages.labels.show_in_map' %></a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<!-- <div class="bg_color_1 sub-items-list">
+  <div class="container">
+    <div class="row">
+      <% @tour_type.tour_categories.each do |tour_category| %>
+        <div class="col-md-2">
+          <a href="<%= tour_category_country_url(@country, tour_category) %>" class="boxed_list">
+            <% if tour_category.avatar.public_page_list.url %>
+              <%= image_tag tour_category.avatar.public_page_list.url, class: 'item-avatar' %>
+            <% else %>
+              <i class="pe-7s-help2"></i>
+            <% end %>
+            <h4><%= get_value_of_smart_field(tour_category, 'title', @current_locale) %></h4>
+          </a>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div> -->
+
+<div class="container margin_60_35">
+  <div class="row">
+    <%= render 'site/shared/filter/country_category' %>
+
+    <div class="col-lg-9" id="list_sidebar">
+      <div class="isotope-wrapper">
+        <% if @tours.size > 0 %>
+          <% @tours.each do |tour| %>
+            <%= render 'site/shared/tour', tour: tour %>
+          <% end %>
+        <% else %>
+          <p class="bold center text-uppercase"><%= I18n.t 'all_pages.labels.no_records' %></p>
+        <% end %>
+      </div>
+
+      <%= will_paginate @tours, renderer: BootstrapPagination::Rails %>
+    </div>
+  </div>
+</div>

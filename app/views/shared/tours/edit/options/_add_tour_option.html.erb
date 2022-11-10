@@ -1,0 +1,45 @@
+<h6><%= header %></h6>
+<%= form_with model: TourOption.new, url: add_tour_option_guides_tour_path, class: 'remote', method: :post do |f| %>
+  <div class="row">
+    <div class="col-md-7">
+      <div class="tabs">
+        <ul>
+          <% if @current_locale == :en %>
+            <li>EN</li>
+            <li>RU</li>
+          <% else %>
+            <li>RU</li>
+            <li>EN</li>
+          <% end %>
+        </ul>
+        <div>
+          <% if @current_locale == :en %> <!-- если английская локаль -->
+            <div class="form-group">
+              <label><%= I18n.t "models.tour_option.title_en" %></label>
+              <%= f.text_field :title_en, class: "form-control p-bottom16", placeholder: (I18n.t 'models.tour_option.title_en_placeholder'), rows: 4 %>
+            </div>
+            <div class="form-group">
+              <label><%= I18n.t "models.tour_option.title_ru" %></label>
+              <%= f.text_field :title_ru, class: "form-control p-bottom16", placeholder: (I18n.t 'models.tour_option.title_ru_placeholder'), rows: 4 %>
+            </div>
+          <% else %> <!-- если русская локаль -->
+            <div class="form-group">
+              <label><%= I18n.t "models.tour_option.title_ru" %></label>
+              <%= f.text_field :title_ru, class: "form-control p-bottom16", placeholder: (I18n.t 'models.tour_option.title_ru_placeholder'), rows: 4 %>
+            </div>
+            <div class="form-group">
+              <label><%= I18n.t "models.tour_option.title_en" %></label>
+              <%= f.text_field :title_en, class: "form-control p-bottom16", placeholder: (I18n.t 'models.tour_option.title_en_placeholder'), rows: 4 %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-2 m-top65">
+      <div class="form-group">
+        <%= f.hidden_field :option_type, value: option_type %>
+        <%= f.submit (I18n.t "all_pages.labels.add_some"), class: "btn_1 gray add-in-list-item" %>
+      </div>
+    </div>
+  </div>
+<% end %>

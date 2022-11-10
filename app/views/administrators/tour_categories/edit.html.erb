@@ -1,0 +1,148 @@
+<% provide(:body_class, 'countries-edit') %>
+<div class="container-fluid">
+  <!-- Breadcrumbs-->
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">
+      <a href="/administrators/dashboard">Консоль</a>
+    </li>
+    <li class="breadcrumb-item">
+      <a href="/administrators/tour_types">Типы туров</a>
+    </li>
+    <li class="breadcrumb-item">
+      <%= link_to @tour_type.title_ru, edit_administrators_tour_type_path(@tour_type) %>
+    </li>
+    <li class="breadcrumb-item">
+      <%= link_to "Категории тура", tour_categories_administrators_tour_type_path(@tour_type) %>
+    </li>
+    <li class="breadcrumb-item active"><%= @tour_category.title_ru %></li>
+  </ol>
+
+  <%= form_with model: @tour_category, url: administrators_tour_category_path, local: true do |f| %>
+    <div class="box_general padding_bottom">
+      <div class="header_box version_2">
+        <h2>Основная информация</h2>
+        <%= f.submit "Обновить", class: "btn_1 small pull-right" %>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Название (ru)</label>
+            <%= f.text_field :title_ru, class: "form-control", placeholder: "Название категории тура" %>
+          </div>
+
+          <div class="form-group">
+            <label>ЧПУ (ru)</label>
+            <%= f.text_field :slug_ru, class: "form-control", placeholder: "url" %>
+          </div>
+
+          <div class="form-group">
+            <label>Описание (ru)</label>
+            <%= f.text_area :description_ru, class: "form-control tinymce", placeholder: "Описание", rows: 15 %>
+          </div>
+          <div class="form-group">
+            <label>Тип тура</label>
+            <%= f.select :tour_type_id , @tour_types,{include_blank: 'Не выбрано'}, {class: 'selectize-one-option'} %>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Название (en)</label>
+            <%= f.text_field :title_en, class: "form-control", placeholder: "Название категории тура" %>
+          </div>
+
+          <div class="form-group">
+            <label>ЧПУ (en)</label>
+            <%= f.text_field :slug_en, class: "form-control", placeholder: "url" %>
+          </div>
+
+          <div class="form-group">
+            <label>Описание (en)</label>
+            <%= f.text_area :description_en, class: "form-control tinymce", placeholder: "Описание", rows: 15 %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="box_general padding_bottom">
+      <div class="header_box version_2">
+        <h2></i>Изображения</h2>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <h6>Основное изображение</h6>
+          <small><%= ContentImage.version_page_list %></small>
+          <div class="row">
+            <div class="col-md-8">
+              <div class="form-group">
+                <% if @tour_category.avatar.to_s.size > 3 %>
+                  <%= image_tag @tour_category.avatar.page_edit.to_s, class: "main_avatar" %>
+                <% else %>
+                  <%= image_tag "noimage/main.png", class: "main_avatar" %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+          <%= f.file_field :avatar %>
+        </div>
+        <div class="col-md-6">
+          <h6>Широкое изображение</h6>
+          <small><%= ContentImage.version_page_show %></small>
+          <div class="row">
+            <div class="col-md-8">
+              <div class="form-group">
+                <% if @tour_category.large_avatar.to_s.size > 3 %>
+                  <%= image_tag @tour_category.large_avatar.page_edit.to_s, class: "large_avatar" %>
+                <% else %>
+                  <%= image_tag "noimage/main.png", class: "large_avatar" %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+          <%= f.file_field :large_avatar %>
+        </div>
+      </div>
+      <!-- /row-->
+    </div>
+
+    <div class="box_general padding_bottom">
+      <div class="header_box version_2">
+        <h2>SEO</h2>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Meta title (ru)</label>
+            <%= f.text_field :meta_title_ru, class: "form-control", placeholder: "meta title" %>
+          </div>
+          <div class="form-group">
+            <label>Meta description (ru)</label>
+            <%= f.text_area :meta_description_ru, class: "form-control", placeholder: "meta description" %>
+          </div>
+          <div class="form-group">
+            <label>Meta keywords (ru)</label>
+            <%= f.text_area :meta_keywords_ru, class: "form-control", placeholder: "meta keywords" %>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Meta title (en)</label>
+            <%= f.text_field :meta_title_en, class: "form-control", placeholder: "meta title" %>
+          </div>
+          <div class="form-group">
+            <label>Meta description (en)</label>
+            <%= f.text_area :meta_description_en, class: "form-control", placeholder: "meta description" %>
+          </div>
+          <div class="form-group">
+            <label>Meta keywords (en)</label>
+            <%= f.text_area :meta_keywords_en, class: "form-control", placeholder: "meta keywords" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  <div class="buttons_container">
+    <ul>
+      <li><%= link_to "Стат. страницы", seo_data_items_administrators_tour_category_path(@tour_category), class: 'btn_1 gray small' %></li>
+    </ul>
+  </div>
+</div>

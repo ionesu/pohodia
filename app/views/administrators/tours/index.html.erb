@@ -1,0 +1,67 @@
+<% provide(:body_class, 'tours-index') %>
+
+<div class="container-fluid">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">
+      <a href="/administrators/dashboard">Консоль</a>
+    </li>
+    <li class="breadcrumb-item active">Туры</li>
+  </ol>
+  <div class="card mb-3">
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+          <thead>
+          <tr>
+            <th>Названия</th>
+            <th>География</th>
+            <th>Тип и категория</th>
+            <th style="width: 20%">Ссылки</th>
+          </tr>
+          </thead>
+          <tfoot>
+
+          </tfoot>
+          <tbody>
+          <% @tours.each do |tour| %>
+            <tr>
+              <td>
+                <%= link_to tour.title_ru, edit_administrators_tour_path(tour) %>
+              </td>
+              <td>
+                <% if tour.country.present? %>
+                  <%= link_to tour.country.title_ru, edit_administrators_country_path(tour.country) %><br/>
+                <% end %>
+                <% if tour.region.present? %>
+                  <%= link_to tour.region.title_ru, edit_administrators_region_path(tour.region) %><br/>
+                <% end %>
+                <% if tour.city.present? %>
+                  <%= link_to tour.city.title_ru, edit_administrators_city_path(tour.city) %>
+                <% end %>
+              </td>
+              <td>
+                <%= link_to tour.tour_type.title_ru, edit_administrators_tour_type_path(tour.tour_type) %><br/>
+                <%= link_to tour.tour_category.title_ru, edit_administrators_tour_category_path(tour.tour_type) %>
+              </td>
+              <td>
+                <%= link_to "Редактировать", edit_administrators_tour_path(tour) %><br/>
+                <%= link_to "Просмотр", tour_path(tour), target: "_blank" %><br/>
+                <% if tour.deleted? %>
+                  Удален
+                <% else %>
+                  <%= link_to "Удалить", administrators_tour_path(tour), method: :delete, data: { confirm: "Удалить тур ?" } %>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="buttons_container">
+    <ul>
+      <li><%= link_to "Добавить", new_administrators_tour_path, class: 'btn_1 red small' %></li>
+    </ul>
+  </div>
+</div>

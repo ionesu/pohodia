@@ -1,0 +1,4 @@
+$('#profile_form').html('<%= j render 'guides/profile/form', current_guide: @current_guide %>');
+
+$.getScript('<%= asset_path('guide/template/selectize') %>');
+$.getScript('<%= asset_path('guide/template/remote_form') %>');

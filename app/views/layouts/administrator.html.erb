@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <%= display_meta_tags site: 'Pohodia - панель управления администратора' %>
+    
+    <%#= favicon_link_tag "administrator/template/favicon.ico" %>
+    <%= stylesheet_link_tag 'administrator' %>
+    <%= csrf_meta_tags %>
+  </head>
+
+  <body class="fixed-nav sticky-footer admin-panel <%= yield(:body_class) %>" id="page-top">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-default fixed-top" id="mainNav">
+      <a class="navbar-brand" href="/administrators/dashboard">
+        <%= image_tag "logo.png", width: 150, height: 36 %>
+      </a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <%= render "layouts/administrator/sidebar" %>
+        <%= render "layouts/administrator/header" %>
+      </div>
+    </nav>
+
+    <div class="content-wrapper">
+      <%= yield %>
+    </div>
+
+    <%= render "layouts/administrator/footer" %>
+    <%= render "layouts/administrator/logout_modal" %>
+    <%= javascript_include_tag 'administrator' %>
+    <%#= tinymce %>
+  </body>
+
+</html>

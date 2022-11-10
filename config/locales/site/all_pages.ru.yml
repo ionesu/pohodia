@@ -1,0 +1,30 @@
+ru:
+  site:
+    all_pages:
+      labels:
+        main_page: 'Главная'
+        all_countries: 'Все страны'
+        country_regions: 'Регионы страны'
+        region_cities: 'Города региона'
+        search_placeholder: "Куда отправимся..."
+        search_button: "ИСКАТЬ"        
+        search: "Поиск"
+        footer_text: "Проект Pohodia – это интересное и необычное направление в туристической индустрии. Здесь будут регистрироваться опытные гиды, которые будут в дальнейшем предлагать свои услуги в организации увлекательных походов, а заинтересованные будут выбирать наиболее понравившийся для себя и своей семьи вид отдыха."
+        footer_follow_us: "Подпишитесь на нас"
+        footer_useful_links: "Pohodia"
+        footer_contact_us: "Связаться с нами"
+        footer_newsletter: "Рассылка"
+        filter_filter: "Фильтр"
+        filter_period: "Период проведения"
+        filter_period_from: "с"
+        filter_period_to: "по"
+        filter_from: "от"
+        filter_to: "до"
+        filter_days: "Длительность(дней)"
+        filter_price: "Цена"
+        filter_complexity: "Сложность"
+        filter_accommodation: "Проживание"
+        filter_age: "Минимальный возраст"
+        filter_flight: "Перелет включен в стоимость"
+        sign_in_user_popup: "Вход в аккаунт путшественника"
+        favourites_menu: "Избранное"

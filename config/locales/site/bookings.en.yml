@@ -1,0 +1,9 @@
+en:
+  site:
+    bookings:
+      submit: 'Забронировать'
+      cancel: 'Отменить'      
+      email:
+        created_subject: 'Pohodia.ru. Новое бронирование'
+        changed_subject: 'Pohodia.ru. Изменение бронирования'
+        notification_subject: 'Pohodia.ru. Создано бронирование'

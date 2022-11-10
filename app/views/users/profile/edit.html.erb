@@ -1,0 +1,18 @@
+<% provide(:body_class, 'profile-edit') %>
+
+<div class="container-fluid">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><%= link_to I18n.t 'users.breadcrumbs.dashboard', user_root_path %></li>
+    <li class="breadcrumb-item active"><%= I18n.t "users.breadcrumbs.my_profile" %></li>
+  </ol>
+
+  <div class='row' id='user_form'>
+    <%= render 'users/profile/form', current_user: @current_user %>
+  </div>
+
+  <div class="buttons_container">
+    <ul>
+      <li><%= link_to (I18n.t "all_pages.labels.back"), user_root_path, class: 'btn_1 gray small' %></li>
+    </ul>
+  </div>
+</div>

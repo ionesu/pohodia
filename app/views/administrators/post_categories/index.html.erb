@@ -1,0 +1,47 @@
+<% provide(:body_class, 'post_categories-index') %>
+
+<div class="container-fluid">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">
+      <a href="/administrators/dashboard">Консоль</a>
+    </li>
+    <li class="breadcrumb-item active">Категории записей</li>
+  </ol>
+  <div class="card mb-3">
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+          <thead>
+          <tr>
+            <th >Названия</th>
+            <th style="width: 20%">Ссылки</th>
+          </tr>
+          </thead>
+          <tfoot>
+          <tr>
+            <th>Названия</th>
+            <th style="width: 20%">Ссылки</th>
+          </tr>
+          </tfoot>
+          <tbody>
+          <% @post_categories.each do |category| %>
+            <tr>
+              <td>
+                ru: <%= link_to category.title_ru,
+                                get_full_url(post_category_path(category), :ru), target: '_blank' %><br/>
+                en: <%= link_to category.title_en,
+                                get_full_url(post_category_path(category), :en) %>
+              </td>
+              <td>
+                <%= link_to "Редактировать", edit_administrators_post_category_path(category) %> |
+                <%= link_to "Удалить", administrators_post_category_path(category), method: :delete,
+                            data: { confirm: "Удалить категорию ?" } %>
+              </td>
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

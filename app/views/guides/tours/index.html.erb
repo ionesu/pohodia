@@ -1,0 +1,118 @@
+<% provide(:body_class, 'tours-index') %>
+
+<div class="container-fluid">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">
+      <a href="/guides/dashboard"><%= I18n.t "guides.breadcrumbs.dashboard" %></a>
+    </li>
+    <li class="breadcrumb-item active"><%= I18n.t "guides.breadcrumbs.tours" %></li>
+  </ol>
+  <div class="card mb-3">
+    <div class="card-body">
+      <!-- MODAL -->
+      <div class="modal fade" id="importModal" tabindex="-1" role="dialog" aria-labelledby="importModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="importModalLabel">Импорт туров из XML</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <%= form_with(url: create_xml_guides_tours_path, local: true, method: :post) do |f| %>
+                <div class="form-group">
+                  <%= label_tag(:content, 'Файл для импорта') %>
+                  <%= f.file_field(:content, class: 'form-control', accept: 'text/xml') %>
+                </div>
+
+                <%= f.submit('Импортировать', class: 'btn btn-primary') %>
+              <% end %>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="table-responsive">
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+          <thead>
+          <tr>
+            <th><%= I18n.t "guides.tours.index.table_head.name" %></th>
+            <th><%= I18n.t "guides.tours.index.table_head.geography" %></th>
+            <th><%= I18n.t "guides.tours.index.table_head.type_and_categrory" %></th>
+            <th><%= I18n.t "guides.tours.index.table_head.added_and_update" %></th>
+            <th style="width: 20%"><%= I18n.t "guides.tours.index.table_head.links" %></th>
+          </tr>
+          </thead>
+          <tfoot>
+          <tr>
+            <th><%= I18n.t "guides.tours.index.table_head.name" %></th>
+            <th><%= I18n.t "guides.tours.index.table_head.geography" %></th>
+            <th><%= I18n.t "guides.tours.index.table_head.type_and_categrory" %></th>
+            <th><%= I18n.t "guides.tours.index.table_head.added_and_update" %></th>
+            <th style="width: 20%"><%= I18n.t "guides.tours.index.table_head.links" %></th>
+          </tr>
+          </tfoot>
+          <tbody>
+          <% @tours.each do |tour| %>
+            <tr>
+              <td>
+                <% if @current_locale == :en %>
+                  en: <%= link_to tour.title_ru, edit_guides_tour_path(tour) %><br/>
+                  ru: <%= link_to tour.title_en, edit_guides_tour_path(tour) %>
+                <% else %>
+                  ru: <%= link_to tour.title_ru, edit_guides_tour_path(tour) %><br/>
+                  en: <%= link_to tour.title_en, edit_guides_tour_path(tour) %>
+                <% end %>
+              </td>
+              <td>
+                <% if tour.country.present? %>
+                  <%= link_to get_value_of_smart_field(tour.country, 'title', @current_locale), country_path(tour.country) %>
+                  <br/>
+                <% end %>
+                <% if tour.region.present? %>
+                  <%= link_to get_value_of_smart_field(tour.region, 'title', @current_locale), region_path(tour.region) %>
+                  <br/>
+                <% end %>
+                <% if tour.city.present? %>
+                  <%= link_to get_value_of_smart_field(tour.city, 'title', @current_locale), city_path(tour.city) %>
+                <% end %>
+              </td>
+              <td>
+                <%= link_to get_value_of_smart_field(tour.tour_type, 'title', @current_locale),
+                            tour_type_path(tour.tour_type) %><br/>
+                <%= link_to get_value_of_smart_field(tour.tour_category, 'title', @current_locale),
+                            tour_category_path(tour.tour_type) %>
+              </td>
+              <td>
+                <%= pretty_datetime tour.created_at %><br/>
+                <%= pretty_datetime tour.updated_at %>
+              </td>
+              <td>
+                <%= link_to (I18n.t "all_pages.labels.edit"), edit_guides_tour_path(tour) %><br/>
+                <%= link_to (I18n.t "all_pages.labels.view"), tour_path(tour), target: "_blank" %><br/>
+                <%= link_to (I18n.t "all_pages.labels.delete"), guides_tour_path(tour), method: :delete,
+                            data: { confirm: (I18n.t "guides.tours.index.confirm_delete_tour") } %>
+              </td>
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="buttons_container">
+    <ul>
+      <li><%= link_to (I18n.t "guides.labels.trash"), '/guides/tours/trash', class: 'btn_1 gray small' %></li>
+      <li>
+        <button type="button" class="btn_1 red small mr-2" data-toggle="modal" data-target="#importModal">
+          Импорт из XML
+        </button>
+      </li>
+      <li><%= link_to (I18n.t "all_pages.labels.add_some"), new_guides_tour_path, class: 'btn_1 red small' %></li>
+    </ul>
+  </div>
+</div>

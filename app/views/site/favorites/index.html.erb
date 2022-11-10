@@ -1,0 +1,13 @@
+<%= render 'site/shared/wrapper_avatar',
+           large_avatar: @page.large_avatar.public_page_show.url,
+           category_title: I18n.t('site.all_pages.labels.favourites_menu') %>
+
+<div class="container margin_60_35">
+  <div class="wrapper-grid">
+    <div class="row">
+      <% @tours.each do |tour| %>
+        <%= render 'site/favorites/index/tour', tour: tour %>
+      <% end %>
+    </div>
+  </div>
+</div>

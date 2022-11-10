@@ -1,0 +1,40 @@
+default: &default
+  adapter: sqlite3
+  pool: 5
+  timeout: 5000
+
+development:
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  database: pohodia_development
+  username: postgres
+  password: 12345678
+  host: localhost
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  database: pohodia_test
+  username: postgres
+  password: 12345678
+  host: localhost
+
+production:
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  database: pohodia_dev
+  username: postgres
+  password: 12345
+  host: localhost
+
+staging:
+  adapter: postgresql
+  database: pohodia_staging
+  username: deployer
+  password: Maximum91!
+  encoding: unicode
+  pool: 5
+  host: localhost

@@ -1,0 +1,13 @@
+<section class="hero_in tours_detail wrapper-avatar" xmlns="http://www.w3.org/1999/html">
+  <% if large_avatar %>
+    <%= image_tag large_avatar, class: 'wrapper-large-avatar' %>
+  <% else %>
+    <%= image_tag 'hero_in_tours_detail.jpg', class: 'wrapper-large-avatar' %>
+  <% end %>
+
+  <h1 class="hero-title">
+    <% if category_title %>
+      <%= category_title %>
+    <% end %>
+  </h1>
+</section>

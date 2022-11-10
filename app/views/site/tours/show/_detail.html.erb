@@ -1,0 +1,54 @@
+<section class="hero_in tours_detail" xmlns="http://www.w3.org/1999/html">
+  <% if @tour.base_object.large_avatar&.public_page_show&.url %>
+    <%= image_tag @tour.base_object.large_avatar.public_page_show.url, class: 'tour-large-avatar' %>
+  <% else %>
+    <%= image_tag 'hero_in_tours_detail.jpg', class: 'tour-large-avatar' %>
+  <% end %>
+
+  <div class="page-title detail-page-title">
+    <div class="container">
+      <div class="flex-row">
+        <div class="flex-column flex-md-8 flex-sm-12">
+          <h1 class="hero-title"><%= get_value_of_smart_field(@tour.base_object, 'title', @current_locale) %></h1>
+          <ul class="list-col clearfix">
+            <li class="fav-box">
+              <div class="meta">
+                <span class="block"><%= @tour.base_object.complexity %>  / 5</span>
+                <%= I18n.t "site.tours.show.complexity" %>
+              </div>
+            </li>
+            <li class="duration-box">
+              <div class="meta">
+                <span class="block"><%= @tour.route_duration %></span>
+                <%= I18n.t "site.tours.show.route_duration" %>
+              </div>
+            </li>
+<!--            <li class="price-box">-->
+<!--              <div class="meta">-->
+                <%#= I18n.t "all_pages.labels.from" %>
+<!--                <span class="block"><%#= pretty_price(@tour.min_price) %> </span>-->
+<!--              </div>-->
+<!--            </li>-->
+<!--            <li class="price-box">-->
+<!--              <div class="meta">-->
+                <%#= I18n.t "all_pages.labels.to" %>
+<!--                <span class="block"><%#= pretty_price(@tour.max_price) %> </span>-->
+<!--              </div>-->
+<!--            </li>-->
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <span class="magnific-gallery">
+    <% if @tour.first_image %>
+    <a href="<%= @tour.first_image.image %>" class="btn_photos" alt="<%= get_value_of_smart_field(@tour.base_object, 'title', @current_locale) %>" title="<%= get_value_of_smart_field(@tour.base_object, 'title', @current_locale) %>" data-effect="mfp-zoom-in">
+      <%= I18n.t "site.tours.show.show_all_photos" %>
+    </a>
+    <% end %>
+    <% @tour.images.each do |image| %>
+    <a href="<%= image.image %>" alt="<%= get_value_of_smart_field(@tour.base_object, 'title', @current_locale) %>" title="<%= get_value_of_smart_field(@tour.base_object, 'title', @current_locale) %>" data-effect="mfp-zoom-in"></a>
+   <% end %>
+	</span>
+</section>

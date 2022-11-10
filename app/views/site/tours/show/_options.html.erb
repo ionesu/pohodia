@@ -1,0 +1,26 @@
+<div class="row">
+  <div class="col-lg-4">
+    <h3><%= I18n.t 'site.tours.show.options_included_in_price' %></h3>
+    <ul class="bullets-yes">
+      <% @tour.options_included_in_price.each do |option| %>
+      <li><%= get_value_of_smart_field(option, 'title', @current_locale) %></li>
+      <% end %>
+    </ul>
+  </div>
+  <div class="col-lg-4">
+    <h3><%= I18n.t 'site.tours.show.options_not_included_in_price' %></h3>
+    <ul class="bullets-no">
+      <% @tour.options_not_included_in_price.each do |option| %>
+        <li><%= get_value_of_smart_field(option, 'title', @current_locale) %></li>
+      <% end %>
+    </ul>
+  </div>
+  <div class="col-lg-4">
+    <h3><%= I18n.t 'site.tours.show.options_equipment' %></h3>
+    <ul class="bullets-yes">
+      <% @tour.options_equipment.each do |option| %>
+        <li><%= get_value_of_smart_field(option, 'title', @current_locale) %></li>
+      <% end %>
+    </ul>
+  </div>
+</div>

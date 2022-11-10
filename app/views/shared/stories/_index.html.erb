@@ -1,0 +1,45 @@
+<div class="card mb-3">
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-bordered w-100">
+        <thead>
+        <tr>
+          <th>Название</th>
+          <th>Добавлен / Обновлен</th>
+          <th>Ссылски</th>
+        </tr>Блоги
+        </thead>
+
+        <tbody>
+        <% @stories.each do |story| %>
+          <tr>
+            <td>
+              <% if @current_locale == :en %>
+                en: <%= link_to story.title_ru, edit_story_path(story) %><br/>
+                ru: <%= link_to story.title_en, edit_story_path(story) %>
+              <% else %>
+                ru: <%= link_to story.title_ru, edit_story_path(story) %><br/>
+                en: <%= link_to story.title_en, edit_story_path(story) %>
+              <% end %>
+            </td>
+            <td>
+              <%= pretty_datetime story.created_at %><br/>
+              <%= pretty_datetime story.updated_at %>
+            </td>
+            <td>
+              <%= link_to 'Редактировать', edit_story_path(story) %><br/>
+              <%= link_to 'Удалить', story_path(story), method: :delete, data: { confirm: 'Удалить' } %>
+            </td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="buttons_container">
+  <ul>
+    <li><%= link_to 'Добавить', new_story_path, class: 'btn_1 red small' %></li>
+  </ul>
+</div>

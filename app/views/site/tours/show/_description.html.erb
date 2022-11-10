@@ -1,0 +1,32 @@
+<section id="description">
+  <h2><%= I18n.t "site.tours.show.description" %></h2>
+  <p><%= raw sanitize(simple_format(get_value_of_smart_field(@tour.base_object, 'description', @current_locale)), :tags => %w(br p img)) %></p>
+  <% if @tour.external_url.present? %>
+    <h2><%= t('all_pages.tour.external_url') %></h2>
+    <a href="<%= @tour.external_url %>"><%= @tour.external_url %></a>
+  <% end %>
+  <h3><%= I18n.t "site.tours.show.gallery" %></h3>
+  <div class="grid">
+    <ul class="magnific-gallery">
+      <% @tour.all_images.each do |image| %>
+        <li>
+          <figure>
+            <img src="<%= image.image.public_page_list %>" title="<%= get_value_of_smart_field(@tour.base_object, 'title', @current_locale) %>" alt="<%= get_value_of_smart_field(@tour.base_object, 'title', @current_locale) %>">
+            <figcaption>
+              <div class="caption-content">
+                <a href="<%= image.image %>" alt="<%= get_value_of_smart_field(@tour.base_object, 'title', @current_locale) %>" title="<%= get_value_of_smart_field(@tour.base_object, 'title', @current_locale) %>" data-effect="mfp-zoom-in">
+                  <i class="pe-7s-albums"></i>
+                </a>
+              </div>
+            </figcaption>
+          </figure>
+        </li>
+      <% end %>
+
+    </ul>
+  </div>
+  <hr>
+
+  <%= render 'site/tours/show/tour_routes' %>
+  <%= render 'site/tours/show/options' %>
+</section>

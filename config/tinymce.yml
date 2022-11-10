@@ -1,0 +1,33 @@
+menubar: false
+toolbar:
+- insert | undo redo |  formatselect | bold italic backcolor  | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | fullscreen | code | uploadimage
+plugins:
+- preview
+- searchreplace
+- autolink
+- directionality
+- visualblocks
+- visualchars
+- fullscreen
+- image
+- link
+- media
+- template
+- codesample
+- table
+- charmap
+- hr
+- pagebreak
+- nonbreaking
+- anchor
+- toc
+- insertdatetime
+- advlist
+- lists
+- textcolor
+- contextmenu
+- colorpicker
+- textpattern
+- code
+- uploadimage
+uploadimage: false

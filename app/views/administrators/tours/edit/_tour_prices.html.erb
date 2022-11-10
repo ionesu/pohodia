@@ -1,0 +1,109 @@
+<div class="box_general padding_bottom">
+  <div class="header_box version_2">
+    <h2>Даты и стоимость</h2>
+  </div>
+  <div class="row">
+    <%= form_with model: @tour_price_item, url: add_price_item_administrators_tour_path, local: true, method: :post do |f| %>
+      <div class="col-md-12">
+        <div class="row">
+          <div class="col-md-2">
+            <div class="form-group">
+              <label for="inputDate">Дата начала:</label>
+              <%= f.text_field :date_beginning, class: 'form-control', placeholder: 'Дата начала', type: 'date' %>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="form-group">
+              <label for="inputDate">Дата завершения:</label>
+              <%= f.text_field :date_completion, class: 'form-control', placeholder: 'Дата завершения', type: 'date' %>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="form-group">
+              <label for="inputDate">Всего мест:</label>
+              <%= f.text_field :total_places, class: "form-control", placeholder: "Всего мест" %>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="form-group">
+              <label for="inputDate">Свободных мест:</label>
+              <%= f.text_field :free_places, class: "form-control", placeholder: "Свободных мест" %>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="form-group">
+              <label for="inputDate">Цена:</label>
+              <%= f.text_field :price, class: "form-control", placeholder: "Цена" %>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="form-group m-top17">
+              <%= f.submit "Добавить", class: "btn_1 gray m-top15" %>
+            </div>
+          </div>
+        </div>
+    <% end %>
+    </div>
+
+  </div>
+  <% if @tour_price_items.size > 0 %>
+    <hr/>
+    <table class="table table-bordered" width="100%" cellspacing="0">
+      <thead>
+      <tr>
+        <th>Дата начала</th>
+        <th>Дата завершения</th>
+        <th>Всего мест</th>
+        <th>Свободных мест</th>
+        <th>Цена</th>
+      </tr>
+      </thead>
+      <tfoot>
+      <tr>
+        <th>Дата начала</th>
+        <th>Дата завершения</th>
+        <th>Всего мест</th>
+        <th>Свободных мест</th>
+        <th>Цена</th>
+      </tr>
+      </tfoot>
+      <tbody>
+      <% @tour_price_items.each do |item| %>
+        <tr>
+          <%= form_with model: item, url: update_price_item_administrators_tour_path(), local: true, method: :post do |f| %>
+            <td>
+              <div class="form-group">
+                <%= f.text_field :date_beginning, class: 'form-control', placeholder: 'Дата начала', type: 'date' %>
+              </div>
+            </td>
+            <td>
+              <div class="form-group">
+                <%= f.text_field :date_completion, class: 'form-control', placeholder: 'Дата завершения', type: 'date' %>
+              </div>
+            </td>
+            <td>
+              <div class="form-group">
+                <%= f.text_field :total_places, class: "form-control", placeholder: "Всего мест" %>
+              </div>
+            </td>
+            <td>
+              <div class="form-group">
+                <%= f.text_field :free_places, class: "form-control", placeholder: "Свободных мест" %>
+              </div>
+            </td>
+            <td>
+              <div class="row" style="margin: 0px">
+                <%= f.text_field :price, class: "form-control col-md-8", placeholder: "Цена" %>
+                <%= f.hidden_field :id, value: item.id %>
+                <%= f.submit "✔", class: " col-md-2 no-background" %>
+                <%= link_to "✘", remove_price_item_administrators_tour_path(@tour, tour_price_item: item),
+                            method: :post, class: 'col-md-2 m-top12' %>
+              </div>
+            </td>
+          <% end %>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  <% end %>
+</div>

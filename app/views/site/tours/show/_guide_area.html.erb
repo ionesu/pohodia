@@ -1,0 +1,59 @@
+<aside class="col-lg-4" id="sidebar">
+  <% if @tour.base_object.guide_company %>
+    <div class="box_detail booking">
+      <div class="price">
+      <span>
+        <%= link_to get_value_of_smart_field(@tour.base_object.guide_company, 'title', @current_locale), company_path(@tour.base_object.guide_company) %>
+      </span>
+        <div class="score"><span><%= I18n.t "site.tours.show.tour_guide_company" %></span></div>
+      </div>
+
+      <% if @tour.base_object.guide_company.logo.to_s.size > 3 %>
+        <%= image_tag @tour.base_object.guide_company.logo.public_page_show.url, class: 'img-fluid' %>
+      <% else %>
+        <%= image_tag 'noimage/main.png', class: 'img-fluid', width: 800, height: 533 %>
+      <% end %>
+
+      <%= link_to favorite_tour_path(@tour.base_object), class: 'btn_1 full-width outline wishlist' do %>
+        <i class="icon_heart"></i>
+        <% if TourPresence.new(@tour.base_object, @person).like? %>
+          <%= I18n.t 'all_pages.labels.in_to_bookmarks' %>
+        <% else %>
+          <%= I18n.t "all_pages.labels.add_to_bookmarks" %>
+        <% end %>
+      <% end %>
+    </div>
+  <% elsif @tour.base_object.guide %>
+    <div class="box_detail booking">
+      <div class="price">
+        <span>
+          <%= link_to @tour.base_object.guide.name_surname(@current_locale), guide_path(@tour.base_object.guide) %>
+        </span>
+        <div class="score">
+          <span><%= I18n.t "site.tours.show.tour_guide" %></span>
+        </div>
+      </div>
+
+      <% if @tour.base_object.guide.avatar.to_s.size > 3 %>
+        <%= image_tag @tour.base_object.guide.avatar.public_page_show.url, class: 'img-fluid' %>
+      <% else %>
+        <%= image_tag 'noimage/main.png', class: 'img-fluid', width: 800, height: 533 %>
+      <% end %>
+
+      <%= link_to favorite_tour_path(@tour.base_object), class: 'btn_1 full-width outline wishlist' do %>
+        <i class="icon_heart"></i>
+        <% if TourPresence.new(@tour.base_object, @person).like? %>
+          <%= I18n.t 'all_pages.labels.in_to_bookmarks' %>
+        <% else %>
+          <%= I18n.t "all_pages.labels.add_to_bookmarks" %>
+        <% end %>
+      <% end %>
+    </div>
+  <% else %>
+    <!-- связанный админ -->
+  <% end %>
+
+  <ul class="share-buttons">
+    <div class="pluso" data-background="none;" data-options="big,square,line,horizontal,nocounter,sepcounter=1,theme=14" data-services="vkontakte,odnoklassniki,facebook,yazakladki"></div>
+  </ul>
+</aside>

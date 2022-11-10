@@ -1,0 +1,5 @@
+en:
+  users:
+    profile:
+      additional_languages: "Additional languages"
+      change_password: "Change password"

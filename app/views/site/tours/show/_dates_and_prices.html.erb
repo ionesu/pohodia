@@ -1,0 +1,65 @@
+<section id="booking">
+  <h3><%= I18n.t 'site.tours.show.dates_and_prices' %></h3>
+  <% if @tour.all_price_items.present? %>
+    <div class="availabily-wrapper">
+      <ul class="availabily-list">
+        <li class="availabily-heading clearfix">
+          <div class="date-from">
+            <%= I18n.t 'site.tours.show.date_start' %>
+          </div>
+          <div class="date-to">
+            <%= I18n.t 'site.tours.show.date_finish' %>
+          </div>
+          <div class="status">
+            <%= I18n.t 'site.tours.show.status' %>
+          </div>
+          <div class="price">
+            <%= I18n.t 'site.tours.show.price' %>
+          </div>
+          <div class="action">
+            &nbsp;
+          </div>
+        </li>
+        <% @tour.all_price_items.each do |price_item| %>
+          <li class="availabily-content clearfix">
+            <div class="date-from">
+              <span><%= price_item.date_beginning %></span>
+            </div>
+            <div class="date-to">
+              <span><%= price_item.date_completion %></span>
+            </div>
+            <div class="status">
+              <span class="availabily-heading-label"></span>
+              <span>
+                <%= price_item.free_places %> / <%= price_item.total_places %>
+              </span>
+            </div>
+            <div class="price">
+              <span><%= pretty_price(price_item.price, price_item.currency) %></span>
+            </div>
+            <div class="action">
+              <% if price_item.actual? %>
+                <a class="btn_1 small btn-inverse booking_button" href="javascript: void(0)">
+                  <%= I18n.t "site.tours.show.book" %>
+                </a>
+              <% else %>
+                <a class="btn_1 small btn-inverse disabled" role="button" aria-disabled="true">
+                  <%= I18n.t "site.tours.show.book" %>
+                </a>
+              <% end %>
+            </div>
+          </li>
+          <% if price_item.actual? %>
+            <div class='booking_form'>
+              <%= render 'site/shared/booking_form', booking: price_item.new_booking, tour: @tour.base_object %>
+            </div>
+          <% end %>
+        <% end %>
+      </ul>
+    </div>
+  <% elsif @tour.tour.has_booking_without_date? %>
+    <div class="price">
+      <span><%= pretty_price(@tour.tour.price, @tour.tour.currency) %></span>
+    </div>
+  <% end %>
+</section>

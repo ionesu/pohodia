@@ -1,0 +1,22 @@
+<% provide(:body_class, 'countries-seo') %>
+
+<div class="container-fluid">
+  <%= render 'administrators/countries/seo_data_items/breadcrumbs' %>
+  <%= render 'administrators/countries/seo_data_items/pages_list' %>
+
+  <div class="box_general padding_bottom card mb-3">
+    <div class="header_box version_2">
+      <h2>Добавить страницу</h2>
+    </div>
+    <div class="row">
+      <%= render 'administrators/countries/seo_data_items/add_page_for_tour_type' %>
+      <%= render 'administrators/countries/seo_data_items/add_page_for_tour_category' %>
+    </div>
+  </div>
+    <%= render 'administrators/countries/seo_data_items/meta_data_page_guides' %>
+  <div class="buttons_container">
+    <ul>
+      <li><%= link_to "Назад", edit_administrators_country_path(@country), class: 'btn_1 gray small' %></li>
+    </ul>
+  </div>
+</div>

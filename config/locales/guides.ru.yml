@@ -1,0 +1,24 @@
+ru:
+  guides:
+    labels:
+      trash: "Корзина"
+      ready_to_leave: "Подтвердите выход"
+      logout_message: 'Нажмите на "Выйти" чтобы завершить текущий сеанс'
+      cancel: 'Отмена'
+      logout: "Выйти"
+    breadcrumbs:
+      dashboard: "Консоль"
+      tours: "Мои туры"
+      add_tour: "Добавить тур"
+      trash: "Корзина"
+      companies: "Мои компании"
+      add_company: "Добавить компанию"
+      tours_of_company: "Туры компании"
+      my_profile: "Мой профиль"
+    sidebar:
+      dashboard: "Консоль"
+      tours: "Мои туры"
+      companies: "Мои компании"
+      my_profile: "Мой профиль"
+      bookings: "Бронирования"
+      new: "Новых"

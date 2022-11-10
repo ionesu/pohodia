@@ -1,0 +1,12 @@
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">
+    <a href="/administrators/dashboard">Консоль</a>
+  </li>
+  <li class="breadcrumb-item">
+    <%= link_to "Страны", administrators_countries_path %>
+  </li>
+  <li class="breadcrumb-item">
+    <%= link_to @country.title_ru, edit_administrators_country_path(@country) %>
+  </li>
+  <li class="breadcrumb-item active">Управление SEO страницами</li>
+</ol>

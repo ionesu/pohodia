@@ -1,0 +1,75 @@
+<div class="row">
+  <table class="table table-bordered" width="100%" cellspacing="0">
+    <thead>
+    <tr>
+      <th class="text-center">
+        <%= I18n.t "guides.guide_companies.edit.guide_company_permissions.table_head.email" %>
+      </th>
+      <th class="text-center" style="width: 20%">
+        <%= I18n.t "guides.guide_companies.edit.guide_company_permissions.table_head.name_and_surname" %>
+      </th>
+      <th class="text-center">
+        <%= I18n.t "guides.guide_companies.edit.guide_company_permissions.table_head.access_to_tours" %>
+      </th>
+      <th class="text-center">
+        <%= I18n.t "guides.guide_companies.edit.guide_company_permissions.table_head.access_to_company_info" %>
+      </th>
+      <th class="text-center" style="width: 20%">
+        <%= I18n.t "guides.guide_companies.edit.guide_company_permissions.table_head.links" %>
+      </th>
+    </tr>
+    </thead>
+    <tfoot>
+    <tr>
+      <th class="text-center">
+        <%= I18n.t "guides.guide_companies.edit.guide_company_permissions.table_head.email" %>
+      </th>
+      <th class="text-center" style="width: 20%">
+        <%= I18n.t "guides.guide_companies.edit.guide_company_permissions.table_head.name_and_surname" %>
+      </th>
+      <th class="text-center">
+        <%= I18n.t "guides.guide_companies.edit.guide_company_permissions.table_head.access_to_tours" %>
+      </th>
+      <th class="text-center">
+        <%= I18n.t "guides.guide_companies.edit.guide_company_permissions.table_head.access_to_company_info" %>
+      </th>
+      <th class="text-center" style="width: 20%">
+        <%= I18n.t "guides.guide_companies.edit.guide_company_permissions.table_head.links" %>
+      </th>
+    </tr>
+    </tfoot>
+    <tbody>
+    <% @company.company_guide_permissions.each do |permission| %>
+      <tr>
+        <%= form_with model: permission, url: update_guide_guides_company_path, local: true,
+                      method: :post do |f| %>
+          <td class="text-center">
+            <%= permission.guide.email %>
+          </td>
+
+          <td class="text-center">
+            <%= get_value_of_smart_field(permission.guide, 'name', @current_locale) %>
+            <%= get_value_of_smart_field(permission.guide, 'surname', @current_locale) %>
+          </td>
+
+          <td class="text-center">
+            <%= f.check_box :access_to_tours %>
+          </td>
+
+          <td class="text-center">
+            <%= f.check_box :access_to_company_info %>
+          </td>
+
+          <td class="text-center">
+            <%= f.hidden_field :id, value: permission.id %>
+            <%= f.submit (I18n.t "all_pages.labels.update"), class: "btn_1 gray add-in-list-item" %>
+            <%= link_to (I18n.t "all_pages.labels.delete"),
+                        delete_guide_guides_company_path(permission_id: permission.id), method: :post,
+                        class: "btn_1 red add-in-list-item m-top5" %>
+          </td>
+        <% end %>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>

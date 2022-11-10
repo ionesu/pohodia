@@ -1,0 +1,35 @@
+<section id="reviews">
+  <h2>Отзывы</h2>
+  <div class="reviews-container">
+    <% @story.story_comments.each do |story_comment| %>
+      <div class="review-box clearfix">
+        <figure class="rev-thumb">
+          <% if story_comment.user.avatar.to_s.size > 3 %>
+            <%= image_tag story_comment.user.avatar.public_page_show.url, class: 'img-fluid rounded' %>
+          <% else %>
+            <%= image_tag 'noimage/main.png', class: 'img-fluid rounded', width: 800, height: 533 %>
+          <% end %>
+        </figure>
+
+        <div class="rev-content">
+          <div class="rev-info">
+            <%= story_comment.user.name_ru %> - <%= story_comment.created_at.to_formatted_s(:long) %>
+          </div>
+          <div class="rev-text">
+            <p><%= story_comment.text %></p>
+          </div>
+          <div class="rev-photos">
+            <div class="row mb-4">
+              <% story_comment.story_comment_photos.each do |story_comment_photo| %>
+                <div class="col-md-4">
+                  <%= image_tag story_comment_photo.photo.url, class: 'img-fluid' %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</section>
+<hr>

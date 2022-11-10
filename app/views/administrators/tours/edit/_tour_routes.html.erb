@@ -1,0 +1,108 @@
+<% if @tour_routes.size > 0 %>
+  <div class="box_general padding_bottom">
+    <div class="header_box version_2">
+      <h2>Нитки маршрута</h2>
+    </div>
+    <div class="row">
+      <% @tour_routes.each do |route| %>
+        <%= form_with model: route, url: update_tour_route_administrators_tour_path, local: true, method: :post do |f| %>
+          <div class="col-md-12">
+            <div class="row">
+              <div class="col-md-12">
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <%= f.text_field :title, class: "form-control", placeholder: "Название ветки" %>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group">
+                  <div class="styled-select">
+                    <%= f.select :type_accomodation, options_for_select(@tour_facade.valid_types_accomodation,
+                                                                        selected: TourRoute.type_accomodations[route.type_accomodation]),
+                                 {include_blank: 'Проживание'} %>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group">
+                  <div class="styled-select">
+                    <%= f.select :type_of_food, options_for_select(@tour_facade.valid_types_of_food,
+                                                                   selected: TourRoute.type_of_foods[route.type_of_food]),
+                                 {include_blank: 'Питание'} %>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group">
+                  <%= f.text_field :distance, class: "form-control", placeholder: "Путь в км" %>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group">
+                  <%= f.text_field :time_hours, class: "form-control", placeholder: "Путь в часах" %>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+
+                  <% if route.image.to_s.size > 3 %>
+                    <%= image_tag route.image.page_edit.to_s, class: "tour-route-image" %>
+                  <% else %>
+                    <%= image_tag "noimage/main.png", class: "tour-route-image" %>
+                  <% end %>
+                  <%= f.file_field :image, class: 'btn_1 gray small m-top10' %>
+                </div>
+              </div>
+              <div class="col-md-8">
+                <div class="form-group">
+                  <label>Описание</label>
+                  <%= f.text_area :description, class: "form-control",
+                                  placeholder: "Расскажите, где пройдет путешествие, что интересного можно увидеть на маршруте", rows: 6 %>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group">
+                  <%= f.text_field :geo_latitude, class: "form-control", placeholder: "Широта" %>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group">
+                  <%= f.text_field :geo_longitude, class: "form-control", placeholder: "Долгота" %>
+                </div>
+              </div>
+              <div class="col-md-5">
+                <div class="m-checkbox-inline">
+                  <label>
+                    <%= f.check_box :wifi_enabled %>
+                    WiFi
+                    <span></span>
+                  </label>
+                  <label>
+                    <%= f.check_box :cellular_network_enabled %>
+                    Сеть
+                    <span></span>
+                  </label>
+                  <label>
+                    <%= f.check_box :electricity_enabled %>
+                    Эл-во
+                    <span></span>
+                  </label>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <%= f.hidden_field :id, value: route.id %>
+                  <%= link_to "Удалить", remove_tour_route_administrators_tour_path(@tour, tour_route: route.id),
+                              method: :post, class: 'btn_1 gray add-way-list-item' %>
+                  <%= f.submit "Обновить", class: "btn_1 red small" %>
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr/>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+<% end %>

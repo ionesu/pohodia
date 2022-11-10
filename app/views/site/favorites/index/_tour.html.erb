@@ -1,0 +1,36 @@
+<div class="col-xl-4 col-lg-6 col-md-6">
+  <div class="box_grid">
+    <figure>
+      <a href="#0" class="wish_bt liked" data-tour_id="<%= tour.id %>"></a>
+      <a href="<%= tour_path(tour) %>">
+        <% if tour.avatar.to_s.size > 4 %>
+          <%= image_tag tour.avatar.in_list.to_s, class: 'img-fluid', width: '800', height: '533' %>
+        <% else %>
+          <%= image_tag 'tour_3.jpg', class: 'img-fluid', width: '800', height: '533' %>
+        <% end %>
+        <div class="read_more"><span><%= I18n.t 'all_pages.labels.read_more' %></span></div>
+      </a>
+    </figure>
+
+    <div class="wrapper">
+      <h3><%= link_to tour.title_ru, tour_path(tour) %></h3>
+      <p><%= tour.description_ru %></p>
+      <span class="price">
+        от
+        <strong>
+          <span class='min-price'><%= tour.min_price %></span> р.
+          <% if tour.max_price && tour.max_price != tour.min_price %>
+            <span class='max-price'>до <%= tour.max_price %></span> р.
+          <% end %>
+          </strong>
+        за человека
+      </span>
+    </div>
+    <ul>
+      <li><i class="icon_clock_alt pr-1"></i>Длительность (дней): <%= tour.route_duration %></li>
+      <li>
+        <div class="score"><span>Superb<em><%= tour.tour_comments.count %> отзывов</em></span></div>
+      </li>
+    </ul>
+  </div>
+</div>

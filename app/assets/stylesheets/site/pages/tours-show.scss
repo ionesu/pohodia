@@ -1,0 +1,44 @@
+.tours-show {
+  .tours_detail {
+    height: 485px;
+  }
+  .tour-large-avatar {
+    height: 485px;
+    position: absolute;
+  }
+  .hero_in.tours_detail:before {
+    background: none;
+  }
+  .grid {
+    ul {
+      li {
+        margin: 25px;
+        figcaption {
+          .caption-content {
+            margin-top: -10px;
+          }
+        }
+      }
+      li:first-child {
+        margin-left: 0;
+      }
+      li:nth-child(4) {
+        margin-left: 0;
+      }
+    }
+  }
+}
+@media only screen and (min-width: 1500px) {
+ .tours-show .tour-large-avatar {
+    width:100%;
+  }
+}
+@media only screen and (max-width: 1500px) {
+ .tours-show .tour-large-avatar {
+  }
+}
+@media only screen and (max-width: 1500px) {
+.tours-show .grid ul li{
+    margin-left: 0;
+  }
+}

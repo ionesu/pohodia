@@ -1,0 +1,52 @@
+<div class="box_general padding_bottom">
+  <div class="header_box version_2">
+    <h2><%= I18n.t "guides.tours.edit.additional_info" %></h2>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="row">
+        <!-- Опции которые включены в стоимость -->
+        <div class="col-md-4" id="options_included">
+          <%= render 'shared/tours/edit/options/add_tour_option',
+                     tour: tour,
+                     header: t("guides.tours.edit.options_included_in_price"),
+                     option_type: 0,
+                     create_tour_option_url: create_tour_option_url %>
+          <%= render 'shared/tours/edit/options/tour_option',
+                     tour: tour,
+                     options: tour.options.included_in_price.active,
+                     update_tour_option_url: update_tour_option_url,
+                     delete_tour_option_url: delete_tour_option_url %>
+        </div>
+
+        <!-- Опции которые не включены в стоимость -->
+        <div class="col-md-4" id="options_not_included">
+          <%= render 'shared/tours/edit/options/add_tour_option',
+                     tour: tour,
+                     header: t("guides.tours.edit.options_not_included_in_price"),
+                     option_type: 1,
+                     create_tour_option_url: create_tour_option_url %>
+          <%= render 'shared/tours/edit/options/tour_option',
+                     tour: tour,
+                     options: tour.options.not_included_in_price.active,
+                     update_tour_option_url: update_tour_option_url,
+                     delete_tour_option_url: delete_tour_option_url %>
+        </div>
+
+        <!-- Дополнительное снаряжение -->
+        <div class="col-md-4" id="options_equipment">
+          <%= render 'shared/tours/edit/options/add_tour_option',
+                     tour: tour,
+                     header: t("guides.tours.edit.equipment"),
+                     option_type: 2,
+                     create_tour_option_url: create_tour_option_url %>
+          <%= render 'shared/tours/edit/options/tour_option',
+                     tour: tour,
+                     options: tour.options.equipment.active,
+                     update_tour_option_url: update_tour_option_url,
+                     delete_tour_option_url: delete_tour_option_url %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

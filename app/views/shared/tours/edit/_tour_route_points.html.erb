@@ -1,0 +1,27 @@
+<div class='col-md-12'>
+  <div class='row'>
+    <div class='col-md-12'>
+      <h5>Уточнение маршрута</h5>
+    </div>
+    <div class='col-md-12 px-0'>
+      <div class='col-md-6'>
+        <div id='mappoints-<%= route.id %>' class='mapref' style='height: 300px'></div>
+      </div>
+      <div class='col-md-4 mt-3'>
+        <div class='btn_1 delete_all_points' data-route-id=<%= route.id %>>
+          Удалить все точки
+        </div>
+      </div>
+      <div id='points-<%= route.id %>' class='col-md-12 tour-route-points'>
+        <% route.tour_route_points.each do |point| %>
+          <div class="border my-3 p-2">
+            <%= point.geo_latitude %> <%= point.geo_longitude %>
+            <%= link_to("✘", delete_point_url.call(point, route), method: :delete, remote: true, class: 'remote float-right') %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="w-100"><hr></div>
+</div>

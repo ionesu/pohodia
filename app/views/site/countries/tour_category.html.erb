@@ -1,0 +1,43 @@
+<% provide(:body_class, 'countries-tour_category') %>
+
+<%= render 'site/shared/wrapper_avatar', large_avatar: @tour_category.base_object.large_avatar.public_page_show.url,
+category_title: get_value_of_smart_field(@tour_category.base_object, 'title', @current_locale) %>
+
+<div class="filters_listing sticky_horizontal wrapper-avatar-breadrumbs">
+  <div class="container">
+    <ul class="clearfix">
+      <li class="links-list">
+         <%= link_to (I18n.t 'site.all_pages.labels.main_page'), '/' %> /
+         <%= link_to (I18n.t 'site.all_pages.labels.all_countries'), '/countries' %> /
+          <%= link_to get_value_of_smart_field(@country, 'title', @current_locale), country_path(@country) %> /
+          <%= link_to get_value_of_smart_field(@tour_category.base_object.tour_type, 'title', @current_locale),
+                      tour_type_country_url(@country, @tour_category.base_object.tour_type) %> /
+          <%= link_to get_value_of_smart_field(@tour_category.base_object, 'title', @current_locale), '#' %> /
+          <%= link_to (I18n.t 'all_pages.labels.tours'), '#' %>
+      </li>
+      <li>
+        <a class="btn_map popup-content" href="#text-popup"><%= I18n.t 'all_pages.labels.show_in_map' %></a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="container margin_60_35">
+  <div class="row">
+    <%= render 'site/shared/filter/country_category' %>
+
+    <div class="col-lg-9" id="list_sidebar">
+      <div class="isotope-wrapper">
+        <% if @tours.size > 0 %>
+          <% @tours.each do |tour| %>
+            <%= render 'site/shared/tour', tour: tour %>
+          <% end %>
+        <% else %>
+          <p class="bold center text-uppercase"><%= I18n.t 'all_pages.labels.no_records' %></p>
+        <% end %>
+      </div>
+
+      <%= will_paginate @tours, renderer: BootstrapPagination::Rails %>
+    </div>
+  </div>
+</div>

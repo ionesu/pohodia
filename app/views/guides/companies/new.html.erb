@@ -1,0 +1,95 @@
+<% provide(:body_class, 'companies-new') %>
+<div class="container-fluid">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">
+      <a href="/guides/dashboard"><%= I18n.t "guides.breadcrumbs.dashboard" %></a>
+    </li>
+    <li class="breadcrumb-item">
+      <a href="/guides/companies"><%= I18n.t "guides.breadcrumbs.companies" %></a>
+    </li>
+    <li class="breadcrumb-item active"><%= I18n.t "guides.breadcrumbs.add_company" %></li>
+  </ol>
+
+  <%= form_with model: @new_company, url: guides_companies_path, local: true do |f| %>
+    <div class="box_general padding_bottom">
+      <div class="header_box version_2">
+        <h2><%= I18n.t "guides.tours.new.main_info" %></h2>
+        <%= f.submit (I18n.t "all_pages.labels.save"), class: "btn_1 small pull-right" %>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="tabs">
+            <ul>
+              <% if @current_locale == :en %>
+                <li>EN</li>
+                <li>RU</li>
+              <% else %>
+                <li>RU</li>
+                <li>EN</li>
+              <% end %>
+            </ul>
+            <div>
+              <% if @current_locale == :en %>
+                <div class="form-group">
+                  <label><%= I18n.t "models.tour.title_en" %></label>
+                  <%= f.text_area :title_en, class: "form-control p-bottom16",
+                                  placeholder: (I18n.t 'models.tour.title_en_placeholder'), rows: 4 %>
+                </div>
+                <div class="form-group">
+                  <label><%= I18n.t "models.tour.title_ru" %></label>
+                  <%= f.text_area :title_ru, class: "form-control p-bottom16",
+                                  placeholder: (I18n.t 'models.tour.title_ru_placeholder'), rows: 4 %>
+                </div>
+              <% else %>
+                <div class="form-group">
+                  <label><%= I18n.t "models.tour.title_ru" %></label>
+                  <%= f.text_area :title_ru, class: "form-control p-bottom16",
+                                  placeholder: (I18n.t 'models.tour.title_ru_placeholder'), rows: 4 %>
+                </div>
+                <div class="form-group">
+                  <label><%= I18n.t "models.tour.title_en" %></label>
+                  <%= f.text_area :title_en, class: "form-control p-bottom16",
+                                  placeholder: (I18n.t 'models.tour.title_en_placeholder'), rows: 4 %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="box_general padding_bottom">
+      <div class="header_box version_2">
+        <h2><%= I18n.t "guides.tours.new.coordinates" %></h2>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label><%= I18n.t "all_pages.labels.country" %></label>
+            <%= f.select :country_id, @countries, {include_blank: (I18n.t 'all_pages.labels.no_selected_v2')},
+                         {class: 'selectize-one-option'} %>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group" id="region_select_area">
+            <label><%= I18n.t "all_pages.labels.region" %></label>
+            <%= f.select :region_id, [], {include_blank: (I18n.t 'all_pages.labels.no_selected')},
+                         {class: 'selectize-one-option'} %>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group" id="city_select_area">
+            <label><%= I18n.t "all_pages.labels.city" %></label>
+            <%= f.select :city_id, [], {include_blank: (I18n.t 'all_pages.labels.no_selected_v2')},
+                         {class: 'selectize-one-option'} %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  <div class="buttons_container">
+    <ul>
+      <li><%= link_to (I18n.t "all_pages.labels.back"), guides_companies_path, class: 'btn_1 gray small' %></li>
+    </ul>
+  </div>
+</div>

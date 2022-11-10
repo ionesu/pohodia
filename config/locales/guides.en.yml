@@ -1,0 +1,22 @@
+en:
+  guides:
+    labels:
+      trash: "Trash"
+      ready_to_leave: "Ready to Leave?"
+      logout_message: 'Select "Logout" below if you are ready to end your current session.'
+      cancel: 'Cancel'
+      logout: "Logout"
+    breadcrumbs:
+      dashboard: "Dashboard"
+      tours: "Tours"
+      add_tour: "Add tour"
+      trash: "Trash"
+      companies: "My companies"
+      add_company: "Add company"
+      tours_of_company: "Tours of company"
+      my_profile: "My profile"
+    sidebar:
+      dashboard: "Dashboard"
+      tours: "My tours"
+      companies: "My companies"
+      my_profile: "My profile"

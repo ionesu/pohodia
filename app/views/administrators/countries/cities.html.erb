@@ -1,0 +1,62 @@
+<% provide(:body_class, 'countries-cities') %>
+
+<div class="container-fluid">
+  <!-- Breadcrumbs-->
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">
+      <a href="/administrators/dashboard"><%= t("administrator.sidebar.console") %></a>
+    </li>
+    <li class="breadcrumb-item">
+      <%= link_to "Страны", administrators_countries_path %>
+    </li>
+    <li class="breadcrumb-item">
+      <%= link_to @country.title_ru, edit_administrators_country_path(@country) %>
+    </li>
+    <li class="breadcrumb-item active">Города</li>
+  </ol>
+  <div class="card mb-3">
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                  <tr>
+                    <th >Названия</th>
+                    <th >Алиасы</th>
+                    <th >Зависимости</th>
+                    <th style="width: 20%">Ссылки</th>
+                  </tr>
+                  </thead>
+                  <tfoot>
+                  <tr>
+                    <th>Названия</th>
+                    <th>Алиасы</th>
+                    <th>Зависимости</th>
+                    <th style="width: 20%">Ссылки</th>
+                  </tr>
+                  </tfoot>
+                  <tbody>
+                  <% @cities.each do |city| %>
+                    <tr>
+                      <td>
+                        ru: <%= link_to city.title_ru, edit_administrators_region_path(city) %><br/>
+                        en: <%= link_to city.title_en, edit_administrators_region_path(city) %>
+                      </td>
+                      <td>
+                        ru: <%= city.slug_ru ? city.slug_ru : city.id %><br/>
+                        en: <%= city.slug_en ? city.slug_en : city.id %>
+                      </td>
+                      <td>
+                        <%= link_to "Статистические страницы", seo_data_items_administrators_city_path(city), target: "_blank" %>
+                      <td>
+                        <%= link_to "Редактировать", edit_administrators_city_path(city) %> |
+                        <%= link_to "Просмотр", city_path(city), target: "_blank" %><br/>
+                        <%= link_to "Удалить", '#', target: "_blank" %>
+                      </td>
+                    </tr>
+                  <% end %>
+                  </tbody>
+                </table>
+      </div>
+    </div>
+  </div>
+</div>

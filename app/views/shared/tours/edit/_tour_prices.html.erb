@@ -1,0 +1,122 @@
+<div class="box_general padding_bottom" id="tour_prices">
+  <div class="header_box version_2">
+    <h2><%= I18n.t "guides.tours.edit.dates_and_cost" %></h2>
+  </div>
+  <div class="row">
+    <%= form_with model: TourPriceItem.new(date_beginning: Date.today), url: create_tour_price_url, class: 'remote', method: :post do |f| %>
+      <div class="col-md-12">
+        <div class="row">
+          <div class="col-md-2">
+            <div class="form-group">
+              <label for="inputDate"><%= I18n.t "models.tour_price_item.date_beginning" %></label>
+              <%= f.text_field :date_beginning, class: 'form-control', placeholder: (I18n.t "models.tour_price_item.date_beginning_placeholder"), type: 'date' %>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="form-group">
+              <label for="inputDate"><%= I18n.t "models.tour_price_item.date_completion" %></label>
+              <%= f.text_field :date_completion, class: 'form-control', placeholder: (I18n.t "models.tour_price_item.date_completion_placeholder"), type: 'date' %>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="form-group">
+              <label for="inputDate"><%= I18n.t "models.tour_price_item.total_places" %></label>
+              <%= f.text_field :total_places, class: "form-control", placeholder: (I18n.t "models.tour_price_item.total_places_placeholder") %>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="form-group">
+              <label for="inputDate"><%= I18n.t "models.tour_price_item.free_places" %></label>
+              <%= f.text_field :free_places, class: "form-control", placeholder: (I18n.t "models.tour_price_item.free_places_placeholder") %>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="form-group">
+              <label for="inputDate"><%= I18n.t "models.tour_price_item.price" %></label>
+              <%= f.text_field :price, class: "form-control", placeholder: (I18n.t "models.tour_price_item.price_placeholder") %>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <form-group>
+              <%= label_tag(:currency, t('models.tour_price_item.currency')) %>
+              <%= f.select :currency, TourPriceItem::CURRENCIES, { include_blank: (I18n.t 'all_pages.labels.no_selected') }, { class: 'selectize-one-option' } %>
+            </form-group>
+          </div>
+
+          <div class="col-md-2">
+            <div class="form-group m-top17">
+              <%= f.submit (I18n.t "all_pages.labels.add_some"), class: "btn_1 gray m-top15" %>
+            </div>
+          </div>
+        </div>
+    <% end %>
+    </div>
+
+  </div>
+  <% if tour.price_items.active.present? %>
+    <hr/>
+    <table class="table table-bordered" width="100%" cellspacing="0">
+      <thead>
+      <tr>
+        <th><%= I18n.t "models.tour_price_item.date_beginning" %></th>
+        <th><%= I18n.t "models.tour_price_item.date_completion" %></th>
+        <th><%= I18n.t "models.tour_price_item.total_places" %></th>
+        <th><%= I18n.t "models.tour_price_item.free_places" %></th>
+        <th><%= I18n.t "models.tour_price_item.price" %></th>
+        <th><%= I18n.t "models.tour_price_item.currency" %></th>
+      </tr>
+      </thead>
+      <tfoot>
+      <tr>
+        <th><%= I18n.t "models.tour_price_item.date_beginning" %></th>
+        <th><%= I18n.t "models.tour_price_item.date_completion" %></th>
+        <th><%= I18n.t "models.tour_price_item.total_places" %></th>
+        <th><%= I18n.t "models.tour_price_item.free_places" %></th>
+        <th><%= I18n.t "models.tour_price_item.price" %></th>
+        <th><%= I18n.t "models.tour_price_item.currency" %></th>
+      </tr>
+      </tfoot>
+      <tbody>
+      <% tour.price_items.active.each do |item| %>
+        <tr>
+          <%= form_with model: item, url: update_tour_price_url, local: true, method: :post do |f| %>
+            <td>
+              <div class="form-group">
+                <%= f.text_field :date_beginning, class: 'form-control', placeholder: (I18n.t "models.tour_price_item.date_beginning_placeholder"), type: 'date' %>
+              </div>
+            </td>
+            <td>
+              <div class="form-group">
+                <%= f.text_field :date_completion, class: 'form-control', placeholder: (I18n.t "models.tour_price_item.date_completion_placeholder"), type: 'date' %>
+              </div>
+            </td>
+            <td>
+              <div class="form-group">
+                <%= f.text_field :total_places, class: "form-control", placeholder: (I18n.t "models.tour_price_item.total_places_placeholder") %>
+              </div>
+            </td>
+            <td>
+              <div class="form-group">
+                <%= f.text_field :free_places, class: "form-control", placeholder: (I18n.t "models.tour_price_item.free_places_placeholder") %>
+              </div>
+            </td>
+            <td>
+              <div class="form-group">
+                <%= f.text_field :price, class: "form-control", placeholder: (I18n.t "models.tour_price_item.price_placeholder") %>
+              </div>
+            </td>
+            <td>
+              <div class="row" style="margin: 0px">
+                <%= f.select :currency, TourPriceItem::CURRENCIES, { include_blank: (I18n.t 'all_pages.labels.no_selected') }, { class: 'col-md-8 selectize-one-option' } %>
+                <%= f.hidden_field :id, value: item.id %>
+                <%= f.submit "✔", class: " col-md-2 no-background" %>
+                <%= link_to "✘", delete_tour_price_url.call(tour, item), method: :post, remote: true, class: 'remote col-md-2 m-top12' %>
+              </div>
+            </td>
+          <% end %>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  <% end %>
+</div>

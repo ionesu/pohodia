@@ -1,0 +1,55 @@
+.admin-links {
+  width: 15%;
+  outline: 1px solid green;
+  float: right;
+  padding: 10px;
+  right: 0px;
+  background: whitesmoke;
+  z-index: 10;
+  position: fixed;
+  margin-right: 5px;
+  top: 75px;
+
+  ul {
+    list-style: none;
+    float: left;
+    padding-left: 0px;
+    margin-bottom: 0px;
+    margin-top: 5px;
+
+    li {
+      line-height: 25px;
+      margin-left: 10px;
+    }
+  }
+}
+
+.center-block {
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+ul {
+  li {
+    ul {
+      margin-left: 20px;
+    }
+  }
+}
+
+// всплывающее окно "сервис в разработке"
+.service-in-progress-popup {
+  position: relative;
+  background: #FFF;
+  padding: 20px;
+  width: auto;
+  max-width: 500px;
+  margin: 20px auto;
+
+  h3 {
+    font-size: 20px;
+    text-align: center;
+    margin-top: 10px;
+  }
+}

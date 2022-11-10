@@ -1,0 +1,133 @@
+<%= form_for @story, url: { action: :update } do |f| %>
+  <div class="box_general padding_bottom">
+    <div class="header_box version_2">
+      <h2>Основная информация</h2>
+      <%= f.submit 'Сохранить', class: "btn_1 small pull-right" %>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4">
+        <div class="tabs">
+          <ul>
+            <% if @current_locale == :en %>
+              <li>EN</li>
+              <li>RU</li>
+            <% else %>
+              <li>RU</li>
+              <li>EN</li>
+            <% end %>
+          </ul>
+
+          <div>
+            <% if @current_locale == :en %>
+              <div class="form-group">
+                <label>Название (en)</label>
+                <%= f.text_field :title_en, class: "form-control p-bottom16", placeholder: 'Название блога на английском языке' %>
+              </div>
+              <div class="form-group">
+                <label>Название (ru)</label>
+                <%= f.text_field :title_ru, class: "form-control p-bottom16", placeholder: 'Название блога на русском языке' %>
+              </div>
+            <% else %>
+              <div class="form-group">
+                <label>Название (ru)</label>
+                <%= f.text_field :title_ru, class: "form-control p-bottom16", placeholder: 'Название блога на русском языке' %>
+              </div>
+              <div class="form-group">
+                <label>Название (en)</label>
+                <%= f.text_field :title_en, class: "form-control p-bottom16", placeholder: 'Название блога на английском языке' %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group" id="category_select_area">
+          <label>Тип активности</label>
+          <%= f.select :tour_category_id, tour_categories, { include_blank: (I18n.t 'all_pages.labels.no_selected_v2') }, { class: 'selectize-one-option' } %>
+        </div>
+      </div>
+
+      <div class="col-md-12"></div>
+
+      <div class="col-md-12">
+        <div class="tabs">
+          <ul>
+            <% if @current_locale == :en %>
+              <li>EN</li>
+              <li>RU</li>
+            <% else %>
+              <li>RU</li>
+              <li>EN</li>
+            <% end %>
+          </ul>
+
+          <div>
+            <% if @current_locale == :en %>
+              <div class="form-group">
+                <label>Описание (en)</label>
+                <%= f.text_area :text_en, style: 'height: 400px', class: "form-control tinymce", placeholder: 'Описание истории на английском языке', rows: 15 %>
+              </div>
+              <div class="form-group">
+                <label>Описание (ru)</label>
+                <%= f.text_area :text_ru, style: 'height: 400px', class: "form-control tinymce", placeholder: 'Описание истории на русском языке', rows: 15 %>
+              </div>
+            <% else %>
+              <div class="form-group">
+                <label>Описание (ru)</label>
+                <%= f.text_area :text_ru, style: 'height: 400px', class: "form-control tinymce", placeholder: 'Описание истории на русском языке', rows: 15 %>
+              </div>
+              <div class="form-group">
+                <label>Описание (en)</label>
+                <%= f.text_area :text_en, style: 'height: 400px', class: "form-control tinymce", placeholder: 'Описание истории на английском языке', rows: 15 %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="box_general padding_bottom">
+    <div class="header_box version_2">
+      <h2><%= I18n.t "guides.tours.edit.images" %></h2>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <h6><%= I18n.t "models.tour.avatar" %></h6>
+        <small>800px * 530px</small>
+        <div class="row">
+          <div class="col-md-8">
+            <div class="form-group">
+              <% if @story.image.to_s.size > 3 %>
+                <%= image_tag @story.image.page_edit.to_s, class: "main_avatar" %>
+              <% else %>
+                <%= image_tag "noimage/main.png", class: "main_avatar" %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        <%= f.file_field :image, class: "btn_1 gray small pull-left" %>
+      </div>
+      <div class="col-md-6">
+        <h6><%= I18n.t "models.tour.large_image" %></h6>
+        <small>1600px * 485px</small>
+        <div class="row">
+          <div class="col-md-8">
+            <div class="form-group">
+              <% if @story.large_image.to_s.size > 3 %>
+                <%= image_tag @story.large_image.page_edit.to_s, class: "large_avatar" %>
+              <% else %>
+                <%= image_tag "noimage/main.png", class: "large_avatar" %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        <%= f.file_field :large_image, class: "btn_1 gray small pull-left" %>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<%= render 'shared/gallery', model: @story, url: add_images_story_path, image_url: ->(model, image) { delete_image_story_path(model, image_id: image.id) } %>

@@ -1,0 +1,79 @@
+// стили для всех страниц админки
+
+.languages_selector_wrapper {
+  padding-top: 8px;
+  padding-right: 5px;
+}
+
+.selectize-input {
+  padding: 12px 8px !important;
+}
+
+.main_avatar {
+  width: auto;
+  height: 130px;
+}
+
+.large_avatar {
+  width: auto;
+  height: 130px;
+}
+
+.tour-route-image {
+  width: 317px;
+  height: 130px;
+}
+
+.no-margin-horisontal {
+  margin-left: 0px !important;
+  margin-right: 0px !important;
+}
+
+// фиксированый блок кнопок внизу страницы
+.buttons_container {
+  position: fixed;
+  right: 5px;
+  bottom: 20px;
+  width: min-content;
+  height: 50px;
+  text-align: center;
+  color: white;
+  line-height: 45px;
+  z-index: 99;
+  ul {
+    width: max-content;
+    float: left;
+    li {
+      float: left;
+      display: inline-block;
+      a {
+        margin-right: 10px;
+      }
+    }
+  }
+}
+
+.btn_normal {
+
+}
+// кнопка "выберите фаил" для загрузки изображений
+.image-upload-button {
+  margin-left: 25px;
+}
+
+// блок с галереей загружаемых изображений
+.gallery-row {
+  .dz-image-preview {
+    margin-right: 20px;
+    margin-bottom: 15px;
+  }
+  // убираем отступ у крайнего правого элемента
+  .dz-image-preview:nth-child(4n) {
+    margin-right: 0px;
+  }
+  // удаленное изображение
+  .removed {
+    opacity: 0.5;
+    margin-top: 21px;
+  }
+}

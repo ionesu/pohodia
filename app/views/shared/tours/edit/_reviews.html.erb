@@ -1,0 +1,45 @@
+<% if tour.tour_comments.confirmed.present? %>
+  <div class="box_general padding_bottom">
+    <div class="header_box version_2">
+      <h2>Отзывы</h2>
+    </div>
+
+    <div class="reviews-container">
+      <% tour.tour_comments.confirmed.each do |tour_comment| %>
+        <div class="review-box clearfix px-2 mb-3">
+          <div class="rev-content rounded border p-4 clearfix">
+            <figure class="rev-thumb float-left">
+              <% if tour_comment.user.avatar.to_s.size > 3 %>
+                <%= image_tag tour_comment.user.avatar.public_page_show.url, class: 'img-fluid rounded' %>
+              <% else %>
+                <%= image_tag 'noimage/main.png', class: 'img-fluid rounded', width: 800, height: 533 %>
+              <% end %>
+            </figure>
+
+            <div class="float-left mx-2">
+              <div class="rev-info mb-2">
+                <%= tour_comment.user.name_ru %> - <%= tour_comment.created_at.to_formatted_s(:long) %>
+              </div>
+
+              <div class="rev-text">
+                <p><%= tour_comment.text %></p>
+              </div>
+
+              <% if tour_comment.tour_comment_photos.present? %>
+                <div class="rev-photos">
+                  <div class="row mb-4">
+                    <% tour_comment.tour_comment_photos.each do |tour_comment_photo| %>
+                      <div class="col-md-3">
+                        <%= image_tag tour_comment_photo.photo.url, class: 'img-fluid' %>
+                      </div>
+                    <% end %>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>

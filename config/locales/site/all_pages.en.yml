@@ -1,0 +1,30 @@
+en:
+  site:
+    all_pages:
+      labels:
+        main_page: 'Home'
+        all_countries: 'All countries'
+        country_regions: 'Country regions'
+        region_cities: 'Region cities'
+        search_placeholder: "What are you looking for..."
+        search_button: "SEARCH"
+        search: "Search" 
+        footer_text: "Проект Pohodia – это интересное и необычное направление в туристической индустрии. Здесь будут регистрироваться опытные гиды, которые будут в дальнейшем предлагать свои услуги в организации увлекательных походов, а заинтересованные будут выбирать наиболее понравившийся для себя и своей семьи вид отдыха."
+        footer_follow_us: "Follow us"
+        footer_useful_links: "Pohodia"
+        footer_contact_us: "Contact with Us"
+        footer_newsletter: "Newsletter"
+        filter_filter: "Filter"
+        filter_period: "Period"
+        filter_period_from: "from"
+        filter_period_to: "to"
+        filter_from: "from"
+        filter_to: "to"
+        filter_days: "Duration (days)"
+        filter_price: "Price"
+        filter_complexity: "Complexity"
+        filter_accommodation: "Accommodation"
+        filter_age: "Minimum age"
+        filter_flight: "Flight included"
+        sign_in_user_popup: "Loin to traveler account"
+        favourites_menu: "Wishlist"             

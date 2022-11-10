@@ -1,0 +1,117 @@
+<%= form_with model: @story, url: stories_path, local: true, method: :post do |f| %>
+  <div class="box_general padding_bottom">
+    <div class="header_box version_2">
+      <h2>Основная информация</h2>
+      <%= f.submit 'Сохранить', class: "btn_1 small pull-right" %>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4">
+        <div class="tabs">
+          <ul>
+            <% if @current_locale == :en %>
+              <li>EN</li>
+              <li>RU</li>
+            <% else %>
+              <li>RU</li>
+              <li>EN</li>
+            <% end %>
+          </ul>
+
+          <div>
+            <% if @current_locale == :en %>
+              <div class="form-group">
+                <label>Название (en)</label>
+                <%= f.text_field :title_en, class: "form-control p-bottom16", placeholder: 'Название блога на английском языке' %>
+              </div>
+              <div class="form-group">
+                <label>Название (ru)</label>
+                <%= f.text_field :title_ru, class: "form-control p-bottom16", placeholder: 'Название блога на русском языке' %>
+              </div>
+            <% else %>
+              <div class="form-group">
+                <label>Название (ru)</label>
+                <%= f.text_field :title_ru, class: "form-control p-bottom16", placeholder: 'Название блога на русском языке' %>
+              </div>
+              <div class="form-group">
+                <label>Название (en)</label>
+                <%= f.text_field :title_en, class: "form-control p-bottom16", placeholder: 'Название блога на английском языке' %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group" id="category_select_area">
+          <label>Тип активности</label>
+          <%= f.select :tour_category_id, tour_categories, { include_blank: (I18n.t 'all_pages.labels.no_selected_v2') }, { class: 'selectize-one-option' } %>
+        </div>
+      </div>
+
+      <div class="col-md-12"></div>
+
+      <div class="col-md-12">
+        <div class="tabs">
+          <ul>
+            <% if @current_locale == :en %>
+              <li>EN</li>
+              <li>RU</li>
+            <% else %>
+              <li>RU</li>
+              <li>EN</li>
+            <% end %>
+          </ul>
+
+          <div>
+            <% if @current_locale == :en %>
+              <div class="form-group">
+                <label>Описание (en)</label>
+                <%= f.text_area :text_en, class: "form-control tinymce", placeholder: 'Описание истории на английском языке', rows: 15 %>
+              </div>
+              <div class="form-group">
+                <label>Описание (ru)</label>
+                <%= f.text_area :text_ru, class: "form-control tinymce", placeholder: 'Описание истории на русском языке', rows: 15 %>
+              </div>
+            <% else %>
+              <div class="form-group">
+                <label>Описание (ru)</label>
+                <%= f.text_area :text_ru, class: "form-control tinymce", placeholder: 'Описание истории на русском языке', rows: 15 %>
+              </div>
+              <div class="form-group">
+                <label>Описание (en)</label>
+                <%= f.text_area :text_en, class: "form-control tinymce", placeholder: 'Описание истории на английском языке', rows: 15 %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="box_general padding_bottom">
+    <div class="header_box version_2">
+      <h2><%= I18n.t "guides.tours.new.coordinates" %></h2>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+          <label><%= I18n.t "models.tour.country" %></label>
+          <%= f.select :country_id, @countries, { include_blank: (I18n.t 'all_pages.labels.no_selected_v2') }, { class: 'selectize-one-option' } %>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group" id="region_select_area">
+          <label><%= I18n.t "models.tour.region" %></label>
+          <%= f.select :region_id, [], { include_blank: (I18n.t 'all_pages.labels.no_selected') }, { class: 'selectize-one-option' } %>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group" id="city_select_area">
+          <label><%= I18n.t "models.tour.city" %></label>
+          <%= f.select :city_id, [], { include_blank: (I18n.t 'all_pages.labels.no_selected_v2') }, { class: 'selectize-one-option' } %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

@@ -1,0 +1,92 @@
+<div class="box_general padding_bottom">
+  <div class="header_box version_2">
+    <h2>Добавить нитку маршрута</h2>
+  </div>
+  <div class="row">
+    <%= form_with model: @new_tour_route, url: add_tour_route_administrators_tour_path, local: true, method: :post do |f| %>
+      <div class="col-md-12">
+        <div class="row">
+          <div class="col-md-12">
+            <!--                  <h6>День 1</h6>-->
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <%= f.text_field :title, class: "form-control", placeholder: "Название нитки" %>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="form-group">
+              <div class="styled-select">
+                <%= f.select :type_accomodation, @tour_facade.valid_types_accomodation, {include_blank: 'Проживание'} %>
+                <% # f.select :type_accomodation , TourRoute.valid_types_accomodation,{include_blank: 'Не выбрано'}, {class: 'selectize-one-option'} %>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="form-group">
+              <div class="styled-select">
+                <%= f.select :type_of_food, @tour_facade.valid_types_of_food, {include_blank: 'Питание'} %>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="form-group">
+              <%= f.text_field :distance, class: "form-control", placeholder: "Путь в км" %>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="form-group">
+              <%= f.text_field :time_hours, class: "form-control", placeholder: "Путь в часах" %>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label>Изображение</label>
+              <%= f.file_field :image, class: 'btn_1 gray small image-upload-button' %>
+            </div>
+          </div>
+          <div class="col-md-8">
+            <div class="form-group">
+              <label>Описание</label>
+              <%= f.text_area :description, class: "form-control",
+                              placeholder: "Расскажите, где пройдет путешествие, что интересного можно увидеть на маршруте" %>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="form-group">
+              <%= f.text_field :geo_latitude, class: "form-control", placeholder: "Широта" %>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="form-group">
+              <%= f.text_field :geo_longitude, class: "form-control", placeholder: "Долгота" %>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="m-checkbox-inline">
+              <label>
+                <%= f.check_box :wifi_enabled %>
+                WiFi
+                <span></span>
+              </label>
+              <label>
+                <%= f.check_box :cellular_network_enabled %>
+                Сеть
+                <span></span>
+              </label>
+              <label>
+                <%= f.check_box :electricity_enabled %>
+                Эл-во
+                <span></span>
+              </label>
+
+            </div>
+            <span class="m-form__help">Дополнительныые условия</span>
+          </div>
+        </div>
+        <!--        <a href="#0" class="btn_1 gray add-way-list-item"><i class="fa fa-fw fa-plus-circle"></i>Добавить</a>-->
+        <%= f.submit "Добавить", class: "btn_1 red add-way-list-item" %>
+      </div>
+    <% end %>
+  </div>
+</div>
