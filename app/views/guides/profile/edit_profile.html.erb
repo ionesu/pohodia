@@ -1,0 +1,57 @@
+<% provide(:body_class, 'profile-edit') %>
+
+<div class="container-fluid">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">
+      <a href="/guides/dashboard"><%= I18n.t "guides.breadcrumbs.dashboard" %></a>
+    </li>
+    <li class="breadcrumb-item active"><%= I18n.t "guides.breadcrumbs.my_profile" %></li>
+  </ol>
+
+  <div class='row' id='profile_form'>
+    <%= render 'guides/profile/form', current_guide: @current_guide %>
+  </div>
+
+  <div class="row">
+
+    <%= form_with model: @current_guide.base_object, url: add_additional_language_guides_path(format: :json),
+                  method: :post, class: 'col-md-6 remote edit-profile' do |f| %>
+      <div class="box_general padding_bottom">
+        <div class="header_box version_2">
+          <h2><%= I18n.t "guides.profile.additional_languages" %></h2>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Язык</label>
+              <%= f.select :main_language_id, @current_guide.languages_for_select,
+                           { include_blank: (I18n.t 'all_pages.labels.no_selected') },
+                           { class: 'selectize-one-option' } %>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="form-group m-top35">
+              <%= f.submit (I18n.t "all_pages.labels.add_some"), class: "btn_1 small pull-left" %>
+            </div>
+          </div>
+        </div>
+        <% @current_guide.additional_languages.each do |language| %>
+          <div class="row">
+            <div class="col-md-6">
+              <%= get_value_of_smart_field(language, 'title', @current_locale) %>
+            </div>
+            <div class="col-md-2">
+              <%= link_to t("all_pages.labels.delete"), delete_additional_language_guides_path(id: language.id), method: :post %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="buttons_container">
+    <ul>
+      <li><%= link_to (I18n.t "all_pages.labels.back"), guide_root_path, class: 'btn_1 gray small' %></li>
+    </ul>
+  </div>
+</div>

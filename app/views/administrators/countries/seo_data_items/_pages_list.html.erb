@@ -1,0 +1,81 @@
+<div class="box_general padding_bottom card mb-3">
+  <div class="header_box version_2">
+    <h2>Вложенные типы и категории туров</h2>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-6">
+        <p class="m-bottom5">Страна -> тип тура</p>
+        <% if @pages_for_tour_types.size > 0 %>
+          <table class="table table-bordered" width="100%" cellspacing="0">
+            <thead>
+            <tr>
+              <th>Иерархия на сайте</th>
+              <th></th>
+            </tr>
+            </thead>
+            <tfoot>
+            <tr>
+              <th>Иерархия на сайте</th>
+              <th></th>
+            </tr>
+            </tfoot>
+            <tbody>
+            <% @pages_for_tour_types.each do |page| %>
+              <tr>
+                <td>
+                  / <%= link_to 'Страны', '/countries' %> /
+                  <%= link_to @country.title_ru, country_path(@country) %>
+                  / <%= link_to page.tour_type.title_ru, tour_type_country_url(@country, page.tour_type_id) %>
+                </td>
+                <td>
+                  <%= link_to 'ред.', edit_administrators_seo_data_item_path(page) %>
+                </td>
+              </tr>
+            <% end %>
+            </tbody>
+          </table>
+        <% else %>
+          <p>Нет записей</p>
+        <% end %>
+      </div>
+
+      <div class="col-md-6">
+        <p class="m-bottom5">Страна -> тип тура -> категория тура</p>
+        <% if @pages_for_tour_categories.size > 0 %>
+          <table class="table table-bordered" width="100%" cellspacing="0">
+            <thead>
+            <tr>
+              <th>Иерархия на сайте</th>
+              <th></th>
+            </tr>
+            </thead>
+            <tfoot>
+            <tr>
+              <th>Иерархия на сайте</th>
+              <th></th>
+            </tr>
+            </tfoot>
+            <tbody>
+            <% @pages_for_tour_categories.each do |page| %>
+              <tr>
+                <td>
+                  / <%= link_to 'Страны', '/countries' %> /
+                  <%= link_to @country.title_ru, country_path(@country) %>
+                  / <%= link_to page.tour_type.title_ru, tour_category_country_url(@country, page.tour_type_id) %> /
+                  <%= link_to page.tour_category.title_ru, tour_category_country_url(@country, page.tour_category_id) %>
+                </td>
+                <td>
+                  <%= link_to 'ред.', edit_administrators_seo_data_item_path(page) %>
+                </td>
+              </tr>
+            <% end %>
+            </tbody>
+          </table>
+        <% else %>
+          <p>Нет записей</p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

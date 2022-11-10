@@ -1,0 +1,57 @@
+<% provide(:body_class, 'tour_types-index') %>
+
+<div class="container-fluid">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">
+      <a href="/administrators/dashboard">Консоль</a>
+    </li>
+    <li class="breadcrumb-item active">Типы туров</li>
+  </ol>
+  <div class="card mb-3">
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+          <thead>
+          <tr>
+            <th >Названия</th>
+            <th >Алиасы</th>
+            <th >Зависимости</th>
+            <th style="width: 20%">Ссылки</th>
+          </tr>
+          </thead>
+          <tfoot>
+          <tr>
+            <th>Названия</th>
+            <th>Алиасы</th>
+            <th>Зависимости</th>
+            <th style="width: 20%">Ссылки</th>
+          </tr>
+          </tfoot>
+          <tbody>
+          <% @tour_types.each do |tour_type| %>
+            <tr>
+              <td>
+                ru: <%= link_to tour_type.title_ru, edit_administrators_tour_type_path(tour_type) %><br/>
+                en: <%= link_to tour_type.title_en, edit_administrators_tour_type_path(tour_type) %>
+              </td>
+              <td>
+                ru: <%= tour_type.slug_ru ? tour_type.slug_ru : tour_type.id %><br/>
+                en: <%= tour_type.slug_en ? tour_type.slug_en : tour_type.id %>
+              </td>
+              <td>
+                <%= link_to "Категории", tour_categories_administrators_tour_type_path(tour_type), target: "_blank" %><br/>
+                <%= link_to "SEO страницы", seo_data_items_administrators_tour_type_path(tour_type), target: "_blank" %>
+              </td>
+              <td>
+                <%= link_to "Редактировать", edit_administrators_tour_type_path(tour_type) %> |
+                <%= link_to "Просмотр", tour_type_path(tour_type), target: "_blank" %><br/>
+                <%= link_to "Удалить", '#', target: "_blank" %>
+              </td>
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

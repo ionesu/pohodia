@@ -1,0 +1,93 @@
+ru:
+  will_paginate:
+    previous_label: "Назад"
+    next_label: "Вперед"
+    page_gap: "…"
+  all_pages:
+    labels:
+      no_selected: 'Не выбран'
+      no_selected_v2: 'Не выбрана'
+      no_selected_v3: 'Не выбрано'
+      upload: "Загрузить"
+      add_some: "Добавить"
+      delete: "Удалить"
+      update: "Обновить"
+      deleted_items: "Удаленные элементы"
+      option: "Опция"
+      back: "Назад"
+      save: "Сохранить"
+      edit: "Редактировать"
+      view: "Просмотр"
+      restore: "Восстановить"
+      country: "Страна"
+      region: "Регион"
+      city: "Город"
+      you: "Вы"
+      yes_label: "Да"
+      no_label: "Нет"
+      from: "от"
+      to: "до"
+      service_in_progress: "Этот функционал пока в разработке !"
+      in_to_bookmarks: "В избранном"
+      add_to_bookmarks: "Добавить в закладки"
+      show_in_map: "Показать на карте"
+      read_more: "Подробнее"
+      no_records: "Нет записей"
+      tours: 'Туры'
+      gallery: "Галерея"
+    plugins:
+      data_tables:
+        search_placeholder: "Введите текст для поиска"
+        search: "Поиск:"
+        processing: "Обработка"
+        length_menu: "Показать _MENU_ записей"
+        info: "Записи с _START_ до _END_ из _TOTAL_ записей"
+        info_empty: "Записи с 0 до 0 из 0 записей"
+        info_filtered: "(отфильтровано из _MAX_ записей)"
+        info_post_fix: ""
+        loading_records: "Загрузка записей..."
+        zero_records: "Записи отсутствуют."
+        empty_table: "В таблице отсутствуют данные"
+        paginate:
+          first: "Первая"
+          previous: "Предыдущая"
+          next: "Следующая"
+          last: "Последняя"
+        aria:
+          sort_ascending: ": активировать для сортировки столбца по возрастанию"
+          sort_descending: ": активировать для сортировки столбца по убыванию"
+    tour:
+      external_url: "Ссылка на источник:"
+  tour_filter:
+    coutry: "Страна"
+    region: "Регион"
+    city: "Город"
+    category_tour: "Категория тура"
+    complexity: "Сложность"
+    search: "Найти"
+    plane_price: "Перелет включен в стоимость"
+    plane_prices:
+      accept: "Да"
+      dismiss: "Нет"
+  tour_mail:
+    new_tour: "Новый тур"
+    update_tour: "Изменения тура"
+    add_review: "Новый отзыв к туру"
+    tour_booking: "Бронирование тура"
+  models:
+    tour:
+      many_days: "Тип тура"
+    tour_route:
+      time: "Время"
+      types_of_food:
+        food_other: "Другое"
+        food_not: "Нет"
+      types_accomodation:
+        accomodation_yacht: "Яхта"
+        accomodation_other: "Другое"
+        accomodation_not: "Нет"
+    tour_price_item:
+      currency: "Валюта"
+  users:
+    breadcrumbs:
+      reset_password: "Смена пароля"

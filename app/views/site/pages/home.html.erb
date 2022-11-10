@@ -1,0 +1,32 @@
+<section class="header-video">
+  <div id="hero_video">
+    <div class="wrapper">
+      <div class="container">
+        <h3><%= I18n.t 'site.pages.main.search.header' %></h3>
+        <p><%= I18n.t 'site.pages.main.search.subheader' %></p>
+          
+        <%= form_with url: search_tours_path, method: :post, local: true, id: 'tour_search' do |f| %>
+          <div class="row no-gutters custom-search-input-2">
+          
+            <div class="col-lg-9">
+              <div class="form-group">
+                <input class="form-control" name='term' id="search_query" type="text" placeholder="<%= I18n.t 'site.all_pages.labels.search_placeholder' %>">
+                <i class="icon-compass-1"></i>
+              </div>
+            </div>            
+                    
+            <div class="col-lg-3">
+              <input type="submit" class="btn_search" value="<%= I18n.t 'site.all_pages.labels.search_button' %>">
+            </div>
+          </div>
+        <% end %>        
+      </div>
+    </div>
+  </div>
+  <%= image_tag "video_fix.png", class: "header-video--media", data: {"video-src" => "video/intro", "teaser-source" => "video/intro", "provider" => "", "video-width" => "1920", "video-height" => "960"} %>
+</section>
+
+<%= render 'site/pages/home/countries' %>
+<%= render 'site/pages/home/tours' %>
+<%= render 'site/pages/home/posts' %>
+<%= render 'site/pages/home/sign_in' %>

@@ -1,0 +1,88 @@
+<footer>
+  <div class="container margin_60_35">
+    <div class="row">
+      <div class="col-lg-5 col-md-12 p-r-5">
+        <p>
+          <%= image_tag "logo.png", width: 150, height: 36, class: 'logo_normal' %>
+          <%# image_tag "logo.png", width: 150, height: 36, class: 'logo_normal', data: {retina: true} 
+          %>
+        </p>
+        <p><%= I18n.t 'site.all_pages.labels.footer_text' %></p>
+        <div class="follow_us">
+          <ul>
+            <li><%= I18n.t 'site.all_pages.labels.footer_follow_us' %></li>
+            <li><a href="https://www.facebook.com/pohodia.ru/"><i class="ti-facebook"></i></a></li>
+            <li><a href="https://twitter.com/Pohodiacom"><i class="ti-twitter-alt"></i></a></li>
+            <li><a href="https://www.youtube.com/channel/UCng608pl3VKz1KYv24qwCAw"><i class="ti-youtube"></i></a></li>
+            <li><a href="https://www.instagram.com/pohodia.ru/"><i class="ti-instagram"></i></a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 ml-lg-auto">
+        <h5><%= I18n.t 'site.all_pages.labels.footer_useful_links' %></h5>
+        <ul class="links">
+
+          <% @primary_footer_menu_items.each do |item| %>
+            <li>
+              <a href="<%= get_value_of_smart_field(item, 'link', @current_locale) %>"><%= get_value_of_smart_field(item, 'title', @current_locale) %></a>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <h5><%= I18n.t 'site.all_pages.labels.footer_contact_us' %></h5>
+        <ul class="contacts">
+          <li><a href="tel://61280932400"><i class="ti-mobile"></i> + 61 23 8093 3400</a></li>
+          <li><a href="mailto:info@pohodia.ru"><i class="ti-email"></i> info@pohodia.ru</a></li>
+        </ul>
+        <!--<div id="newsletter">
+          <h6><%= I18n.t 'site.all_pages.labels.footer_newsletter' %></h6>
+          <div id="message-newsletter"></div>
+          <form method="post" action="assets/newsletter.php" name="newsletter_form" id="newsletter_form">
+            <div class="form-group">
+              <input type="email" name="email_newsletter" id="email_newsletter" class="form-control" placeholder="Your email">
+              <input type="submit" value="Submit" id="submit-newsletter">
+            </div>
+          </form>
+        </div> -->
+      </div>
+    </div>
+    <!--/row-->
+    <hr>
+    <div class="row">
+      <div class="col-lg-6">
+       <!--  <ul id="footer-selector">
+          <li>
+            <div class="styled-select" id="lang-selector">
+              <select>
+                <option value="English" selected>English</option>  
+                <option value="Russian">Russian</option>
+              </select>
+            </div>
+          </li>
+          <li>
+            <div class="styled-select" id="currency-selector">
+              <select>
+                <option value="US Dollars" selected>US Dollars</option>
+                <option value="Euro">Euro</option>
+              </select>
+            </div>
+          </li>
+        </ul> -->
+      </div>
+      <div class="col-lg-6">
+        <ul id="additional_links">
+          <% @secondary_footer_menu_items.each do |item| %>
+            <li><a href="<%= get_value_of_smart_field(item, 'link', @current_locale) %>">
+              <%= get_value_of_smart_field(item, 'title', @current_locale) %></a>
+            </li>
+          <% end %>
+
+          <li><span>2019 Pohodia</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+<!-- Skyscanner 521412 --->
+<script src="//code.jivosite.com/widget.js" data-jv-id="e0EM4lGCIY" async></script>

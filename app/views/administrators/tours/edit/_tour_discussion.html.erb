@@ -1,0 +1,53 @@
+<div class="box_general padding_bottom">
+  <div class="header_box version_2">
+    <h2>Статус</h2>
+  </div>
+
+  <div class="row my-3">
+    <h5 class="px-3 my-1"><%= @tour_facade.base_object.confirmed_present %></h5>
+    <% unless @tour_facade.base_object.confirmed? %>
+      <%= link_to 'Подтвердить', confirm_administrators_tour_path(@tour_facade.base_object), method: :post, class: 'btn_1' %>
+    <% end %>
+  </div>
+
+  <% if @tour_facade.base_object.tour_discussions.present? && !@tour_facade.base_object.confirmed? %>
+    <div class="row pl-3">
+      <div class="header_box">
+        <h2>Замечания</h2>
+      </div>
+
+      <% @tour_facade.base_object.tour_discussions.each do |tour_discussion| %>
+        <div class="card mb-3 w-100">
+          <div class="card-body">
+            <%= tour_discussion.text %>
+          </div>
+
+          <% if tour_discussion.confirmed? %>
+            <div class="ml-3 mb-3">
+              <%= link_to 'Отправить на доработку', decline_administrators_tour_tour_discussion_path(@tour_facade.base_object.id, tour_discussion), method: :post, class: 'btn_1' %>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+
+  <% unless @tour_facade.base_object.confirmed? %>
+    <div class="row">
+      <%= form_with(model: TourDiscussion.new, url: administrators_tour_tour_discussions_url(@tour_facade.base_object),
+                    method: :post, class: 'w-100') do |f| %>
+        <div class="header_box pl-3">
+          <h2>Добавить замечание</h2>
+        </div>
+
+        <div class="form-group col-md-12">
+          <%= f.text_area :text, class: "form-control", placeholder: "Комментарий", rows: 5 %>
+        </div>
+
+        <div class="col-md-12">
+          <%= f.submit "Отправить", class: "create_button btn_1 small" %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>

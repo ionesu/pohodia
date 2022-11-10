@@ -1,0 +1,48 @@
+<% provide(:body_class, 'countries-show') %>
+
+<%= render 'site/shared/wrapper_avatar', large_avatar: @page.large_avatar.public_page_show.url,
+           category_title: (I18n.t 'site.all_pages.labels.all_countries') %>
+
+<div class="filters_listing sticky_horizontal wrapper-avatar-breadrumbs">
+  <div class="container">
+    <ul class="clearfix">
+      <li class="links-list">
+        <%= link_to (I18n.t 'site.all_pages.labels.main_page'), '/' %> /
+        <%= link_to (I18n.t 'site.all_pages.labels.all_countries'), '/countries' %>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="bg_color_1 sub-items-list">
+
+  <div class="container margin_60_35">
+    <!-- <h3><%= I18n.t 'site.all_pages.labels.all_countries' %></h3> -->
+    <div class="row">
+      <% @countries.each do |country| %>
+        <div class="col-xl-4 col-lg-6 col-md-6">
+		  <div class="box_grid">
+			<figure>
+				<a href="<%= country_url(country) %>"><% if country.avatar.public_page_list.url %>
+                  <%= image_tag country.avatar.url, class: 'img-fluid', size: '800x533'%>
+                  <% else %>
+                  <%= image_tag 'tour_1.jpg', class: 'img-fluid', size: '800x533'%>
+                  <% end %>
+	            <div class="read_more"><span><%= I18n.t 'all_pages.labels.read_more' %></span></div></a>
+				<small><%= get_value_of_smart_field(country, 'title', @current_locale) %></small>
+			</figure>
+		  </div>
+        </div>
+      <% end %>
+      <%= will_paginate @countries, renderer: BootstrapPagination::Rails, class: 'w-70 p-3' %>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row model-description">
+      <% desc = get_value_of_smart_field(@page, 'description', @current_locale) %>
+      <%= desc.html_safe if desc %>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,179 @@
+  <%= form_with model: tour, url: url, class: 'remote' do |f| %>
+  <div class="box_general padding_bottom">
+    <div class="header_box version_2">
+      <h2><%= I18n.t "guides.tours.edit.main_info" %></h2>
+      <%= f.submit (I18n.t "all_pages.labels.update"), class: "btn_1 small pull-right" %>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="tabs">
+          <ul>
+            <% if @current_locale == :en %>
+              <li>EN</li>
+              <li>RU</li>
+            <% else %>
+              <li>RU</li>
+              <li>EN</li>
+            <% end %>
+          </ul>
+          <div>
+            <% if @current_locale == :en %>
+              <div class="form-group">
+                <label><%= I18n.t "models.tour.title_en" %></label>
+                <%= f.text_area :title_en, class: "form-control p-bottom16", placeholder: (I18n.t 'models.tour.title_en_placeholder'), rows: 4 %>
+              </div>
+              <div class="form-group">
+                <label><%= I18n.t "models.tour.title_ru" %></label>
+                <%= f.text_area :title_ru, class: "form-control p-bottom16", placeholder: (I18n.t 'models.tour.title_ru_placeholder'), rows: 4 %>
+              </div>
+            <% else %>
+              <div class="form-group">
+                <label><%= I18n.t "models.tour.title_ru" %></label>
+                <%= f.text_area :title_ru, class: "form-control p-bottom16", placeholder: (I18n.t 'models.tour.title_ru_placeholder'), rows: 4 %>
+              </div>
+              <div class="form-group">
+                <label><%= I18n.t "models.tour.title_en" %></label>
+                <%= f.text_area :title_en, class: "form-control p-bottom16", placeholder: (I18n.t 'models.tour.title_en_placeholder'), rows: 4 %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="row col-md-8">
+        <div class="col-md-4">
+          <div class="form-group" id="category_select_area">
+            <label><%= I18n.t "models.tour.tour_category" %></label>
+            <%= f.select :tour_category_id, tour.all_tour_categories(@current_locale), { include_blank: (I18n.t 'all_pages.labels.no_selected_v2') }, { class: 'selectize-one-option' } %>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label><%= I18n.t "models.tour.owner" %></label>
+            <%= f.select :guide_company_id, tour.options_for_tour_owner(@current_guide, @current_locale), { include_blank: (I18n.t 'all_pages.labels.no_selected') }, { class: 'selectize-one-option' } %>
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <div class="form-group">
+            <label><%= I18n.t "models.tour.complexity" %></label>
+            <%= f.select :complexity, complexities, { include_blank: (I18n.t 'all_pages.labels.no_selected_v2') }, { class: 'selectize-one-option' } %>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="form-group">
+            <div class="row">
+              <div class="col-md-6">
+                <label><%= I18n.t "models.tour.min_height" %></label>
+                <%= f.text_field :min_height, class: "form-control", placeholder: (I18n.t 'models.tour.min_max_height_placeholder') %>
+              </div>
+              <div class="col-md-6">
+                <label><%= I18n.t "models.tour.max_height" %></label>
+                <%= f.text_field :max_height, class: "form-control", placeholder: (I18n.t 'models.tour.min_max_height_placeholder') %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label><%= I18n.t "models.tour.length_of_route" %></label>
+            <%= f.text_field :length_of_route, class: "form-control", placeholder: (I18n.t 'models.tour.length_of_route_placeholder') %>
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <div class="form-group">
+            <label><%= I18n.t "models.tour.min_age" %></label>
+            <%= f.text_field :minimum_age, class: "form-control p-bottom16", placeholder: (I18n.t 'models.tour.title_ru_placeholder'), rows: 1 %>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label><%= I18n.t "models.tour.relocation_included" %></label>
+            <%= f.select :relocation_included, options_for_relocation_included, { include_blank: (I18n.t 'all_pages.labels.no_selected') }, { class: 'selectize-one-option' } %>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="tabs">
+          <% if @current_locale == :en %>
+            <ul>
+              <li>EN</li>
+              <li>RU</li>
+            </ul>
+            <div>
+              <div class="form-group">
+                <label><%= I18n.t "models.tour.description_en" %></label>
+                <%= f.text_area :description_en, class: "form-control", placeholder: (I18n.t 'models.tour.description_en_placeholder'), rows: 8 %>
+              </div>
+              <div class="form-group">
+                <label><%= I18n.t "models.tour.description_ru" %></label>
+                <%= f.text_area :description_ru, class: "form-control", placeholder: (I18n.t 'models.tour.description_ru_placeholder'), rows: 8 %>
+              </div>
+            </div>
+          <% else %>
+            <ul>
+              <li>RU</li>
+              <li>EN</li>
+            </ul>
+            <div>
+              <div class="form-group">
+                <label><%= I18n.t "models.tour.description_ru" %></label>
+                <%= f.text_area :description_ru, class: "form-control", placeholder: (I18n.t 'models.tour.description_ru_placeholder'), rows: 8 %>
+              </div>
+              <div class="form-group">
+                <label><%= I18n.t "models.tour.description_en" %></label>
+                <%= f.text_area :description_en, class: "form-control", placeholder: (I18n.t 'models.tour.description_en_placeholder'), rows: 8 %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <div class="box_general padding_bottom">
+      <div class="header_box version_2">
+        <h2><%= I18n.t "guides.tours.edit.images" %></h2>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <h6><%= I18n.t "models.tour.avatar" %></h6>
+          <small>800px * 530px</small>
+          <div class="row">
+            <div class="col-md-8">
+              <div class="form-group">
+                <% if tour.avatar.to_s.size > 3 %>
+                  <%= image_tag tour.avatar.page_edit.to_s, class: "main_avatar" %>
+                <% else %>
+                  <%= image_tag "noimage/main.png", class: "main_avatar" %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+          <%= f.file_field :avatar, class: "btn_1 gray small pull-left" %>
+        </div>
+        <div class="col-md-6">
+          <h6><%= I18n.t "models.tour.large_image" %></h6>
+          <small>1600px * 485px</small>
+          <div class="row">
+            <div class="col-md-8">
+              <div class="form-group">
+                <% if tour.large_avatar.to_s.size > 3 %>
+                  <%= image_tag tour.large_avatar.page_edit.to_s, class: "large_avatar" %>
+                <% else %>
+                  <%= image_tag "noimage/main.png", class: "large_avatar" %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+          <%= f.file_field :large_avatar, class: "btn_1 gray small pull-left" %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

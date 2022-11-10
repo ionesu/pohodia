@@ -1,0 +1,53 @@
+<ul class="list-unstyled">
+  <% options.each do |option| %>
+    <li class="m-bottom5">
+      <%= form_with model: option, url: update_tour_option_guides_tour_path, id: "tour_option_#{option.id}", class: 'remote', method: :post do |f| %>
+        <div class="row">
+          <div class="col-md-7">
+            <div class="tabs">
+              <ul>
+                <% if @current_locale == :en %>
+                  <li>EN</li>
+                  <li>RU</li>
+                <% else %>
+                  <li>RU</li>
+                  <li>EN</li>
+                <% end %>
+              </ul>
+              <div>
+                <% if @current_locale == :en %> <!-- если английская локаль -->
+                  <div class="form-group">
+                    <%= f.text_field :title_en, class: "form-control p-bottom16", placeholder: (I18n.t 'models.tour_option.title_en_placeholder'), rows: 4 %>
+                  </div>
+                  <div class="form-group">
+                    <%= f.text_field :title_ru, class: "form-control p-bottom16", placeholder: (I18n.t 'models.tour_option.title_ru_placeholder'), rows: 4 %>
+                  </div>
+                <% else %> <!-- если русская локаль -->
+                  <div class="form-group">
+                    <%= f.text_field :title_ru, class: "form-control p-bottom16", placeholder: (I18n.t 'models.tour_option.title_ru_placeholder'), rows: 4 %>
+                  </div>
+                  <div class="form-group">
+                    <%= f.text_field :title_en, class: "form-control p-bottom16", placeholder: (I18n.t 'models.tour_option.title_en_placeholder'), rows: 4 %>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-2 m-top36">
+            <div class="form-group">
+              <%= f.hidden_field :id, value: option.id %>
+              <%= f.submit (I18n.t "all_pages.labels.update"), class: "btn_1 gray add-in-list-item" %>
+            </div>
+          </div>
+          <div class="col-md-2 m-top40 m-left33">
+            <div class="form-group">
+              <%= link_to delete_tour_option_url.call(@tour, option), method: :post do
+                "<i class=\"fa fa-fw fa-remove\"></i>".html_safe
+              end %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </li>
+  <% end %>
+</ul>

@@ -1,0 +1,25 @@
+ru:
+  guides:
+    devise:
+      sign_in:
+        meta_title: "Вход в личный кабинет гида"
+        email: "Email"
+        password: "Пароль"
+        remember_me: "Запомнить меня"
+        new_user: "Впервые у нас ?  "
+        sign_up: "Регистрация"
+        sign_in: "Войти"
+        forgot_password: "Забыли пароль ?"
+      sign_up:
+        new_guide_label: "Регистрация нового гида"
+        email: 'Email'
+        password: 'Пароль'
+        password_confirm: 'Подтвердить пароль'
+        already_registred: 'Уже есть аккаунт?  '
+        sign_in: "Войти"
+        sign_up: "Зарегистрироваться"
+      reset_password:
+        label: 'Сброс пароля для гида'
+        email: 'Email'
+        submit_button: 'Сбросить пароль'
+        meta_title: "Сброс пароля для гида"

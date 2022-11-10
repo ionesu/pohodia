@@ -1,0 +1,72 @@
+.tabs{
+    display: block;
+}
+.tabs > div{
+    padding-top:3px;
+}
+.tabs ul{
+    margin:0px;
+    padding:0px;
+}
+.tabs ul:after{
+    content:"";
+    display:block;
+    clear:both;
+    height:5px;
+    /*background: #8eaac2;*/
+}
+.tabs ul li{
+    margin:0px;
+    padding:0px;
+    cursor:pointer;
+    display:block;
+    float:left;
+    padding:1px 5px;
+    background:#e9eaeb;
+    color:#707070;
+    font-size: 12px;
+}
+.tabs ul li.active, .tabs ul li.active:hover{
+    background: #0054a6;
+    color:#fff;
+}
+.tabs ul li:hover{
+    background:#d6d6d7;
+}
+
+
+
+/*.tabs{*/
+    /*display:inline-block;*/
+/*}*/
+/*.tabs > div{*/
+    /*padding-top:10px;*/
+/*}*/
+/*.tabs ul{*/
+    /*margin:0px;*/
+    /*padding:0px;*/
+/*}*/
+/*.tabs ul:after{*/
+    /*content:"";*/
+    /*display:block;*/
+    /*clear:both;*/
+    /*height:5px;*/
+    /*background:#46c765;*/
+/*}*/
+/*.tabs ul li{*/
+    /*margin:0px;*/
+    /*padding:0px;*/
+    /*cursor:pointer;*/
+    /*display:block;*/
+    /*float:left;*/
+    /*padding:10px 15px;*/
+    /*background:#e9eaeb;*/
+    /*color:#707070;*/
+/*}*/
+/*.tabs ul li.active, .tabs ul li.active:hover{*/
+    /*background:#46c765;*/
+    /*color:#fff;*/
+/*}*/
+/*.tabs ul li:hover{*/
+    /*background:#d6d6d7;*/
+/*}*/

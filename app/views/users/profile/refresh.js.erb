@@ -1,0 +1,4 @@
+$('#profile_form').html('<%= j render 'users/profile/form', current_user: @current_user %>');
+
+$.getScript('<%= asset_path('user/template/selectize') %>');
+$.getScript('<%= asset_path('user/template/remote_form') %>');

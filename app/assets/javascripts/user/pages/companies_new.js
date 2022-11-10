@@ -1,0 +1,79 @@
+// страница добавления компании гида
+// /guides/companies/new
+
+if (document.body.className.match('companies-new') ) {
+
+    $("#guide_company_country_id").change(function() {
+        state_select_region($(this).val());
+       // console.log('changed');
+    });
+
+    // состояние страницы: выбор региона
+    function state_select_region(country_id) {
+        $.ajax({
+            type: 'POST',
+            url: '/api/country_regions',
+            data: {
+                'country_id': country_id,
+            },
+            success: function(msg) { // если запрос успешен - рендерим селект с регионами
+                //  console.log(msg);
+                clear_region_area();
+                clear_city_area(true);
+
+                for (let region of msg) {
+                    $('#guide_company_region_id').append('<option value="' + region.id + '">' + region.title_ru + '</option>');
+                }
+
+                $('#guide_company_region_id').selectize({
+                    onChange: function(value) {
+                        state_select_city(value);
+                    }
+                });
+            }
+
+        });
+    }
+
+    // состояние страницы: выбор города
+    function state_select_city(region_id) {
+        $.ajax({
+            type: 'POST',
+            url: '/api/region_cities',
+            data: {
+                'region_id': region_id,
+            },
+            success: function(msg) { // если запрос успешен - рендерим селект с городами
+                //  console.log(msg);
+                clear_city_area();
+
+                for (let city of msg) {
+                    $('#guide_company_city_id').append('<option value="' + city.id + '" name="guide_company[city_id]">' + city.title_ru + '</option>');
+                }
+
+                $('#guide_company_city_id').selectize({});
+            }
+
+        });
+    }
+
+    function clear_region_area() {
+        $('#region_select_area').empty();
+        $('#region_select_area').append('<label>'+ I18n.t('all_pages.labels.region') + '</label>');
+        $('#region_select_area').append('<select id="guide_company_region_id" name="guide_company[region_id]"></select>');
+        $('#guide_company_region_id').append('<option value="">'+ I18n.t('all_pages.labels.no_selected') + '</option>');
+    }
+
+    function clear_city_area(selectize) {
+        $('#city_select_area').empty();
+        $('#city_select_area').append('<label>'+ I18n.t('all_pages.labels.city') + '</label>');
+        $('#city_select_area').append('<select id="guide_company_city_id" name="guide_company[city_id]"></select>');
+        $('#guide_company_city_id').append('<option value="">'+ I18n.t('all_pages.labels.no_selected') + '</option>');
+        if (selectize == true) {
+            $('#guide_company_city_id').selectize({
+
+            });
+        }
+    }
+    
+}

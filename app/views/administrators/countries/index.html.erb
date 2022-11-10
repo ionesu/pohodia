@@ -1,0 +1,60 @@
+<% provide(:body_class, 'countries-index') %>
+
+<div class="container-fluid">
+  <!-- Breadcrumbs-->
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">
+      <a href="/administrators/dashboard">Консоль</a>
+    </li>
+    <li class="breadcrumb-item active"><%= t("administrator.countries.countries") %></li>
+  </ol>
+  <div class="card mb-3">
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+          <thead>
+          <tr>
+            <th >Названия</th>
+            <th >Алиасы</th>
+            <th >Зависимости</th>
+            <th style="width: 20%">Ссылки</th>
+          </tr>
+          </thead>
+          <tfoot>
+          <tr>
+            <th>Названия</th>
+            <th>Алиасы</th>
+            <th>Зависимости</th>
+            <th style="width: 20%">Ссылки</th>
+          </tr>
+          </tfoot>
+          <tbody>
+          <% @countries.each do |country| %>
+            <tr>
+              <td>
+                ru: <%= link_to country.title_ru, edit_administrators_country_path(country) %><br/>
+                en: <%= link_to country.title_en, edit_administrators_country_path(country) %>
+              </td>
+              <td>
+                ru: <%= country.slug_ru ? country.slug_ru : country.id %><br/>
+                en: <%= country.slug_en ? country.slug_en : country.id %>
+              </td>
+              <td>
+                <%= link_to "Регионы", regions_administrators_country_path(country), target: "_blank" %><br/>
+                <%= link_to "Города", cities_administrators_country_path(country), target: "_blank" %><br/>
+                <%= link_to "SEO", seo_data_items_administrators_country_path(country), target: "_blank" %>
+              </td>
+              <td>
+                <%= link_to "Редактировать", edit_administrators_country_path(country) %><br/>
+                <%= link_to "Просмотр", country_path(country), target: "_blank" %><br/>
+                <%= link_to "Удалить", '#', target: "_blank" %>
+              </td>
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+<!--    <div class="card-footer small text-muted">Всего: </div>-->
+  </div>
+</div>

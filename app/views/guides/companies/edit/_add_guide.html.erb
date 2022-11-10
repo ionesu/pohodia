@@ -1,0 +1,24 @@
+<h6><%= I18n.t "guides.guide_companies.edit.guide_company_permissions.add_employee" %></h6>
+<p><%= I18n.t "guides.guide_companies.edit.guide_company_permissions.max_emplyees_message" %></p>
+<div class="row">
+  <div class="col-md-4">
+    <%= form_with model: @company.new_guide_company_permission, url: add_guide_guides_company_path, local: true,
+                  method: :post do |f| %>
+      <div class="row">
+        <div class="col-md-7">
+          <div class="form-group">
+            <label><%= I18n.t 'models.guide_company_permission.email' %></label>
+            <%= f.text_field :email, class: "form-control p-bottom16",
+                             placeholder: (I18n.t 'models.guide_company_permission.email_placeholder'), rows: 1 %>
+          </div>
+        </div>
+        <div class="col-md-2 m-top35">
+          <div class="form-group">
+            <%= f.submit (I18n.t "all_pages.labels.add_some"), class: "btn_1 gray add-in-list-item" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+    <hr/>
+  </div>
+</div>

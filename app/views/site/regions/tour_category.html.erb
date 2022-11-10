@@ -1,0 +1,91 @@
+<section class="hero_in general">
+  <% if current_administrator %>
+    <div class="admin-links">
+      Быстрое редактирование
+      <ul>
+        <li><%= link_to "#{@country.title_ru} (страна)", edit_administrators_country_path(@country) %></li>
+        <li><%= link_to "Сео страницы #{@country.title_ru}", seo_data_items_administrators_country_path(@country) %></li>
+        <li><%= link_to "#{@region.title_ru} (регион)", edit_administrators_region_path(@region) %></li>
+        <li><%= link_to "Сео страницы #{@region.title_ru}", seo_data_items_administrators_region_path(@region) %></li>
+        <li><%= link_to "#{@tour_type.title_ru} (тип туров)", edit_administrators_tour_type_path(@tour_type) %></li>
+        <li><%= link_to "#{@tour_category.title_ru} (категория туров)", edit_administrators_tour_category_path(@tour_category) %></li>
+        <li><%= link_to 'Текущая сео страница', edit_administrators_seo_data_item_path(@seo_data_item) if @seo_data_item %></li>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="wrapper">
+    <div class="container">
+      <h1 class="fadeInUp"><span></span>
+        <%= link_to @country.title_ru, country_path(@country) %> ->
+        <%= link_to @region.title_ru, region_path(@region) %> ->
+        <%= link_to @tour_type.title_ru, tour_type_region_path(@region, @tour_type) %> ->
+        <%= link_to @tour_category.title_ru, '#' %>
+      </h1>
+    </div>
+  </div>
+</section>
+<div class="container margin_60_35">
+  <div class="row">
+    <div class="col-lg-10 center-block">
+      <h3>Атрибуты модели категории тура</h3>
+      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+        <tr>
+          <th>Атрибут</th>
+          <th>Значение</th>
+        </tr>
+        </thead>
+        <tfoot>
+        <tr>
+          <th>Атрибут</th>
+          <th>Значение</th>
+        </tr>
+        </tfoot>
+        <tbody>
+        <% @tour_category.attributes.each do |attr| %>
+          <tr>
+            <td>
+              <%= attr[0] %>
+            </td>
+            <td>
+              <%= attr[1] %>
+            </td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+      <hr/>
+      <% if @seo_data_item %>
+        <h3>Seo</h3>
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+          <thead>
+          <tr>
+            <th>Атрибут</th>
+            <th>Значение</th>
+          </tr>
+          </thead>
+          <tfoot>
+          <tr>
+            <th>Атрибут</th>
+            <th>Значение</th>
+          </tr>
+          </tfoot>
+          <tbody>
+          <% @seo_data_item.attributes.each do |attr| %>
+            <tr>
+              <td>
+                <%= attr[0] %>
+              </td>
+              <td>
+                <%= attr[1] %>
+              </td>
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
+      <% end %>
+
+    </div>
+  </div>
+</div>

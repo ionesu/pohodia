@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="yandex-verification" content="2eb332f393d286d8"/>
+  <meta name="yandex-verification" content="8c493722193959f9"/>
+
+  <%= display_meta_tags site: 'Pohodia' %>
+
+  <!-- Favicons-->
+  <!--  <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">-->
+  <%#= favicon_link_tag "site/template/favicon.ico" %>
+  <%= stylesheet_link_tag 'site' %>
+
+<!--  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"-->
+<!--        integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="-->
+<!--        crossorigin=""/>-->
+</head>
+
+<body class="<%= yield(:body_class) %>">
+  <div id="page">
+    <%= render 'layouts/site/header' %>
+    <!-- /header -->
+    <main>
+      <%= yield %>
+    </main>
+    <%= render 'layouts/site/footer' %>
+  </div>
+  <%= render 'layouts/site/popup' %>
+  <div id="toTop"></div>
+  <%= javascript_include_tag 'site' %>
+  <%= render 'shared/metrika' %>
+</body>
+</html>

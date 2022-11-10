@@ -1,0 +1,14 @@
+<section class="hero_in general wrapper-avatar">
+  <%= image_tag 'hero_in_tours_detail.jpg', class: 'wrapper-large-avatar' %>
+  <% if current_administrator %>
+    <div class="admin-links">
+      Быстрое редактирование
+      <ul>
+        <li><%= link_to "#{@page.title_ru} (страница)", edit_administrators_page_path(@page) %></li>
+      </ul>
+    </div>
+  <% end %>
+  <h1><%= get_value_of_smart_field(@page, 'title', @current_locale) %></h1>
+</section>
+<% desc = get_value_of_smart_field(@page, 'description', @current_locale) %>
+<%= desc.html_safe if desc %>

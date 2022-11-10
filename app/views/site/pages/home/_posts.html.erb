@@ -1,0 +1,34 @@
+<div class="bg_color_1">
+  <div class="container margin_80_55">
+    <div class="main_title_2">
+      <span><em></em></span>
+      <h3><%= I18n.t 'site.pages.main.posts.header' %></h3>
+      <p><%= I18n.t 'site.pages.main.posts.subheader' %></p>
+    </div>
+    <div class="row">
+      <% @page.posts.each do |post| %>
+
+        <div class="col-lg-6">
+          <a class="box_news" href="<%= post_path(post) %>">
+            <figure>
+              <% if post.avatar.to_s.size > 4 %>
+                <%= image_tag post.avatar.public_page_list.url %>
+              <% else %>
+                <% image_tag 'news_home_1.jpg' %>
+              <% end %>
+              <figcaption><%= I18n.l(post.created_at, format: :short) %></figcaption>
+            </figure>
+            <ul>
+
+            </ul>
+            <h4><%= get_value_of_smart_field(post, 'title', @current_locale) %></h4>
+            <p><%= get_value_of_smart_field(post, 'lead', @current_locale) %></p>
+          </a>
+        </div>
+      <% end %>
+    </div>
+    <p class="btn_home_align">
+      <a href="/blog" class="btn_1 rounded"><%= I18n.t 'site.pages.main.posts.more_news' %></a>
+    </p>
+  </div>
+</div>

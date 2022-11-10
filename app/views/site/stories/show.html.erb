@@ -1,0 +1,98 @@
+<% provide(:body_class, 'tours-show') %>
+<section class="hero_in tours_detail" xmlns="http://www.w3.org/1999/html">
+  <% if @story.large_image&.public_page_show&.url %>
+    <%= image_tag @story.large_image.public_page_show.url, class: 'tour-large-avatar' %>
+  <% else %>
+    <%= image_tag 'hero_in_tours_detail.jpg', class: 'tour-large-avatar' %>
+  <% end %>
+
+  <div class="page-title detail-page-title">
+    <div class="container">
+      <div class="flex-row">
+        <div class="flex-column flex-md-8 flex-sm-12">
+          <h1 class="hero-title"><%= get_value_of_smart_field(@story, 'title', @current_locale) %></h1>
+          <ul class="list-col clearfix">
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <span class="magnific-gallery">
+    <% if @story.first_image %>
+      <a href="<%= @story.first_image.image %>" class="btn_photos" alt="<%= get_value_of_smart_field(@story, 'title', @current_locale) %>" title="<%= get_value_of_smart_field(@story, 'title', @current_locale) %>" data-effect="mfp-zoom-in">
+        <%= I18n.t "site.tours.show.show_all_photos" %>
+      </a>
+    <% end %>
+    <% @story.images.each do |image| %>
+      <a href="<%= image.image %>" alt="<%= get_value_of_smart_field(@story, 'title', @current_locale) %>" title="<%= get_value_of_smart_field(@story, 'title', @current_locale) %>" data-effect="mfp-zoom-in"></a>
+   <% end %>
+	</span>
+</section>
+
+<% set_meta_tags title: get_value_of_smart_field(@story, 'title', @current_locale),
+                 description: get_value_of_smart_field(@story, 'text', @current_locale),
+                 og: {
+                     title: get_value_of_smart_field(@story, 'title', @current_locale),
+                     description: get_value_of_smart_field(@story, 'text', @current_locale),
+                     type: 'website',
+                     image: {
+                         _: @story.large_image.public_page_show.url,
+                         width: 1600,
+                         height: 485,
+                         alt: get_value_of_smart_field(@story, 'title', @current_locale),
+                     }
+                 } %>
+
+<div class="bg_color_1">
+  <nav class="secondary_nav sticky_horizontal">
+    <div class="container">
+      <ul class="clearfix">
+        <li>
+          <%= link_to (I18n.t "site.tours.show.description"), anchor: 'description', class: 'active' %>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container margin_60_35">
+    <div class="row">
+      <div class="col-lg-8">
+        <section id="description">
+          <h2><%= I18n.t "site.tours.show.description" %></h2>
+          <p><%=raw sanitize(simple_format(get_value_of_smart_field(@story, 'text', @current_locale)), :tags => %w(br p img) ) %></p>
+          <h3>Галерея</h3>
+          <div class="grid">
+            <ul class="magnific-gallery">
+              <% @story.story_images.each do |image| %>
+                <li>
+                  <figure>
+                    <img src="<%= image.image.public_page_list %>" title="<%= get_value_of_smart_field(@story, 'title', @current_locale) %>" alt="<%= get_value_of_smart_field(@story, 'title', @current_locale) %>">
+                    <figcaption>
+                      <div class="caption-content">
+                        <a href="<%= image.image %>" alt="<%= get_value_of_smart_field(@story, 'title', @current_locale) %>" title="<%= get_value_of_smart_field(@story, 'title', @current_locale) %>" data-effect="mfp-zoom-in">
+                          <i class="pe-7s-albums"></i>
+                        </a>
+                      </div>
+                    </figcaption>
+                  </figure>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+          <hr>
+        </section>
+      </div>
+
+      <div class="col-lg-8">
+        <% if @story.story_comments.present? %>
+          <%= render 'review' %>
+        <% end %>
+
+        <% if user_signed_in? %>
+          <%= render 'add_review' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

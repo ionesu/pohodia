@@ -1,0 +1,102 @@
+<section class="hero_in general">
+  <% if current_administrator %>
+    <div class="admin-links">
+      Быстрое редактирование
+      <ul>
+        <li><%= link_to "#{@country.title_ru} (страна)", edit_administrators_country_path(@country) %></li>
+        <li><%= link_to "Сео страницы #{@country.title_ru}", seo_data_items_administrators_country_path(@country) %></li>
+        <li><%= link_to "#{@region.title_ru} (регион)", edit_administrators_region_path(@region) %></li>
+        <li><%= link_to "Сео страницы #{@region.title_ru}", seo_data_items_administrators_region_path(@region) %></li>
+        <li><%= link_to "#{@city.title_ru} (город)", edit_administrators_city_path(@city) %></li>
+        <li><%= link_to "Сео страницы #{@city.title_ru}", seo_data_items_administrators_region_path(@city) %></li>
+        <li><%= link_to 'Текущая сео страница', edit_administrators_seo_data_item_path(@seo_data_item) if @seo_data_item %></li>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <div class="wrapper">
+    <div class="container">
+      <h1 class="fadeInUp"><span></span>
+        <%= link_to @country.title_ru, country_path(@country) %> ->
+        <%= link_to @region.title_ru, region_path(@region) %> ->
+        <%= link_to @city.title_ru, city_path %> ->
+        <%= link_to @tour_type.title_ru, '#' %>
+      </h1>
+    </div>
+  </div>
+</section>
+<div class="container margin_60_35">
+  <div class="row">
+    <div class="col-lg-10 center-block">
+
+      <h3>Атрибуты модели</h3>
+      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+        <tr>
+          <th>Атрибут</th>
+          <th>Значение</th>
+        </tr>
+        </thead>
+        <tfoot>
+        <tr>
+          <th>Атрибут</th>
+          <th>Значение</th>
+        </tr>
+        </tfoot>
+        <tbody>
+        <% @tour_type.attributes.each do |attr| %>
+          <tr>
+            <td>
+              <%= attr[0] %>
+            </td>
+            <td>
+              <%= attr[1] %>
+            </td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+      <hr/>
+      <h3>Вложенные категории</h3>
+      <ul>
+        <% @tour_type.tour_categories.each do |tour_category| %>
+          <li><%= link_to tour_category.title_ru, tour_category_city_url(@city, tour_category) %></li>
+        <% end %>
+      </ul>
+
+      <hr/>
+      <% if @seo_data_item %>
+        <h3>Seo</h3>
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+          <thead>
+          <tr>
+            <th>Атрибут</th>
+            <th>Значение</th>
+          </tr>
+          </thead>
+          <tfoot>
+          <tr>
+            <th>Атрибут</th>
+            <th>Значение</th>
+          </tr>
+          </tfoot>
+          <tbody>
+          <% @seo_data_item.attributes.each do |attr| %>
+            <tr>
+              <td>
+                <%= attr[0] %>
+              </td>
+              <td>
+                <%= attr[1] %>
+              </td>
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
+      <% end %>
+
+
+    </div>
+  </div>
+</div>

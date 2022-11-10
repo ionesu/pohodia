@@ -1,0 +1,97 @@
+<% provide(:body_class, 'pages-edit') %>
+<%= tinymce_assets %>
+<div class="container-fluid">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">
+      <a href="/administrators/dashboard">Консоль</a>
+    </li>
+    <li class="breadcrumb-item">
+      <a href="/administrators/pages">Страницы</a>
+    </li>
+    <li class="breadcrumb-item active"><%= @page.title_ru %></li>
+  </ol>
+
+  <%= form_with model: @page, url: administrators_page_path, local: true do |f| %>
+    <div class="box_general padding_bottom">
+      <div class="header_box version_2">
+        <h2>Основная информация</h2>
+        <%= f.submit "Обновить", class: "btn_1 small pull-right" %>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Название (ru)</label>
+            <%= f.text_field :title_ru, class: "form-control", placeholder: "Заголовок страницы" %>
+          </div>
+
+          <div class="form-group">
+            <label>ЧПУ (ru)</label>
+            <%= f.text_field :slug_ru, class: "form-control", placeholder: "url" %>
+          </div>
+
+          <div class="form-group">
+            <label>Описание (ru)</label>
+            <%= f.text_area :description_ru, class: "form-control tinymce", placeholder: "Описание", rows: 15 %>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Название (en)</label>
+            <%= f.text_field :title_en, class: "form-control tinymce", placeholder: "Заголовок страницы" %>
+          </div>
+
+          <div class="form-group">
+            <label>ЧПУ (en)</label>
+            <%= f.text_field :slug_en, class: "form-control", placeholder: "url" %>
+          </div>
+
+          <div class="form-group">
+            <label>Описание (en)</label>
+            <%= f.text_area :description_en, class: "form-control tinymce", placeholder: "Описание", rows: 15 %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="box_general padding_bottom">
+      <div class="header_box version_2">
+        <h2>SEO</h2>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Meta title (ru)</label>
+            <%= f.text_field :meta_title_ru, class: "form-control", placeholder: "meta title" %>
+          </div>
+          <div class="form-group">
+            <label>Meta description (ru)</label>
+            <%= f.text_area :meta_description_ru, class: "form-control", placeholder: "meta description" %>
+          </div>
+          <div class="form-group">
+            <label>Meta keywords (ru)</label>
+            <%= f.text_area :meta_keywords_ru, class: "form-control", placeholder: "meta keywords" %>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Meta title (en)</label>
+            <%= f.text_field :meta_title_en, class: "form-control", placeholder: "meta title" %>
+          </div>
+          <div class="form-group">
+            <label>Meta description (en)</label>
+            <%= f.text_area :meta_description_en, class: "form-control", placeholder: "meta description" %>
+          </div>
+          <div class="form-group">
+            <label>Meta keywords (en)</label>
+            <%= f.text_area :meta_keywords_en, class: "form-control", placeholder: "meta keywords" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  <div class="buttons_container">
+    <ul>
+      <li><%= link_to "Назад", administrators_pages_path, class: 'btn_1 gray small' %></li>
+    </ul>
+  </div>
+</div>

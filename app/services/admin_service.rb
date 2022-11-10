@@ -1,0 +1,2 @@
+class AdminService < BaseService
+end

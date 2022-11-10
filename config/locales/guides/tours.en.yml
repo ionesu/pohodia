@@ -1,0 +1,40 @@
+en:
+  guides:
+    tours:
+      edit:
+        images: "Images"
+        gallery: "Gallery"
+        add_tour_route: "Add tour route"
+        tour_routes: "Tour routes"
+        deleted_tour_routes: "De deleted tour routes"
+        labels_for_removed_tour_routes:
+          title: "Title"
+          type_of_accomodation: "Type accmd."
+          type_of_food: "Type of food"
+          distance: "Distance"
+          coordinates: "Coordinates"
+          wifi_enabled: "Wifi"
+          cellular_network_enabled: "Cel. ntw."
+          electricity_enabled: "Electricity"
+        additional_info: "Additional info"
+        options_included_in_price: "Options included in price"
+        options_not_included_in_price: "Options not included in price"
+        equipment: "Equipment"
+        dates_and_cost: "Date's and costs"
+        main_info: "Main info"
+      new:
+        main_info: "Main info"
+        coordinates: "Coordinates"
+      index:
+        table_head:
+          name: "Name"
+          geography: "Geography"
+          type_and_categrory: "Type & Category"
+          added_and_update: "Added & updated"
+          owner: "Owner"
+          links: "Links"
+        confirm_delete_tour: "Delete tour ?"
+        owner_you: "You"
+      trash:
+        table_head:
+          added_and_delete: "Added & delete"

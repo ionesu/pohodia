@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title><%= I18n.t "guides.devise.reset_password.meta_title" %></title>
+
+  <%#= favicon_link_tag "guide/template/favicon.ico" %>
+
+  <%= stylesheet_link_tag 'guide_sign_in' %>
+  <%= csrf_meta_tags %>
+</head>
+
+<body id="login_bg">
+
+<nav id="menu" class="fake_menu"></nav>
+
+<div id="login">
+  <aside>
+    <figure>
+      <a href="/">
+        <%= image_tag "logo_sticky.png", width: 155, height: 36 %>
+      </a>
+    </figure>
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+      <div class="access_social"></div>
+      <div class="divider">
+        <span><%= I18n.t "guides.devise.reset_password.label" %></span>
+      </div>
+      <div class="form-group">
+        <label><%= I18n.t "guides.devise.reset_password.email" %></label>
+        <%= f.email_field :email, autofocus: true, class: 'form-control' %>
+        <i class="fa fa-envelope-o" aria-hidden="true"></i>
+      </div>
+      <div id="pass-info" class="clearfix"></div>
+      <%= f.submit (I18n.t "guides.devise.reset_password.submit_button"), class: 'btn_1 rounded full-width add_top_30' %>
+    <% end %>
+    <div class="copy">© 2018 Pohodia</div>
+  </aside>
+</div>
+<%= javascript_include_tag 'guide_sign_in' %>
+</body>
+</html>

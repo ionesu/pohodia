@@ -1,0 +1,52 @@
+<h3><%= I18n.t "site.tours.show.tour_routes" %>
+  <% if @tour.many_days? %>
+    <small>(<%= @tour.route_duration %> <%= I18n.t "site.tours.show.route_duration" %>)</small>
+  <% end %>
+</h3>
+
+<% if @tour.tour_routes.active.size > 0 && @tour.show_map? %>
+  <div id="mapid" style="height: 320px;" data-tour-id="<%= @tour.id %>"></div>
+<% end %>
+
+<ul class="cbp_tmtimeline">
+  <% @tour.tour_routes.active.each_with_index do |route, index| %>
+    <li>
+      <time class="cbp_tmtime">
+        <span>
+          <% if @tour.many_days? %>
+            <%= I18n.t 'site.tours.show.route_current_day' %>
+          <% else %>
+            <%= 'Время' %>
+          <% end %>
+        </span>
+      </time>
+      <div class="cbp_tmicon">
+        <% if @tour.many_days? %>
+          <%= index + 1 %>
+        <% else %>
+          <div class="h6 mt-3">
+            <% if route.time.present? %>
+              <%= route.time.to_formatted_s(:time) %>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+      <div class="cbp_tmlabel">
+        <div class="hidden-xs">
+        <span class="magnific-gallery">
+          <% if route.image.to_s.size > 3 %>
+            <a href="<%= route.image.url %>" data-effect="mfp-zoom-in">
+              <%= image_tag route.image.site_tours_show.url, class: 'rounded-circle thumb_visit', alt: get_value_of_smart_field(route, 'title', @current_locale), title: get_value_of_smart_field(route, 'title', @current_locale) %>
+            </a>
+          <% else %>
+            <%= image_tag 'noimage/tour_route_thumb.jpg', class: 'rounded-circle thumb_visit', alt: get_value_of_smart_field(route, 'title', @current_locale), title: get_value_of_smart_field(route, 'title', @current_locale) %>
+          <% end %>
+        </span>
+        </div>
+        <h4><%= get_value_of_smart_field(route, 'title', @current_locale) %></h4>
+        <p><%= get_value_of_smart_field(route, 'description', @current_locale) %></p>
+      </div>
+    </li>
+  <% end %>
+</ul>
+<hr>

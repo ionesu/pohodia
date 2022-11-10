@@ -1,0 +1,36 @@
+<div class="container-fluid">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">
+      <a href="/administrators/dashboard">Консоль</a>
+    </li>
+    <li class="breadcrumb-item active">Гиды</li>
+  </ol>
+
+  <div class="card mb-3">
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+          <thead>
+          <tr>
+            <th>Имя</th>
+            <th>Фамилия</th>
+            <th>Email</th>
+            <th>Дата регистрации</th>
+          </tr>
+          </thead>
+
+          <tbody>
+          <% @guides.each do |guide| %>
+            <tr>
+              <td><%= guide.name_ru %></td>
+              <td><%= guide.surname_ru %></td>
+              <td><%= guide.email %></td>
+              <td><%= guide.created_at %></td>
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

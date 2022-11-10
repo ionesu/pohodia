@@ -1,0 +1,26 @@
+<div class="box_general padding_bottom">
+  <%= form_with model: @tour, url: add_images_administrators_tour_path, local: true, method: :post do |f| %>
+    <div class="header_box version_2">
+      <h2 class="pull-left">Галерея</h2>
+      <%= f.file_field :images, class: 'btn_1 gray small image-upload-button', multiple: true %>
+      <%= f.submit "Загрузить", class: "btn_1 small pull-right" %>
+    </div>
+  <% end %>
+  <% if @tour_images.size > 0 %>
+    <div class="row gallery-row ">
+      <% @tour_images.each do |image| %>
+        <div class="dz-preview dz-processing dz-error dz-image-preview">
+          <div class="dz-details">
+            <div class="dz-error-mark">
+              <%= link_to "✘", remove_image_administrators_tour_path(@tour, image_id: image.id), method: :post unless image.removed %>
+              <%= link_to "✔", restore_image_administrators_tour_path(@tour, image_id: image.id), method: :post if image.removed %>
+            </div>
+            <% img_class = image.removed ? 'removed' : 'not_removed' %>
+            <%= image_tag image.image.page_edit.to_s, class: img_class %>
+          </div>
+          <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress=""></span></div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>

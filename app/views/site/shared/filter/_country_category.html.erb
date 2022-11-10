@@ -1,0 +1,122 @@
+<aside class="col-lg-3" id="sidebar">
+  <div id="filters_col">
+    <%= form_with model: @tour_filter, url: tours_path, method: :get, local: true do |f| %>
+      <a data-toggle="collapse" href="#collapseFilters" aria-expanded="false" aria-controls="collapseFilters" id="filters_col_bt"><%= I18n.t 'site.all_pages.labels.filter_filter' %></a>
+      <div class="filter_type">
+        <h6><%= I18n.t 'site.all_pages.labels.filter_period' %></h6>
+
+        <div class="form-group">
+          <%= f.text_field :period, class: 'form-control date-period', placeholder: 'Указать даты...' %>
+        </div>
+      </div>
+
+      <div class="filter_type">
+        <h6><%= I18n.t 'site.all_pages.labels.filter_price' %></h6>
+        <ul>
+          <div class="row">
+            <li class="col-lg-6">
+              <%= f.text_field :price_start, class: "form-control", placeholder: "От" %>
+            </li>
+            <li class="col-lg-6">
+              <%= f.text_field :price_finish, class: "form-control", placeholder: "До" %>
+            </li>
+          </div>
+        </ul>
+      </div>
+
+      <div class="filter_type">
+        <h6><%= I18n.t 'site.all_pages.labels.filter_days' %></h6>
+        <ul>
+          <div class="row">
+            <li class="col-lg-6">
+              <%= f.text_field :duration_from, class: "form-control", placeholder: "От" %>
+            </li>
+            <li class="col-lg-6">
+              <%= f.text_field :duration_to, class: "form-control", placeholder: "До" %>
+            </li>
+          </div>
+        </ul>
+      </div>
+
+      <div class="filter_type">
+        <h6><%= t('tour_filter.coutry') %></h6>
+
+        <div class="row">
+          <div class="col-lg-12">
+            <%= f.select :country_id, countries,
+                         { include_blank: (I18n.t 'all_pages.labels.no_selected_v2') },
+                         { id: 'country_id', class: 'selectize-one-option', disabled: @country_selected } %>
+          </div>
+        </div>
+      </div>
+
+      <div class="filter_type">
+        <h6><%= t('tour_filter.region') %></h6>
+        <div class="row">
+          <div class="col-lg-12" id="region_select_area">
+            <%= f.select :region_id, regions(@tour_filter.country_id),
+                         { include_blank: (I18n.t 'all_pages.labels.no_selected_v2') },
+                         { class: 'selectize-one-option', disabled: @region_selected } %>
+          </div>
+        </div>
+      </div>
+
+      <div class="filter_type">
+        <h6><%= t('tour_filter.city') %></h6>
+        <div class="row">
+          <div class="col-lg-12" id="city_select_area">
+            <%= f.select :city_id, cities(region_id: @tour_filter.region_id, country_id: @tour_filter.country_id),
+                         { include_blank: (I18n.t 'all_pages.labels.no_selected_v2') },
+                         { class: 'selectize-one-option', disabled: @city_selected } %>
+          </div>
+        </div>
+      </div>
+
+      <div class="filter_type">
+        <h6><%= t('tour_filter.category_tour') %></h6>
+        <div class="row">
+          <div class="col-lg-12">
+            <%= f.select :tour_category_id, tour_categories, { include_blank: (I18n.t 'all_pages.labels.no_selected_v2') }, { class: 'selectize-one-option' } %>
+          </div>
+        </div>
+      </div>
+
+      <div class="filter_type">
+        <h6><%= I18n.t 'site.all_pages.labels.filter_age' %></h6>
+        <div class="row">
+          <div class="col-lg-12">
+            <%= f.text_field :minimum_age, class: "form-control" %>
+          </div>
+        </div>
+      </div>
+
+      <div class="filter_type">
+        <h6><%= t('tour_filter.complexity') %></h6>
+        <ul>
+          <%= f.collection_check_boxes :complexities, complexities, :last, :first do |d| %>
+            <li>
+              <%= d.check_box class: 'icheck' %>
+              <%= d.label %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+
+      <div class='filter_type'>
+        <h6><%= t('tour_filter.plane_price') %></h6>
+        <ul>
+          <%= f.collection_radio_buttons :plane, planes, :last, :first do |d| %>
+            <li>
+              <%= d.radio_button class: 'icheck' %>
+              <%= d.label %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+
+      <div class="">
+        <%= f.submit t('tour_filter.search'), class: 'btn_1' %>
+      </div>
+    <% end %>
+  </div>
+</aside>

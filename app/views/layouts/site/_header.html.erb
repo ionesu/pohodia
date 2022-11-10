@@ -1,0 +1,50 @@
+<header class="header menu_fixed">
+  <div id="preloader">
+    <div data-loader="circle-side"></div>
+  </div><!-- /Preload -->
+  <div id="logo">
+    <a href="/">
+      <%= image_tag "logo.png", width: 150, height: 36, class: 'logo_normal' %>
+      <%= image_tag "logo_sticky_2x.png", width: 150, height: 36, class: 'logo_sticky' %>
+
+      <!-- проблемы с загрузкой data-retina, поэтому и убрал -->
+      <%# image_tag "logo.png", width: 150, height: 36, class: 'logo_normal', data: {retina: true} %>
+      <%# image_tag "logo_sticky.png", width: 150, height: 36, class: 'logo_sticky', data: {retina: true} %>
+
+      <!-- <img src="img/logo.png" width="150" height="36" data-retina="true" alt="" class="logo_normal">-->
+      <!-- <img src="img/logo_sticky.png" width="150" height="36" data-retina="true" alt="" class="logo_sticky">-->
+    </a>
+  </div>
+
+  <ul id="top_menu">
+    <li>
+      <% if current_user.present? %>
+        <%= link_to 'Войти', user_root_path, class: 'login', title: 'Sign In' %>
+      <% else %>
+        <a href="#sign-in-dialog" id="sign-in" class="login" title="Sign In">Войти</a>
+      <% end %>
+    </li>
+    <li>
+      <%= link_to I18n.t('site.all_pages.labels.favourites_menu'), favorites_path,
+                  class: 'wishlist_bt_top', title: I18n.t('site.all_pages.labels.favourites_menu') %>
+    </li>
+  </ul>
+
+  <a href="#menu" class="btn_mobile">
+    <div class="hamburger hamburger--spin" id="hamburger">
+      <div class="hamburger-box">
+        <div class="hamburger-inner"></div>
+      </div>
+    </div>
+  </a>
+  <nav id="menu" class="main-menu">
+    <ul>
+      <% @main_menu_items.each do |item| %>
+        <li><span><a href="<%= get_value_of_smart_field(item, 'link', @current_locale) %>">
+          <%= get_value_of_smart_field(item, 'title', @current_locale) %></a></span>
+        </li>
+      <% end %>
+    </ul>
+  </nav>
+
+</header>

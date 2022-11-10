@@ -1,0 +1,34 @@
+<div class="box_list isotope-item popular">
+  <div class="row no-gutters">
+    <div class="col-lg-5">
+      <figure>
+        <a href="<%= tour_path(tour) %>">
+          <% if tour.avatar.to_s.size > 4 %>
+            <%= image_tag tour.avatar.in_list.to_s, class: 'img-fluid', width: '800', height: '533' %>
+          <% elsif tour.avatar_external_url.present? %>
+            <%= image_tag tour.avatar_external_url, class: 'img-fluid', width: '800', height: '533' %>
+          <% else %>
+            <%= image_tag 'tour_3.jpg', class: 'img-fluid', width: '800', height: '533' %>
+          <% end %>
+          <div class="read_more"><span><%= I18n.t 'all_pages.labels.read_more' %></span></div>
+        </a>
+      </figure>
+    </div>
+
+    <div class="col-lg-7">
+      <div class="wrapper">
+        <% if TourPresence.new(tour, @person).like? %>
+          <a href="<%= tour_path(tour) %>" class="wish_bt liked" data-tour_id="<%= tour.id %>"></a>
+        <% else %>
+          <a href="<%= tour_path(tour) %>" class="wish_bt" data-tour_id="<%= tour.id %>"></a>
+        <% end %>
+        <h3>
+          <%= link_to get_value_of_smart_field(tour, 'title', @current_locale), tour_path(tour) %></h3>
+        <p><%= get_short_description(get_value_of_smart_field(tour, 'description', @current_locale)) %></p>
+      </div>
+      <ul>
+        <li> <%= I18n.t 'site.tours.tour.duration_days' %>: <%= tour.route_duration %> </li>
+      </ul>
+    </div>
+  </div>
+</div>

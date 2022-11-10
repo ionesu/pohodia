@@ -1,0 +1,18 @@
+en:
+  site:
+    pages:
+      main:
+        posts:
+          header: 'News and blogs'
+          subheader: 'Find out the latest news of the project and read the stories of our subscribers.'
+          more_news: 'More news'
+        tours:
+          header: 'Popular tours'
+          subheader: 'Rely on the choice of others and follow them!'
+          show_all_tours: 'Show all tours'
+        sign_in:
+          header: 'Enjoy the great journey'
+          subheader: 'Join our community and start to travel interestingly with us!'
+        search:
+          header: 'ACTIVE REST IN RUSSIA AND ABROAD'
+          subheader: 'You are waiting for hiking, rafting, bike tours and much more!'

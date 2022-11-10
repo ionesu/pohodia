@@ -1,0 +1,18 @@
+<% provide(:body_class, 'profile-edit') %>
+
+<div class="container-fluid">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><%= link_to I18n.t 'users.breadcrumbs.dashboard', user_root_path %></li>
+    <li class="breadcrumb-item active"><%= t('users.breadcrumbs.reset_password') %></li>
+  </ol>
+
+  <div class="row">
+    <%= render 'users/profile/reset_password', current_user: @current_user %>
+  </div>
+
+  <div class="buttons_container">
+    <ul>
+      <li><%= link_to (I18n.t "all_pages.labels.back"), user_root_path, class: 'btn_1 gray small' %></li>
+    </ul>
+  </div>
+</div>

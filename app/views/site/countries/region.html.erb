@@ -1,0 +1,5 @@
+<h2><%= @region.attributes %></h2>
+
+<% @cities.each do |city| %>
+  <%= city.attributes %><%= link_to ">>", city_url(city) %><br/>
+<% end %>

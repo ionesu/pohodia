@@ -1,0 +1,45 @@
+<% if @removed_tour_routes.size > 0 %>
+  <div class="box_general padding_bottom">
+    <div class="header_box version_2">
+      <h2>Удаленные нитки маршрута</h2>
+    </div>
+    <div class="row">
+      <table class="table table-bordered" width="100%" cellspacing="0">
+        <thead>
+        <tr>
+          <th>Название</th>
+          <th>Проживание</th>
+          <th>Питание</th>
+          <th>Путь</th>
+          <th>Координаты</th>
+          <th>wifi / сеть / эл-во</th>
+        </tr>
+        </thead>
+        <tfoot>
+        <tr>
+          <th>Название</th>
+          <th>Проживание</th>
+          <th>Питание</th>
+          <th>Путь</th>
+          <th>Координаты</th>
+          <th>wifi / сеть / эл-во</th>
+        </tr>
+        </tfoot>
+        <tbody>
+        <% @removed_tour_routes.each do |route| %>
+          <tr>
+            <td><%= route.title %>
+              <%= link_to 'img', route.image.page_edit.to_s %>
+            </td>
+            <td><%= get_title_type_accomodation(route) %></td>
+            <td><%= get_title_type_of_food(route) %></td>
+            <td><%= route.distance %> км. | <%= route.time_hours %> ч.</td>
+            <td><%= route.geo_latitude %> | <%= route.geo_longitude %></td>
+            <td><%= bool_to_string(route.wifi_enabled) %> | <%= bool_to_string(route.cellular_network_enabled) %> | <%= bool_to_string(route.electricity_enabled) %></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+<% end %>

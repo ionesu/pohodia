@@ -1,0 +1,92 @@
+<% provide(:body_class, 'companies-index') %>
+
+<div class="container-fluid">
+  <!-- Breadcrumbs-->
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">
+      <a href="/administrators/dashboard"><%= I18n.t "guides.breadcrumbs.dashboard" %></a>
+    </li>
+    <li class="breadcrumb-item active"><%= I18n.t "guides.breadcrumbs.companies" %></li>
+  </ol>
+  <div class="card mb-3">
+    <div class="card-body">
+      <div class="table-responsive">
+        <p><%= I18n.t "guides.guide_companies.index.max_companies_notice" %></p>
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+          <thead>
+            <tr>
+              <th><%= I18n.t "guides.guide_companies.index.table_head.titles" %></th>
+              <th><%= I18n.t "guides.guide_companies.index.table_head.access_to_tours" %></th>
+              <th><%= I18n.t "guides.guide_companies.index.table_head.acces_to_company_info" %></th>
+              <th><%= I18n.t "guides.guide_companies.index.table_head.full_access" %></th>
+              <th><%= I18n.t "guides.guide_companies.index.table_head.links" %></th>
+            </tr>
+          </thead>
+          <tfoot>
+            <tr>
+              <th><%= I18n.t "guides.guide_companies.index.table_head.titles" %></th>
+              <th><%= I18n.t "guides.guide_companies.index.table_head.access_to_tours" %></th>
+              <th><%= I18n.t "guides.guide_companies.index.table_head.acces_to_company_info" %></th>
+              <th><%= I18n.t "guides.guide_companies.index.table_head.full_access" %></th>
+              <th><%= I18n.t "guides.guide_companies.index.table_head.links" %></th>
+            </tr>
+          </tfoot>
+          <tbody>
+          <% @permissions.each do |permission| %>
+            <tr>
+              <td>
+                <% if @current_locale == :ru %>
+                ru: <%= link_to permission.guide_company.title_ru, edit_guides_company_path(permission) %>
+                    <%= link_to "<i class=\"fa fa-eye\" aria-hidden=\"true\"></i>".html_safe,
+                                "#{get_public_domain(:ru)}/companies/#{permission.guide_company_id}", target: "_blank" %>
+                <br/>
+                en: <%= link_to permission.guide_company.title_en, edit_guides_company_path(permission) %>
+                <%= link_to "<i class=\"fa fa-eye\" aria-hidden=\"true\"></i>".html_safe,
+                            "#{get_public_domain(:en)}/companies/#{permission.guide_company_id}", target: "_blank" %>
+                <% else %>
+                  en: <%= link_to permission.guide_company.title_en, edit_guides_company_path(permission) %>
+                  <%= link_to "<i class=\"fa fa-eye\" aria-hidden=\"true\"></i>".html_safe,
+                              "#{get_public_domain(:en)}/companies/#{permission.guide_company_id}", target: "_blank" %>
+                  <br/>
+                  ru: <%= link_to permission.guide_company.title_ru, edit_guides_company_path(permission) %>
+                  <%= link_to "<i class=\"fa fa-eye\" aria-hidden=\"true\"></i>".html_safe,
+                              "#{get_public_domain(:ru)}/companies/#{permission.guide_company_id}", target: "_blank" %>
+                <% end %>
+              </td>
+
+              <td>
+                <%= bool_to_string(permission.access_to_tours) %>
+              </td>
+
+              <td>
+                <%= bool_to_string(permission.access_to_company_info) %>
+              </td>
+
+              <td>
+                <%= bool_to_string(permission.full_access) %>
+              </td>
+
+              <td>
+                <%= link_to (I18n.t "all_pages.labels.edit"),
+                            edit_guides_company_path(permission.guide_company_id) if permission.access_to_company_info || permission.full_access %>
+                <br/>
+                <%= link_to (I18n.t "guides.guide_companies.index.tours"),
+                            tours_guides_company_path(permission.guide_company_id) if permission.access_to_tours || permission.full_access %>
+              </td>
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <!--    <div class="card-footer small text-muted">Всего: </div>-->
+  </div>
+  <% if @my_companies_qty < 5 %>
+    <div class="buttons_container">
+      <ul>
+        <li><%= link_to (I18n.t "all_pages.labels.add_some"), new_guides_company_path,
+                        class: 'btn_1 red small' %></li>
+      </ul>
+    </div>
+  <% end %>
+</div>

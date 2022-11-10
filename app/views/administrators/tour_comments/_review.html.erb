@@ -1,0 +1,24 @@
+<li>
+  <span><%= tour_comment.created_at.to_formatted_s(:long) %></span>
+  <figure>
+    <% if tour_comment.user.avatar.to_s.size > 3 %>
+      <%= image_tag tour_comment.user.avatar.public_page_show.url, class: 'img-fluid rounded' %>
+    <% else %>
+      <%= image_tag 'noimage/main.png', class: 'img-fluid rounded', width: 800, height: 533 %>
+    <% end %>
+  </figure>
+
+  <h4>
+    <%= tour_comment.tour.title_ru %>
+    <small>от <%= tour_comment.user.presense %></small>
+  </h4>
+
+  <p><%= tour_comment.text %></p>
+
+  <p>
+    <a href="#" data-effect="mfp-zoom-in" class="btn_1 gray">
+      <i class="fa fa-fw fa-reply"></i>
+      Ответить на этот отзыв
+    </a>
+  </p>
+</li>

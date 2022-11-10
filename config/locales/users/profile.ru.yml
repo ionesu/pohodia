@@ -1,0 +1,6 @@
+ru:
+  users:
+    profile:
+      change_password: "Смена пароля"
+      coordinates: "Координаты"
+      main_info: "Основная информация"

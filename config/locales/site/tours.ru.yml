@@ -1,0 +1,29 @@
+ru:
+  site:
+    tours:
+      show:
+        complexity: "Сложность"
+        route_duration: "Дней"
+        route_current_day: "День"
+        show_all_photos: "Смотреть фотографии"
+        description: "Описание"
+        booking: "Бронирование"
+        reviews: 'Отзывы'
+        gallery: 'Галерея'
+        tour_routes: 'Нитки маршрута'
+        options_included_in_price: 'Что включено в стоимость'
+        options_not_included_in_price: 'Что не включено в стоимость'
+        options_equipment: 'Дополнительное снаряжение'
+        dates_and_prices: 'Даты и цены'
+        date_start: 'Начало'
+        date_finish: 'Конец'
+        price: 'Цена'
+        status: 'Свободно мест'
+        book: "Забронировать"
+        tour_guide: "Гид этого тура"
+        tour_guide_company: "Компания этого тура"
+      tour:
+        from: "от"
+        to: "до"
+        for_one_person: "за человека"
+        duration_days: "Длительность(дней)"

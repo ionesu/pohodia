@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+</head>
+<body>
+  <h1>Произошло обновление тура <%= @tour.title_ru %></h1>
+  <p>Статус:
+    <% if @tour.confirmed %>
+      Подтвержден
+    <% else %>
+      Не подтвержден
+    <% end %>
+  </p>
+
+  <h6>
+    Замечания:
+    <% @tour.tour_discussions.each do |tour_discussion| %>
+      <p>
+        Статус:
+        <% if @tour_discussion.confirmed %>
+          Подтвержден
+        <% else %>
+          Не подтвержден
+        <% end %>
+      </p>
+      <br>
+      <p>
+        <%= tour_discussion.text %>
+      </p>
+    <% end %>
+  </h6>
+</body>
+</html>

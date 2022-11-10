@@ -1,0 +1,26 @@
+<div class="col-md-7">
+  <%= form_with model: SeoDataItem.new, url: create_for_country_administrators_seo_data_item_path, local: true do |f| %>
+    <p class="m-bottom5">связка: <b>страна -> тип тура -> категория тура</b></p>
+    <p class="m-bottom5">Например: / все страны / <%= @country.title_ru %> / туры пешком / восхождение</p>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group" id="type_select_area">
+          <label>Тип тура</label>
+          <%= f.select :tour_type_id, @all_tour_types, {include_blank: 'Не выбран'}, {class: 'selectize-one-option'} %>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group" id="category_select_area">
+          <label>Категория</label>
+          <%= f.select :tour_category_id, [], {include_blank: 'Не выбрана'}, {class: 'selectize-one-option'} %>
+        </div>
+      </div>
+      <div class="col-md-2 m-top3">
+        <%= f.hidden_field :country_id, value: @country.id %>
+        <%= f.hidden_field :parent_item_type, value: 'tour_category' %>
+        <%= f.submit "Добавить", class: "btn_1 small pull-right m-top30" %>
+      </div>
+    </div>
+  <% end %>
+
+</div>

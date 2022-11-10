@@ -1,0 +1,25 @@
+en:
+  users:
+    devise:
+      sign_in:
+        meta_title: "Login to the personal account of the user"
+        email: "Email"
+        password: "Password"
+        remember_me: "Remember me"
+        new_user: "New user?"
+        sign_up: "Sign up"
+        sign_in: "Sign in"
+        forgot_password: "Forgot password?"
+      sign_up:
+        new_guide_label: "Register a new user"
+        email: 'Email'
+        password: 'Password'
+        password_confirm: 'Password confirm'
+        already_registred: 'Already registred?'
+        sign_in: "Sign in"
+        sign_up: "Sign up"
+      reset_password:
+        label: 'Reset password for user'
+        email: 'Email'
+        submit_button: 'Reset password'
+        meta_title: "Reset password for user"

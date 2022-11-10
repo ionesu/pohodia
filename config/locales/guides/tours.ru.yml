@@ -1,0 +1,41 @@
+ru:
+  guides:
+    tours:
+      edit:
+        images: "Изображения"
+        gallery: "Галерея"
+        add_tour_route: "Добавить нитку маршрута"
+        tour_routes: "Нитки маршрута"
+        deleted_tour_routes: "Удаленные нитки маршрута"
+        labels_for_removed_tour_routes:
+          title: "Название"
+          type_of_accomodation: "Проживание"
+          type_of_food: "Тип питания"
+          distance: "Путь"
+          coordinates: "Координаты"
+          wifi_enabled: "Wifi"
+          cellular_network_enabled: "Сеть"
+          electricity_enabled: "Электричество"
+        additional_info: "Дополнительная информация"
+        options_included_in_price: "Что входит в стоимость"
+        options_not_included_in_price: "Что не входит в стоимость"
+        equipment: "Необходимое снаряжение"
+        dates_and_cost: "Даты и стоимость"
+        main_info: "Основная информация"
+        tours_of_company: "Туры компании"
+      new:
+        main_info: "Основная информация"
+        coordinates: "Координаты"
+      index:
+        table_head:
+          name: "Название"
+          geography: "География"
+          type_and_categrory: "Тип и категория"
+          added_and_update: "Добавлен / обновлен"
+          owner: "Владелец"
+          links: "Ссылки"
+        confirm_delete_tour: "Удалить тур ?"
+        owner_you: "Вы"
+      trash:
+        table_head:
+          added_and_delete: "Добавлен / удален"

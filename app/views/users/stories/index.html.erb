@@ -1,0 +1,8 @@
+<div class="container-fluid">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><%= link_to I18n.t 'users.breadcrumbs.dashboard', user_root_path %></li>
+    <li class="breadcrumb-item active">Истории</li>
+  </ol>
+
+  <%= render 'shared/stories/index' %>
+</div>

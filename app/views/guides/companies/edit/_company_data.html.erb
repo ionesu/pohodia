@@ -1,0 +1,174 @@
+<%= form_with model: @company.base_object, url: guides_company_path, local: true do |f| %>
+  <div class="box_general padding_bottom">
+    <div class="header_box version_2">
+      <h2><%= I18n.t "guides.guide_companies.edit.main_info" %></h2>
+      <%= f.submit (I18n.t "all_pages.labels.update"), class: "btn_1 small pull-right" %>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="tabs">
+          <ul>
+            <% if @current_locale == :en %>
+              <li>EN</li>
+              <li>RU</li>
+            <% else %>
+              <li>RU</li>
+              <li>EN</li>
+            <% end %>
+          </ul>
+          <div>
+            <% if @current_locale == :en %>
+              <div class="form-group">
+                <label><%= I18n.t "models.guide_company.title_en" %></label>
+                <%= f.text_area :title_en, class: "form-control p-bottom16",
+                                placeholder: (I18n.t 'models.guide_company.title_en_placeholder'), rows: 4 %>
+              </div>
+              <div class="form-group">
+                <label><%= I18n.t "models.guide_company.title_ru" %></label>
+                <%= f.text_area :title_ru, class: "form-control p-bottom16",
+                                placeholder: (I18n.t 'models.guide_company.title_ru_placeholder'), rows: 4 %>
+              </div>
+            <% else %>
+              <div class="form-group">
+                <label><%= I18n.t "models.guide_company.title_ru" %></label>
+                <%= f.text_area :title_ru, class: "form-control p-bottom16",
+                                placeholder: (I18n.t 'models.guide_company.title_ru_placeholder'), rows: 4 %>
+              </div>
+              <div class="form-group">
+                <label><%= I18n.t "models.guide_company.title_en" %></label>
+                <%= f.text_area :title_en, class: "form-control p-bottom16",
+                                placeholder: (I18n.t 'models.guide_company.title_en_placeholder'), rows: 4 %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+        <h6><%= I18n.t "models.guide_company.logo" %></h6>
+        <small>800px * 530px</small>
+        <div class="row">
+          <div class="col-md-8">
+            <div class="form-group">
+              <% if @company.base_object.logo.to_s.size > 3 %>
+                <%= image_tag @company.base_object.logo.page_edit.to_s, class: "main_avatar" %>
+              <% else %>
+                <%= image_tag "noimage/main.png", class: "main_avatar" %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        <%= f.file_field :logo, class: "btn_1 gray small pull-left" %>
+      </div>
+
+      <div class="col-md-8">
+        <div class="tabs">
+          <ul>
+            <% if @current_locale == :en %>
+              <li>EN</li>
+              <li>RU</li>
+            <% else %>
+              <li>RU</li>
+              <li>EN</li>
+            <% end %>
+          </ul>
+          <div>
+            <% if @current_locale == :en %>
+              <div class="form-group">
+                <label><%= I18n.t "models.guide_company.description_en" %></label>
+                <%= f.text_area :description_en, class: "form-control p-bottom16",
+                                placeholder: (I18n.t 'models.guide_company.description_en_placeholder'), rows: 16 %>
+              </div>
+              <div class="form-group">
+                <label><%= I18n.t "models.guide_company.description_ru" %></label>
+                <%= f.text_area :description_ru, class: "form-control p-bottom16",
+                                placeholder: (I18n.t 'models.guide_company.description_ru_placeholder'), rows: 16 %>
+              </div>
+            <% else %>
+              <div class="form-group">
+                <label><%= I18n.t "models.guide_company.description_ru" %></label>
+                <%= f.text_area :description_ru, class: "form-control p-bottom16",
+                                placeholder: (I18n.t 'models.guide_company.description_ru_placeholder'), rows: 16 %>
+              </div>
+              <div class="form-group">
+                <label><%= I18n.t "models.guide_company.description_en" %></label>
+                <%= f.text_area :description_en, class: "form-control p-bottom16",
+                                placeholder: (I18n.t 'models.guide_company.description_en_placeholder'), rows: 16 %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="box_general padding_bottom">
+    <div class="header_box version_2">
+      <h2><%= I18n.t "guides.guide_companies.edit.contact_info" %></h2>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="tabs">
+          <ul>
+            <% if @current_locale == :en %>
+              <li>EN</li>
+              <li>RU</li>
+            <% else %>
+              <li>RU</li>
+              <li>EN</li>
+            <% end %>
+          </ul>
+          <div>
+            <% if @current_locale == :en %>
+              <div class="form-group">
+                <label><%= I18n.t "models.guide_company.address_en" %></label>
+                <%= f.text_area :address_en, class: "form-control p-bottom16",
+                                placeholder: (I18n.t 'models.guide_company.address_en_placeholder'), rows: 4 %>
+              </div>
+              <div class="form-group">
+                <label><%= I18n.t "models.guide_company.address_ru" %></label>
+                <%= f.text_area :address_ru, class: "form-control p-bottom16",
+                                placeholder: (I18n.t 'models.guide_company.address_ru_placeholder'), rows: 4 %>
+              </div>
+            <% else %>
+              <div class="form-group">
+                <label><%= I18n.t "models.guide_company.address_en" %></label>
+                <%= f.text_area :address_ru, class: "form-control p-bottom16",
+                                placeholder: (I18n.t 'models.guide_company.address_ru_placeholder'), rows: 4 %>
+              </div>
+              <div class="form-group">
+                <label><%= I18n.t "models.guide_company.address_ru" %></label>
+                <%= f.text_area :address_en, class: "form-control p-bottom16",
+                                placeholder: (I18n.t 'models.guide_company.address_en_placeholder'), rows: 4 %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="form-group">
+          <label><%= I18n.t "models.guide_company.main_phone" %></label>
+          <%= f.text_field :main_phone, class: "form-control p-bottom16",
+                           placeholder: (I18n.t 'models.guide_company.main_phone_placeholder'), rows: 4 %>
+        </div>
+        <div class="form-group">
+          <label><%= I18n.t "models.guide_company.additional_phone" %></label>
+          <%= f.text_field :additional_phone, class: "form-control p-bottom16",
+                           placeholder: (I18n.t 'models.guide_company.additional_phone_placeholder'), rows: 4 %>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="form-group">
+          <label><%= I18n.t "models.guide_company.email" %></label>
+          <%= f.text_field :email, class: "form-control p-bottom16",
+                           placeholder: (I18n.t 'models.guide_company.email_placeholder'), rows: 4 %>
+        </div>
+        <div class="form-group">
+          <label><%= I18n.t "models.guide_company.site" %></label>
+          <%= f.text_field :site, class: "form-control p-bottom16",
+                           placeholder: (I18n.t 'models.guide_company.site_placeholder'), rows: 4 %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

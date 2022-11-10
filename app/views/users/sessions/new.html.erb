@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title><%= I18n.t 'users.devise.sign_in.meta_title' %></title>
+  <%= stylesheet_link_tag 'guide_sign_in' %>
+  <%= csrf_meta_tags %>
+</head>
+<body id="login_bg">
+  <main id="login">
+    <aside>
+      <%= render 'users/shared/logo' %>
+      <%= render 'users/shared/login' %>
+      <%= render 'users/shared/copyright' %>
+    </aside>
+  </main>
+
+  <%= javascript_include_tag 'guide_sign_in' %>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">
+    <a href="/administrators/dashboard">Консоль</a>
+  </li>
+
+  <% if @page.public_page_type == 0 %> <!-- Страна -> тип тура -->
+    <li class="breadcrumb-item">
+      <%= link_to "Страны", administrators_countries_path %>
+    </li>
+    <li class="breadcrumb-item">
+      <%= link_to @page.country.title_ru, edit_administrators_country_path(@page.country) %>
+    </li>
+    <li class="breadcrumb-item">
+      <%= link_to "Управление SEO страницами", seo_data_items_administrators_country_path(@page.country) %>
+    </li>
+    <li class="breadcrumb-item">
+      <%= link_to "Типы туров", '#' %>
+    </li>
+    <li class="breadcrumb-item active"><%= @page.tour_type.title_ru %></li>
+  <% elsif @page.public_page_type == 1 %> <!-- Страна -> тип тура -> категория тура -->
+    <li class="breadcrumb-item">
+      <%= link_to "Страны", administrators_countries_path %>
+    </li>
+    <li class="breadcrumb-item">
+      <%= link_to @page.country.title_ru, edit_administrators_country_path(@page.country) %>
+    </li>
+    <li class="breadcrumb-item">
+      <%= link_to "Управление SEO страницами", seo_data_items_administrators_country_path(@page.country) %>
+    </li>
+    <li class="breadcrumb-item">
+      <%= link_to "Типы туров", '#' %>
+    </li>
+    <li class="breadcrumb-item">
+      <%= link_to @page.tour_type.title_ru, '#' %>
+    </li>
+    <li class="breadcrumb-item active"><%= @page.tour_category.title_ru %></li>
+  <% end %>
+</ol>

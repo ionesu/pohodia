@@ -1,0 +1,43 @@
+<% provide(:body_class, 'tours-edit') %>
+<div class="container-fluid">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">
+      <a href="/guides/dashboard"><%= I18n.t "guides.breadcrumbs.dashboard" %></a>
+    </li>
+    <li class="breadcrumb-item">
+      <%= link_to get_value_of_smart_field(@company.base_object.country, 'title', @current_locale), '#' %>
+    </li>
+    <li class="breadcrumb-item">
+      <%= link_to get_value_of_smart_field(@company.base_object.region, 'title', @current_locale), '#' %>
+    </li>
+    <li class="breadcrumb-item">
+      <%= link_to get_value_of_smart_field(@company.base_object.city, 'title', @current_locale), '#' %>
+    </li>
+    <li class="breadcrumb-item">
+      <a href="/guides/tours"><%= I18n.t "guides.breadcrumbs.companies" %></a>
+    </li>
+    <li class="breadcrumb-item active"><%= get_value_of_smart_field(@company.base_object, 'title', @current_locale) %></li>
+  </ol>
+
+  <%= render "guides/companies/edit/company_data" %>
+
+  <% if @company.current_guide_has_full_access? %>
+    <div class="box_general padding_bottom">
+      <div class="header_box version_2">
+        <h2>
+          <%= I18n.t "guides.guide_companies.edit.guide_company_permissions.employee_management" %>
+        </h2>
+      </div>
+      <div class="col-md-12">
+        <%= render "guides/companies/edit/add_guide" %>
+        <%= render "guides/companies/edit/guides" %>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="buttons_container">
+    <ul>
+      <li><%= link_to (I18n.t "all_pages.labels.back"), guides_companies_path, class: 'btn_1 gray small' %></li>
+    </ul>
+  </div>
+</div>

@@ -1,0 +1,113 @@
+<ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
+  <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
+    <a class="nav-link" href="/administrators/dashboard">
+      <i class="fa fa-fw fa-tachometer"></i>
+      <span class="nav-link-text">Консоль</span>
+    </a>
+  </li>
+
+  <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
+    <a class="nav-link" href="/administrators/countries">
+      <i class="fa fa-fw fa-globe"></i>
+      <span class="nav-link-text">География</span>
+    </a>
+  </li>
+
+  <li class="nav-item" data-toggle="tooltip" data-placement="right" title="My listings">
+    <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseMylistings" data-parent="#mylistings">
+      <i class="fa fa-fw fa-plane"></i>
+      <span class="nav-link-text">Туры</span>
+    </a>
+    <ul class="sidenav-second-level collapse" id="collapseMylistings">
+      <li>
+        <a href="/administrators/tour_types">Типы туров</a>
+      </li>
+
+      <li>
+        <a href="/administrators/tour_categories">Категории туров</a>
+      </li>
+
+      <li>
+        <%= link_to administrators_tours_path(status: Tour::ACTIVE) do %>
+          Активные <span class="badge badge-pill badge-success"><%= Tour.active.count %></span>
+        <% end %>
+      </li>
+
+      <li>
+        <%= link_to administrators_tours_path(status: Tour::MODERATION) do %>
+          На модерации <span class="badge badge-pill badge-success"><%= Tour.moderation.count %></span>
+        <% end %>
+      </li>
+
+      <li>
+        <%= link_to administrators_tours_path(status: Tour::CORRECTION) do %>
+          Требуют исправления
+          <span class="badge badge-pill badge-success"><%= Tour.correction.count %></span>
+        <% end %>
+      </li>
+
+      <li>
+        <%= link_to administrators_tours_path(status: Tour::SUSPENDED) do %>
+          Приостановленные
+          <span class="badge badge-pill badge-success"><%= Tour.suspended.count %></span>
+        <% end %>
+      </li>
+    </ul>
+  </li>
+
+  <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Users">
+    <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseUsers" data-parent="#collapseUsers">
+      <i class="fa fa-fw fa-users"></i>
+      <span class="nav-link-text">Пользователи</span>
+    </a>
+
+    <ul class="sidenav-second-level collapse" id="collapseUsers">
+      <li>
+        <%= link_to administrators_users_path, class: 'nav-link' do %>
+          Пользователи
+          <span class="badge badge-pill badge-success"><%= User.active.count %></span>
+        <% end %>
+      </li>
+
+      <li>
+        <%= link_to administrators_guides_path, class: 'nav-link' do %>
+          Гиды
+          <span class="badge badge-pill badge-success"><%= Guide.count %></span>
+        <% end %>
+      </li>
+    </ul>
+  </li>
+
+  <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Отзывы">
+    <%= link_to administrators_tour_comments_path, class: 'nav-link' do %>
+      <i class="fa fa-fw fa-star"></i>
+      <span class="nav-link-text">
+        Отзывы <span class="badge badge-pill badge-primary"><%= TourComment.not_confirmed.count %>
+        Новых</span>
+      </span>
+    <% end %>
+  </li>
+
+  <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
+    <a class="nav-link" href="/administrators/pages">
+      <i class="fa fa-fw fa-file-text-o"></i>
+      <span class="nav-link-text">Страницы</span>
+    </a>
+  </li>
+
+  <li class="nav-item" data-toggle="tooltip" data-placement="right" title="My listings">
+    <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapsePosts" data-parent="#mylistings">
+      <i class="fa fa-fw fa-rss"></i>
+      <span class="nav-link-text">Блог</span>
+    </a>
+    <ul class="sidenav-second-level collapse" id="collapsePosts">
+      <li>
+        <a href="/administrators/post_categories">Категори записей</a>
+      </li>
+      <li>
+        <a href="/administrators/posts">Записи</a>
+      </li>
+    </ul>
+  </li>
+
+</ul>

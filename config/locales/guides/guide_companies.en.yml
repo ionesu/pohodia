@@ -1,0 +1,25 @@
+en:
+  guides:
+    guide_companies:
+      edit:
+        contact_info: "Contacts"
+        main_info: "Main info"
+        guide_company_permissions:
+          add_employee: "Add employee"
+          max_emplyees_message: "You can add a maximum of 15 employees."
+          employee_management: "Employee management"
+          table_head:
+            email: "Email"
+            name_and_surname: "Name and surname"
+            access_to_tours: "Access to tours"
+            access_to_company_info: "Access to company info"
+            links: "Links"
+      index:
+        table_head:
+          titles: "Titles"
+          links: "Links"
+          access_to_tours: "Access to tours"
+          acces_to_company_info: "Access to company info"
+          full_access: "Full access"
+        tours: "Tours"
+        max_companies_notice: "You can add 5 companies maximum."

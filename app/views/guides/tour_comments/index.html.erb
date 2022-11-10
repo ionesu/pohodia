@@ -1,0 +1,25 @@
+<div class="container-fluid">
+  <!-- breadcrumb-->
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">
+      <%= link_to 'Личный кабинет', guide_root_path %>
+    </li>
+    <li class="breadcrumb-item active">Отзывы</li>
+  </ol>
+
+  <!-- content-->
+  <div class="box_general">
+    <div class="header_box">
+      <h2 class="d-inline-block">Отзывы</h2>
+    </div>
+    <div class="list_general reviews">
+      <ul>
+        <% @tour_comments.each do |tour_comment| %>
+          <%= render 'guides/tour_comments/review', tour_comment: tour_comment %>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+
+  <%= will_paginate @tour_comments, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
+</div>

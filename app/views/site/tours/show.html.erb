@@ -1,0 +1,71 @@
+<% provide(:body_class, 'tours-show') %>
+<%= render 'site/tours/show/detail' %>
+<% set_meta_tags title: get_value_of_smart_field(@tour.base_object, 'title', @current_locale),
+                 description: get_value_of_smart_field(@tour.base_object, 'description', @current_locale),
+                 og: {
+                     title: get_value_of_smart_field(@tour.base_object, 'title', @current_locale),
+                     description: get_value_of_smart_field(@tour.base_object, 'description', @current_locale),
+                     type: 'website',
+                     image: {
+                         _: @tour.base_object.large_avatar.public_page_show.url,
+                         width: 1600,
+                         height: 485,
+                         alt: get_value_of_smart_field(@tour.base_object, 'title', @current_locale),
+                     }
+                 } %>
+
+<div class="bg_color_1">
+  <nav class="secondary_nav sticky_horizontal">
+    <div class="container">
+      <ul class="clearfix">
+        <li>
+          <%= link_to (I18n.t "site.tours.show.description"), anchor: 'description', class: 'active' %>
+        </li>
+        <li>
+          <%= link_to (I18n.t "site.tours.show.booking"), anchor: 'booking' %>
+        </li>
+        <li>
+          <% # link_to (I18n.t "site.tours.show.reviews"), anchor: 'reviews' %>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <div class="container margin_60_35">
+    <div class="row">
+      <div class="col-lg-8">
+        <%= render 'site/tours/show/description' %>
+
+        <% if @tour.base_object.has_booking_without_date? %>
+          <section class="mb-4">
+            <h2>Бронирование</h2>
+
+            <ul>
+              <li>
+                <div class="action">
+                  <a class="btn_1 small btn-inverse booking_button" href="javascript: void(0)">
+                    Забронировать
+                  </a>
+                </div>
+              </li>
+
+              <div class='booking_form'>
+                <%= render 'site/shared/booking_form', booking: Booking.new, tour: @tour.base_object %>
+              </div>
+            </ul>
+          </section>
+        <% end %>
+
+        <%= render 'site/tours/show/dates_and_prices' %>
+
+        <% if @tour.base_object.tour_comments.confirmed.present? %>
+          <%= render 'site/tours/show/reviews' %>
+        <% end %>
+
+        <% if user_signed_in? %>
+          <%= render 'site/tours/show/add_review' %>
+        <% end %>
+      </div>
+      <%= render 'site/tours/show/guide_area' %>
+    </div>
+  </div>
+</div>

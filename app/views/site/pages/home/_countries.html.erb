@@ -1,0 +1,22 @@
+<div class="bg_color_1 sub-items-list">
+  <div class="container">
+    <div class="row">
+     <% @page.countries.each_with_index do |country, ind| %>
+        <div class="col-xl-4 col-lg-6 col-md-6">
+		  <div class="box_grid">
+			<figure>
+				<a href="<%= country_path(country) %>">
+                  <% if country.avatar.url %>
+                  <%= image_tag country.avatar.url, class: 'img-fluid', size: '800x533'%>
+                  <% else %>
+                  <%= image_tag 'tour_1.jpg', class: 'img-fluid', size: '800x533'%>
+                  <% end %>
+	            <div class="read_more"><span><%= I18n.t 'all_pages.labels.read_more' %></span></div></a>
+				<small><%= get_value_of_smart_field(country, 'title', @current_locale) %></small>
+			</figure>
+		  </div>
+        </div>      
+      <% end %>
+    </div>
+  </div>
+</div>

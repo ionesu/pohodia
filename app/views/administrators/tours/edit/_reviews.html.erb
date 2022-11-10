@@ -1,0 +1,74 @@
+<% if @tour_facade.base_object.tour_comments.present? %>
+  <div class="box_general padding_bottom">
+    <div class="header_box version_2">
+      <h2>Отзывы</h2>
+    </div>
+
+    <div class="reviews-container">
+      <% @tour_facade.base_object.tour_comments.each do |tour_comment| %>
+        <%= form_with(model: tour_comment,
+                      url: administrators_tour_tour_comment_path(tour_id: @tour_facade.base_object, id: tour_comment),
+                      method: :put, html: { multipart: true }) do |form| %>
+          <div class="review-box clearfix px-2 mb-3">
+            <div class="rev-content rounded border p-4 clearfix">
+              <div class="rev-thumb m-0" style="float: left">
+                <% if tour_comment.user.avatar.to_s.size > 3 %>
+                  <%= image_tag tour_comment.user.avatar.public_page_show.url, class: 'img-fluid rounded' %>
+                <% else %>
+                  <%= image_tag 'noimage/main.png', class: 'img-fluid rounded', width: 800, height: 533 %>
+                <% end %>
+              </div>
+
+              <div class="px-2" style="float: left">
+                <div class="col-md-12 rev-info mb-2">
+                  <%= tour_comment.user.name_ru %> - <%= tour_comment.created_at.to_formatted_s(:long) %>
+                </div>
+
+                <div class="form-group col-md-12">
+                  <label>Отзыв</label>
+                  <%= form.text_area :text, class: 'form-control', style: 'height:130px;' %>
+                </div>
+
+                <div class="form-group col-md-12">
+                  <%= form.check_box :confirmed, class: 'align-middle' %>
+                  <label class="align-middle m-0">Потверждён</label>
+                </div>
+
+                <% if tour_comment.tour_comment_photos.present? %>
+                  <div class="rev-photos">
+                    <div class="row mb-4">
+                      <% tour_comment.tour_comment_photos.each do |tour_comment_photo| %>
+                        <div class="col-md-3">
+                          <div class="dz-error-mark">
+                            <%= link_to('✘', administrators_tour_tour_comment_photo_path(tour_id: @tour_facade.base_object, id: tour_comment_photo),
+                                        method: :delete, class: 'remote') %>
+                          </div>
+
+                          <%= image_tag tour_comment_photo.photo.url, class: 'img-fluid' %>
+                        </div>
+                      <% end %>
+                    </div>
+                  </div>
+                <% end %>
+
+                <div class="col-md-12">
+                  <div class="row px-3">
+                    <div class="form-group comment-update">
+                      <%= form.submit 'Обновить', class: 'btn_1' %>
+                    </div>
+
+                    <div class="form-group mx-2 comment-destroy">
+                      <%= link_to('Удалить',
+                                  administrators_tour_tour_comment_path(tour_id: @tour_facade.base_object, id: tour_comment),
+                                  method: :delete, class: 'btn_1') %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+<% end %>

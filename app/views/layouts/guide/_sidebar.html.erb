@@ -1,0 +1,103 @@
+<ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
+  <li class="nav-item" data-toggle="tooltip" data-placement="right" title="<%= I18n.t "guides.sidebar.dashboard" %>">
+    <a class="nav-link" href="/guides/dashboard">
+      <i class="fa fa-fw fa-tachometer"></i>
+      <span class="nav-link-text"><%= I18n.t "guides.sidebar.dashboard" %></span>
+    </a>
+  </li>
+
+  <li class="nav-item" data-toggle="tooltip" data-placement="right" title="" data-original-title="Bookings">
+    <%= link_to guides_bookings_path, class: 'nav-link' do %>
+      <i class="fa fa-fw fa-calendar-check-o"></i>
+      <span class="nav-link-text"><%= I18n.t('guides.sidebar.bookings') %>
+        <span class="badge badge-pill badge-primary"><%= current_guide.avalible_bookings.count %> <%= I18n.t('guides.sidebar.new') %></span>
+      </span>
+    <% end %>
+  </li>
+
+  <li class="nav-item" data-toggle="tooltip" data-placement="right" title="" data-original-title="Add Tour">
+    <%= link_to new_guides_tour_path, class: 'nav-link' do %>
+      <i class="fa fa-fw fa-calendar-check-o"></i>
+      <span class="nav-link-text">Добавить тур</span>
+    <% end %>
+  </li>
+
+  <li class="nav-item" data-toggle="tooltip" data-placement="right" title="My listings">
+    <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseMylistings" data-parent="#mylistings">
+      <i class="fa fa-fw fa-list"></i>
+      <span class="nav-link-text">Мои туры</span>
+    </a>
+    <ul class="sidenav-second-level collapse" id="collapseMylistings">
+      <li>
+        <%= link_to guides_tours_path(status: Tour::ACTIVE) do %>
+          Активные <span class="badge badge-pill badge-success"><%= current_guide.avalible_tours.active.count %></span>
+        <% end %>
+      </li>
+
+      <li>
+        <%= link_to guides_tours_path(status: Tour::MODERATION) do %>
+          На модерации <span class="badge badge-pill badge-success"><%= current_guide.avalible_tours.moderation.count %></span>
+        <% end %>
+      </li>
+
+      <li>
+        <%= link_to guides_tours_path(status: Tour::CORRECTION) do %>
+          Требуют исправления
+          <span class="badge badge-pill badge-success"><%= current_guide.avalible_tours.correction.count %></span>
+        <% end %>
+      </li>
+
+      <li>
+        <%= link_to guides_tours_path(status: Tour::SUSPENDED) do %>
+          Приостановленные
+          <span class="badge badge-pill badge-success"><%= current_guide.avalible_tours.suspended.count %></span>
+        <% end %>
+      </li>
+    </ul>
+  </li>
+
+  <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Отзывы">
+    <%= link_to guides_tour_comments_path, class: 'nav-link' do %>
+      <i class="fa fa-fw fa-star"></i>
+      <span class="nav-link-text">
+        Отзывы <span class="badge badge-pill badge-primary"><%= current_guide.avalible_tour_comments.count %>
+        Новых</span>
+      </span>
+    <% end %>
+  </li>
+
+  <li class="nav-item" data-toggle="tooltip" data-placement="right" title="<%= I18n.t "guides.sidebar.companies" %>">
+    <a class="nav-link" href="/guides/companies">
+      <i class="fa fa-fw fa-users"></i>
+      <span class="nav-link-text"><%= I18n.t "guides.sidebar.companies" %></span>
+    </a>
+  </li>
+
+  <li class="nav-item" data-toggle="tooltip" data-placement="right" title="<%= I18n.t "guides.sidebar.my_profile" %>">
+    <a class="nav-link" href="/guides/edit_profile">
+      <i class="fa fa-fw fa-user-circle"></i>
+      <span class="nav-link-text"><%= I18n.t "guides.sidebar.my_profile" %></span>
+    </a>
+  </li>
+
+  <li class="nav-item" data-toggle="tooltip" data-placement="right" title="<%= I18n.t "guides.sidebar.my_profile" %>">
+    <%= link_to edit_guides_reset_password_path, class: 'nav-link' do %>
+      <i class="fa fa-fw fa-user-circle"></i>
+      <span class="nav-link-text"><%= 'Смена пароля' %></span>
+    <% end %>
+  </li>
+
+  <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Блог">
+    <%= link_to guides_stories_path, class: 'nav-link' do %>
+      <i class="fa fa-fw fa-user-circle"></i>
+      <span class="nav-link-text">Блоги</span>
+    <% end %>
+  </li>
+
+  <li class="nav-item" data-toggle="tooltip" data-placement="right" title="FAQ">
+    <a class="nav-link" href="/pages/17">
+      <i class="fa fa-fw fa-question"></i>
+      <span class="nav-link-text">FAQ</span>
+    </a>
+  </li>
+</ul>
